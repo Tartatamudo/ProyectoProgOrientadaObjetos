@@ -12,7 +12,7 @@ public class Usuario {
 
     private ArrayList<Servicio> servicios = new ArrayList<Servicio>();
 
-    public Usuario(String nombre, String apellido, String correo, String rut, String contraseña, int numero) {
+    public Usuario(String nombre, String apellido, String correo, String rut, int numero, String contraseña) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;

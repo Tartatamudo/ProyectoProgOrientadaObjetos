@@ -7,8 +7,8 @@ public class Vendedor extends Usuario{
     private ArrayList<Integer> estrellas;
     private ArrayList<String> comentarios;
 
-    public Vendedor(String nombre, String apellido, String correo, String rut, String contraseña, int numero) {
-        super(nombre, apellido, correo, rut, contraseña, numero);
+    public Vendedor(String nombre, String apellido, String correo, String rut, int numero, String contraseña) {
+        super(nombre, apellido, correo, rut, numero, contraseña);
     }
     public void getDatos() {
         System.out.println(getNombre() + " " + apellido + ":");
