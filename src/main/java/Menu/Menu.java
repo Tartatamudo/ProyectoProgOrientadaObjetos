@@ -9,7 +9,7 @@ import static Usuarioss.CrearUsuario.CrearUsuario;
 import static Usuarioss.Login.MenuLogin;
 import static Utilidades.GestorArchivosCompradores.CargarCompradoresAPrograma;
 import static Utilidades.GestorArchivosVendedores.CargarVendedoresAPrograma;
-import static Utilidades.ScannerTeclado.getNumero;
+import static Utilidades.Validadores.GetEntero;
 
 public class Menu {
     public static void menu(){
@@ -19,12 +19,13 @@ public class Menu {
         CargarCompradoresAPrograma(compradores);
         CargarVendedoresAPrograma(vendedores);
 
-        int eleccion =1;
+        int eleccion = 1;
         while(eleccion > 0 && eleccion < 3){
         System.out.println("[1] Crear Usuario");
         System.out.println("[2] Iniciar sesion");
+        System.out.println("Eliga cualquier otro numero para salir");
 
-        eleccion = getNumero();
+        eleccion = GetEntero();
 
         switch (eleccion) {
             case 1:
@@ -36,4 +37,5 @@ public class Menu {
             }
         }
     }
+
 }

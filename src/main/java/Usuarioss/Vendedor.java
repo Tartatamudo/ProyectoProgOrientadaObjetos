@@ -14,8 +14,8 @@ public class Vendedor extends Usuario{
         System.out.println(getNombre() + " " + apellido + ":");
         System.out.println("correo: " + correo);
         System.out.println("numero: " + numero);
-        getComentarios();
-        getnEstrellas();
+        //getComentarios();
+        //getnEstrellas();
     }
 
     public void AgregarEstrellas(){

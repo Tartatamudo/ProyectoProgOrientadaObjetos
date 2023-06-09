@@ -66,7 +66,7 @@ public class Usuario {
     public void getDatos() {
         System.out.println(getNombre() + " " + apellido + ":");
         System.out.println("correo: " + correo);
-        System.out.println("numero: " + numero);
+        System.out.println("numero: +569 " + numero);
 
     }
 

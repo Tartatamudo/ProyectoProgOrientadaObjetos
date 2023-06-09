@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 import static Utilidades.GestorArchivosCompradores.AñadirCompradoresArchivo;
 import static Utilidades.GestorArchivosVendedores.AñadirVendedoresArchivo;
-import static Utilidades.ScannerTeclado.getCadena;
-import static Utilidades.ScannerTeclado.getNumero;
+import static Utilidades.Validadores.*;
 
 public class Login {
     public static String ClaseLogin() {
@@ -14,7 +13,7 @@ public class Login {
         String clase = "";
         int num;
 
-        int eleccion = getNumero();
+        int eleccion = GetEntero();
         switch (eleccion) {
             case 1:
                 return "Comprador";
@@ -45,9 +44,9 @@ public class Login {
 
     public static int LoginComprador(ArrayList<Usuario> compradores) {
         System.out.println("Ingrese correo");
-        String correo = getCadena();
+        String correo = GetCorreo();
         System.out.println("Ingrese contraseña");
-        String contraseña = getCadena();
+        String contraseña = GetCadena();
 
         for (int i = 0; i < compradores.size(); i++) {
             if ((correo.equals(compradores.get(i).getCorreo())) && (contraseña.equals(compradores.get(i).getContraseña()))) {
@@ -61,9 +60,9 @@ public class Login {
 
     public static int LoginVendedor(ArrayList<Vendedor> vendedores) {
         System.out.println("Ingrese correo");
-        String correo = getCadena();
+        String correo = GetCorreo();
         System.out.println("Ingrese contraseña");
-        String contraseña = getCadena();
+        String contraseña = GetCadena();
 
         for (int i = 0; i < vendedores.size(); i++) {
             if ((correo.equals(vendedores.get(i).getCorreo())) && (contraseña.equals(vendedores.get(i).getContraseña()))) {
@@ -83,7 +82,7 @@ public class Login {
             System.out.println("[3]Crear publicacion");
             System.out.println("Escriba cualquier otro numero para salir");
 
-            eleccion = getNumero();
+            eleccion = GetEntero();
             switch (eleccion) {
                 case 1:
                     ImprimirServiciosVenta(usuarios.get(1));
@@ -106,7 +105,7 @@ public class Login {
             System.out.println("[3]Crear publicacion");
             System.out.println("Escriba cualquier otro numero para salir");
 
-            eleccion = getNumero();
+            eleccion = GetEntero();
             switch (eleccion){
                 case 1:
                     ImprimirServiciosCompra(usuarios.get(0));
@@ -120,6 +119,7 @@ public class Login {
         }
     }
 
+    //Imprime todos los servicios de compradores o vendedores
     public static void ImprimirServiciosCompra(ArrayList<Usuario> compradores){
         for (int i = 0; i <compradores.size() ; i++) {
             System.out.println("Comprador " + i);
@@ -136,15 +136,22 @@ public class Login {
     //impresion de los perfiles cuando se pida. Se pide el numero de la posicin del usuario en su respectivo Arraylist
     public static void ImprimirPerfilVendedor(ArrayList<Vendedor> vendedores){
         System.out.println("Eliga el numer del vendedor que desea ver");
-
-        int num = getNumero();
-        vendedores.get(num).getDatos();
+        int num = GetEntero();
+        if (vendedores.get(num) != null){
+            vendedores.get(num).getDatos();
+        }else{
+            System.out.println("El vendedor que eligio no existe");
+        }
     }
     public static void ImprimirPerfilComprador(ArrayList<Usuario> compradores){
         System.out.println("Eliga el numer del vendedor que desea ver");
 
-        int num = getNumero();
-        compradores.get(num).getDatos();
+        int num = GetEntero();
+        if (compradores.get(num) != null){
+            compradores.get(num).getDatos();
+        }else{
+            System.out.println("El vendedor que eligio no existe");
+        }
     }
 
     //Crear publicacion

@@ -2,7 +2,7 @@ package Usuarioss;
 
 import java.util.ArrayList;
 
-import static Utilidades.ScannerTeclado.getCadena;
+import static Utilidades.Validadores.GetCadena;
 
 public class Servicio {
     private String nombre;
@@ -11,10 +11,10 @@ public class Servicio {
     public Servicio() {
     }
     public void setNombre(){
-        nombre = getCadena();
+        nombre = GetCadena();
     }
     public void setDescripcion(){
-      descripcion = getCadena();
+      descripcion = GetCadena();
     }
     public void getNombre(){
         System.out.println(nombre);

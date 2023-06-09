@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 import static Utilidades.GestorArchivosCompradores.AñadirCompradorArchivo;
 import static Utilidades.GestorArchivosVendedores.AñadirVendedorArchivo;
-import static Utilidades.ScannerTeclado.getCadena;
-import static Utilidades.ScannerTeclado.getNumero;
+import static Utilidades.Validadores.*;
 
 public class CrearUsuario {
 
@@ -14,7 +13,7 @@ public class CrearUsuario {
         System.out.println("[1]Comprador");
         System.out.println("[2]Vendedor");
 
-        int eleccion = getNumero();
+        int eleccion = GetEntero();
         switch (eleccion) {
             case 1:
                 CrearComprador(compradores);
@@ -28,22 +27,19 @@ public class CrearUsuario {
     //Estos son los creadores de usuarios especificos a sus Arraylist
     public static void CrearComprador(ArrayList<Usuario> compradores) {
         System.out.println("Ingrese nombre");
-        String nombre = getCadena();
+        String nombre = GetCadena();
 
         System.out.println("Ingrese apellido");
-        String apellido = getCadena();
+        String apellido = GetCadena();
 
-        System.out.println("Ingrese rut");
-        String rut = getCadena();
+        String rut = GetRut();
 
-        System.out.println("Ingrese correo");
-        String correo = getCadena();
+        String correo = GetCorreo();
 
         System.out.println("Ingrese contraseña");
-        String contraseña = getCadena();
+        String contraseña = GetCadena();
 
-        System.out.println("Ingrese su numero");
-        int numero = getNumero();
+        int numero = GetNumero();
 
         Usuario com = new Usuario(nombre, apellido, rut, correo, numero, contraseña);
 
@@ -53,22 +49,19 @@ public class CrearUsuario {
 
     public static void CrearVendedor(ArrayList<Vendedor> vendedores) {
         System.out.println("Ingrese nombre");
-        String nombre = getCadena();
+        String nombre = GetCadena();
 
         System.out.println("Ingrese apellido");
-        String apellido = getCadena();
+        String apellido = GetCadena();
 
-        System.out.println("Ingrese rut");
-        String rut = getCadena();
+        String rut = GetRut();
 
-        System.out.println("Ingrese correo");
-        String correo = getCadena();
+        String correo = GetCorreo();
 
         System.out.println("Ingrese contraseña");
-        String contraseña = getCadena();
+        String contraseña = GetCadena();
 
-        System.out.println("Ingrese numero");
-        int numero = getNumero();
+        int numero = GetNumero();
 
         Vendedor ven = new Vendedor(nombre, apellido, rut, correo, numero, contraseña);
 
