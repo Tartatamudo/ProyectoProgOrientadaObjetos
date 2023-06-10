@@ -89,6 +89,7 @@ public class GestorArchivosVendedores {
         for (int i = 0; i <7; i++) {
             vende.remove(0);
         }
+
         return vende;
     }
 }

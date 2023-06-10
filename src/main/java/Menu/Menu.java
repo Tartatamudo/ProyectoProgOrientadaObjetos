@@ -10,11 +10,14 @@ import static Usuarioss.Login.MenuLogin;
 import static Utilidades.GestorArchivosCompradores.CargarCompradoresAPrograma;
 import static Utilidades.GestorArchivosVendedores.CargarVendedoresAPrograma;
 import static Utilidades.Validadores.GetEntero;
+import static Utilidades.Validadores.ValidarArchivos;
 
 public class Menu {
     public static void menu(){
         ArrayList<Usuario> compradores = new ArrayList<Usuario>();
         ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
+
+        ValidarArchivos();
 
         CargarCompradoresAPrograma(compradores);
         CargarVendedoresAPrograma(vendedores);

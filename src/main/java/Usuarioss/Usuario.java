@@ -69,6 +69,9 @@ public class Usuario {
         System.out.println("numero: +569 " + numero);
 
     }
+    public int GetLargoServicios(){
+        return servicios.size();
+    }
 
     public ArrayList<ArrayList> getListaDeListaServicios() {
         ArrayList<ArrayList> lista = new ArrayList<>();

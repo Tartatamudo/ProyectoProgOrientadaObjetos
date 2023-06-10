@@ -11,9 +11,9 @@ public class GestionArchivos {
         Path archivo = Paths.get(ruta);
         try {
             Files.write(archivo, contenido.getBytes());
-            System.out.println("El archivo fue creado exitosamente");
+            //System.out.println("El archivo fue creado exitosamente");
         } catch (IOException e) {
-            System.out.println("El archivo no pudo ser creado");
+            //System.out.println("El archivo no pudo ser creado");
         }
     }
 
@@ -31,7 +31,7 @@ public class GestionArchivos {
         try {
             contenido = new String(Files.readAllBytes(archivo));
         } catch (IOException e) {
-            System.out.println("El archivo no pudo ser leido");
+            //System.out.println("El archivo no pudo ser leido");
         }
         return contenido;
     }

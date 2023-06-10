@@ -60,7 +60,7 @@ public class Login {
                 return Integer.toString(i);
             }
         }
-        System.out.println("correo o contraseña erroneos");
+        System.out.println("correo y/o contraseña erroneos");
         return "";
     }
 
@@ -75,6 +75,7 @@ public class Login {
                 return Integer.toString(i);
             }
         }
+        System.out.println("correo y/o contraseña erroneos");
         return "";
     }
 
@@ -106,7 +107,7 @@ public class Login {
         while( (eleccion>0) && (eleccion<4)){
             System.out.println("Que desea hacer:");
             System.out.println("[1]Mostrar servicios de compradores");
-            System.out.println("[2]Mostrar perfil de vendedor");
+            System.out.println("[2]Mostrar perfil de comprador");
             System.out.println("[3]Crear publicacion");
             System.out.println("Escriba cualquier otro numero para salir");
 
@@ -127,14 +128,18 @@ public class Login {
     //Imprime todos los servicios de compradores o vendedores
     public static void ImprimirServiciosCompra(ArrayList<Usuario> compradores){
         for (int i = 0; i <compradores.size() ; i++) {
-            System.out.println("Comprador " + i);
-            compradores.get(i).getServicios();
+            if(compradores.get(i).GetLargoServicios() != 0){
+                System.out.println("Comprador " + i);
+                compradores.get(i).getServicios();
+            }
         }
     }
     public static void ImprimirServiciosVenta(ArrayList<Vendedor> vendedores){
         for (int i = 0; i <vendedores.size() ; i++) {
-            System.out.println("Vendedor " + i);
-            vendedores.get(i).getServicios();
+            if(vendedores.get(i).GetLargoServicios() != 0){
+                System.out.println("Comprador " + i);
+                vendedores.get(i).getServicios();
+            }
         }
     }
 

@@ -3,6 +3,9 @@ package Utilidades;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import static Utilidades.GestionArchivos.crearArchivo;
+import static Utilidades.GestionArchivos.leerArchivo;
+
 public class Validadores {
     //Son los más generales, solo es entero y cadena normales
     public static String GetCadena() {
@@ -129,6 +132,15 @@ public class Validadores {
         }
         else{
             return  true;
+        }
+    }
+
+    public static void ValidarArchivos(){
+        if(leerArchivo("vendedores.csv").equals("")){
+            crearArchivo("vendedores.csv","nombre;apellido;correo;rut;numero;contrasena;servicios;");
+        }
+        if(leerArchivo("compradores.csv").equals("")){
+            crearArchivo("compradores.csv","nombre;apellido;correo;rut;numero;contrasena;servicios;");
         }
     }
 }

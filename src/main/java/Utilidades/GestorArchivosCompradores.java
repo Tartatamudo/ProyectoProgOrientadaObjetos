@@ -66,7 +66,6 @@ public class GestorArchivosCompradores {
             List<String> listObjetos = Arrays.asList(strObjetos.split(","));
 
             ArrayList<Servicio> serv = new ArrayList<>();
-
             if (strObjetos != "") {
                 for (int j = 0; j < listObjetos.size() ; j+= 2) {
                     Servicio ser = new Servicio();
