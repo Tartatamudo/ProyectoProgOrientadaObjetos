@@ -25,7 +25,7 @@ public class Login {
     }
 
     public static void MenuLogin(ArrayList<Usuario> compradores, ArrayList<Vendedor> vendedores){
-        int numLogin;
+        String numLogin;
         String clase = ClaseLogin();
 
         ArrayList<ArrayList> usuarios = new ArrayList<>();
@@ -34,16 +34,22 @@ public class Login {
         usuarios.add(vendedores);
         if (clase.equals("Comprador")){
             numLogin = LoginComprador(compradores);
-            MenuLogeadoComprador(usuarios, numLogin);
+
+            if(numLogin != ""){
+                MenuLogeadoComprador(usuarios, Integer.parseInt(numLogin));
+            }
+
         }else{
             numLogin  = LoginVendedor(vendedores);
-            MenuLogeadoVendedor(usuarios, numLogin);
+
+            if(numLogin != ""){
+                MenuLogeadoVendedor(usuarios, Integer.parseInt(numLogin));
+            }
         }
 
     }
 
-    public static int LoginComprador(ArrayList<Usuario> compradores) {
-        System.out.println("Ingrese correo");
+    public static String LoginComprador(ArrayList<Usuario> compradores) {
         String correo = GetCorreo();
         System.out.println("Ingrese contraseña");
         String contraseña = GetCadena();
@@ -51,15 +57,14 @@ public class Login {
         for (int i = 0; i < compradores.size(); i++) {
             if ((correo.equals(compradores.get(i).getCorreo())) && (contraseña.equals(compradores.get(i).getContraseña()))) {
                 System.out.println("Ingreso como comprador");
-                return i;
+                return Integer.toString(i);
             }
         }
         System.out.println("correo o contraseña erroneos");
-        return 0;
+        return "";
     }
 
-    public static int LoginVendedor(ArrayList<Vendedor> vendedores) {
-        System.out.println("Ingrese correo");
+    public static String LoginVendedor(ArrayList<Vendedor> vendedores) {
         String correo = GetCorreo();
         System.out.println("Ingrese contraseña");
         String contraseña = GetCadena();
@@ -67,10 +72,10 @@ public class Login {
         for (int i = 0; i < vendedores.size(); i++) {
             if ((correo.equals(vendedores.get(i).getCorreo())) && (contraseña.equals(vendedores.get(i).getContraseña()))) {
                 System.out.println("Ingreso como vendedor");
-                return i;
+                return Integer.toString(i);
             }
         }
-        return 0;
+        return "";
     }
 
     public static void MenuLogeadoComprador(ArrayList<ArrayList> usuarios, int numLogin){

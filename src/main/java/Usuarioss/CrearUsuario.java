@@ -41,7 +41,7 @@ public class CrearUsuario {
 
         int numero = GetNumero();
 
-        Usuario com = new Usuario(nombre, apellido, rut, correo, numero, contraseña);
+        Usuario com = new Usuario(nombre, apellido, correo, rut, numero, contraseña);
 
         compradores.add(com);
         AñadirCompradorArchivo(compradores);
@@ -63,7 +63,7 @@ public class CrearUsuario {
 
         int numero = GetNumero();
 
-        Vendedor ven = new Vendedor(nombre, apellido, rut, correo, numero, contraseña);
+        Vendedor ven = new Vendedor(nombre, apellido, correo, rut, numero, contraseña);
 
         vendedores.add(ven);
         AñadirVendedorArchivo(vendedores);

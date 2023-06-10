@@ -17,14 +17,13 @@ public class Validadores {
         int numero = 0;
 
         while (!valid) {
-            System.out.print("Ingrese un número entero: ");
             String numStr = scanner.nextLine();
 
             try {
                 numero = Integer.parseInt(numStr);
                 valid = true; // Si no se produce una excepción, el número es válido
             } catch (NumberFormatException e) {
-                System.out.println("Error: Debe ingresar un número entero válido.");
+                System.out.println("Error: Debe ingresar un numero entero valido.");
             }
         }
         return numero;
@@ -41,9 +40,9 @@ public class Validadores {
             valido = validarRutChileno(rut);
 
             if (valido) {
-                System.out.println("El RUT es válido.");
+                System.out.println("El RUT es valido.");
             } else {
-                System.out.println("El RUT no es válido.");
+                System.out.println("El RUT no es valido.");
             }
         }
         return rut;
@@ -88,9 +87,9 @@ public class Validadores {
             valido = ValidarCorreoElectronico(correo);
 
             if (valido) {
-                System.out.println("El correo electrónico es válido.");
+                System.out.println("El correo electronico es valido.");
             } else {
-                System.out.println("El correo electrónico no es válido.");
+                System.out.println("El correo electronico no es valido.");
             }
 
         }
@@ -116,6 +115,9 @@ public class Validadores {
 
             if (validar){
                 num =Integer.parseInt(numero);
+                System.out.println("El numero es valido.");
+            }else{
+                System.out.println("El numero no es valido.");
             }
         }
         return num;
