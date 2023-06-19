@@ -12,7 +12,6 @@ public class Login {
         System.out.println("[1]Ingresar como comprador");
         System.out.println("[2]Ingresar como vendedor");
         String clase = "";
-        int num;
 
         int eleccion = GetEntero();
         switch (eleccion) {
