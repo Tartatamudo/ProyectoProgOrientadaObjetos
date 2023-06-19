@@ -6,7 +6,7 @@ import static Datos.GestorArchivosCompradores.AñadirCompradoresArchivo;
 import static Datos.GestorArchivosVendedores.AñadirVendedoresArchivo;
 
 public class GestionServicios {
-    //Imprimir servicios
+    //Imprimir servicios que se buscan
     public static void ImprimirServiciosCompra(ArrayList<Usuario> compradores){
         for (int i = 0; i <compradores.size() ; i++) {
             if(compradores.get(i).GetLargoServicios() != 0){
@@ -23,6 +23,7 @@ public class GestionServicios {
             }
         }
     }
+    //Impresion de los servicios propios
     public static void ImprimirNuestrosServiciosVenta(Vendedor vendedor){
         vendedor.getServicios();
     }
