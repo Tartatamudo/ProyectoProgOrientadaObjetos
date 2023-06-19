@@ -3,8 +3,8 @@ package Utilidades;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import static Utilidades.GestionArchivos.crearArchivo;
-import static Utilidades.GestionArchivos.leerArchivo;
+import static Datos.GestionArchivos.crearArchivo;
+import static Datos.GestionArchivos.leerArchivo;
 
 public class Validadores {
     //Son los más generales, solo es entero y cadena normales
