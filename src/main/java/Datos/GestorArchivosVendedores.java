@@ -1,4 +1,4 @@
-package Utilidades;
+package Datos;
 
 import Usuarioss.Servicio;
 import Usuarioss.Vendedor;
@@ -8,11 +8,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GestorArchivosVendedores {
-    private ArrayList<Vendedor> vendedores;
 
     public static void AñadirVendedoresArchivo(ArrayList<Vendedor> vendedores){
         GestionArchivos.crearArchivo("vendedores.csv", "nombre;apellido;correo;rut;numero;contrasena;servicios;");
         for (int i = 0; i < vendedores.size(); i++) {
+            Vendedor vendedor = vendedores.get(i);
+            /*
             String nombre = vendedores.get(i).getNombre();
             String apellido = vendedores.get(i).getApellido();
             String correo = vendedores.get(i).getCorreo();
@@ -22,17 +23,19 @@ public class GestorArchivosVendedores {
             ArrayList<ArrayList> serv = vendedores.get(i).getListaDeListaServicios();
 
             GestionArchivos.nuevaLinea("vendedores.csv",nombre + ";" + apellido + ";" + correo + ";" + rut + ";" + numero + ";" + contraseña + ";" + serv + ";");
+
+             */
+            AñadirVendedorArchivo(vendedor);
         }
     }
-    public static void AñadirVendedorArchivo(ArrayList<Vendedor> vendedores){
-        int largo = vendedores.size()-1;
-        String nombre = vendedores.get(largo).getNombre();
-        String apellido = vendedores.get(largo).getApellido();
-        String correo = vendedores.get(largo).getCorreo();
-        String rut = vendedores.get(largo).getRut();
-        int numero = vendedores.get(largo).getNumero();
-        String contraseña = vendedores.get(largo).getContraseña();
-        ArrayList<ArrayList> serv = vendedores.get(largo).getListaDeListaServicios();
+    public static void AñadirVendedorArchivo(Vendedor vendedor){
+        String nombre = vendedor.getNombre();
+        String apellido = vendedor.getApellido();
+        String correo = vendedor.getCorreo();
+        String rut = vendedor.getRut();
+        int numero = vendedor.getNumero();
+        String contraseña = vendedor.getContraseña();
+        ArrayList<ArrayList> serv = vendedor.getListaDeListaServicios();
 
         GestionArchivos.nuevaLinea("vendedores.csv",nombre + ";" + apellido + ";" + correo + ";" + rut + ";" + numero + ";" + contraseña + ";" + serv + ";");
     }

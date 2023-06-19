@@ -2,8 +2,8 @@ package Usuarioss;
 
 import java.util.ArrayList;
 
-import static Utilidades.GestorArchivosCompradores.AñadirCompradorArchivo;
-import static Utilidades.GestorArchivosVendedores.AñadirVendedorArchivo;
+import static Datos.GestorArchivosCompradores.AñadirCompradorArchivo;
+import static Datos.GestorArchivosVendedores.AñadirVendedorArchivo;
 import static Utilidades.Validadores.*;
 
 public class CrearUsuario {
@@ -44,7 +44,7 @@ public class CrearUsuario {
         Usuario com = new Usuario(nombre, apellido, correo, rut, numero, contraseña);
 
         compradores.add(com);
-        AñadirCompradorArchivo(compradores);
+        AñadirCompradorArchivo(com);
     }
 
     public static void CrearVendedor(ArrayList<Vendedor> vendedores) {
@@ -66,6 +66,6 @@ public class CrearUsuario {
         Vendedor ven = new Vendedor(nombre, apellido, correo, rut, numero, contraseña);
 
         vendedores.add(ven);
-        AñadirVendedorArchivo(vendedores);
+        AñadirVendedorArchivo(ven);
     }
 }

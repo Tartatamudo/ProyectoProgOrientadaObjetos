@@ -7,7 +7,7 @@ import static Utilidades.Validadores.GetCadena;
 public class Servicio {
     private String nombre;
     private String descripcion;
-
+    
     public Servicio() {
     }
     public void setNombre(){

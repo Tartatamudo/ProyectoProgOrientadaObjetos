@@ -1,8 +1,7 @@
-package Utilidades;
+package Datos;
 
 import Usuarioss.Servicio;
 import Usuarioss.Usuario;
-import Usuarioss.Vendedor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,26 +12,26 @@ public class GestorArchivosCompradores {
     public static void AñadirCompradoresArchivo(ArrayList<Usuario> compradores){
         GestionArchivos.crearArchivo("Compradores.csv", "nombre;apellido;correo;rut;numero;contrasena;servicios;");
         for (int i = 0; i < compradores.size(); i++) {
-            String nombre = compradores.get(i).getNombre();
-            String apellido = compradores.get(i).getApellido();
-            String correo = compradores.get(i).getCorreo();
-            String rut = compradores.get(i).getRut();
-            int numero = compradores.get(i).getNumero();
-            String contraseña = compradores.get(i).getContraseña();
-            ArrayList<ArrayList> serv = compradores.get(i).getListaDeListaServicios();
+            Usuario comprador = compradores.get(i);
+            String nombre = comprador.getNombre();
+            String apellido = comprador.getApellido();
+            String correo = comprador.getCorreo();
+            String rut = comprador.getRut();
+            int numero = comprador.getNumero();
+            String contraseña = comprador.getContraseña();
+            ArrayList<ArrayList> serv = comprador.getListaDeListaServicios();
 
             GestionArchivos.nuevaLinea("Compradores.csv",nombre + ";" + apellido + ";" + correo + ";" + rut + ";" + numero + ";" + contraseña + ";" + serv + ";");
         }
     }
-    public static void AñadirCompradorArchivo(ArrayList<Usuario> compradores){
-        int largo = compradores.size()-1;
-        String nombre = compradores.get(largo).getNombre();
-        String apellido = compradores.get(largo).getApellido();
-        String correo = compradores.get(largo).getCorreo();
-        String rut = compradores.get(largo).getRut();
-        int numero = compradores.get(largo).getNumero();
-        String contraseña = compradores.get(largo).getContraseña();
-        ArrayList<ArrayList> serv = compradores.get(largo).getListaDeListaServicios();
+    public static void AñadirCompradorArchivo(Usuario comprador){
+        String nombre = comprador.getNombre();
+        String apellido = comprador.getApellido();
+        String correo = comprador.getCorreo();
+        String rut = comprador.getRut();
+        int numero = comprador.getNumero();
+        String contraseña = comprador.getContraseña();
+        ArrayList<ArrayList> serv = comprador.getListaDeListaServicios();
 
         GestionArchivos.nuevaLinea("Compradores.csv",nombre + ";" + apellido + ";" + correo + ";" + rut + ";" + numero + ";" + contraseña + ";" + serv + ";");
     }

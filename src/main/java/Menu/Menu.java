@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 import static Usuarioss.CrearUsuario.CrearUsuario;
 import static Usuarioss.Login.MenuLogin;
-import static Utilidades.GestorArchivosCompradores.CargarCompradoresAPrograma;
-import static Utilidades.GestorArchivosVendedores.CargarVendedoresAPrograma;
+import static Datos.GestorArchivosCompradores.CargarCompradoresAPrograma;
+import static Datos.GestorArchivosVendedores.CargarVendedoresAPrograma;
 import static Utilidades.Validadores.GetEntero;
 import static Utilidades.Validadores.ValidarArchivos;
 
