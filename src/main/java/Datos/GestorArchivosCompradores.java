@@ -36,11 +36,11 @@ public class GestorArchivosCompradores {
         GestionArchivos.nuevaLinea("Compradores.csv",nombre + ";" + apellido + ";" + correo + ";" + rut + ";" + numero + ";" + contraseña + ";" + serv + ";");
     }
     public static void CargarCompradoresAPrograma(ArrayList<Usuario> compradores){
-        String vendedors =  GestionArchivos.leerArchivo("Compradores.csv");
+        String compradors =  GestionArchivos.leerArchivo("Compradores.csv");
 
-        vendedors = vendedors.replaceAll("\\n", "");
+        compradors = compradors.replaceAll("\\n", "");
 
-        ArrayList<String> compra = CrearArrayIdoneoVendedores(vendedors);
+        ArrayList<String> compra = CrearArrayIdoneoCompradores(compradors);
 
         AñadirAListaCompradores(compradores, compra);
 
@@ -77,17 +77,17 @@ public class GestorArchivosCompradores {
             compradores.add(com);
         }
     }
-    public static ArrayList<String> CrearArrayIdoneoVendedores(String vendedors){
-        List<String> vend = Arrays.asList(vendedors.split(";"));
-        ArrayList<String> vende = new ArrayList<String>();
+    public static ArrayList<String> CrearArrayIdoneoCompradores(String compradors){
+        List<String> comp = Arrays.asList(compradors.split(";"));
+        ArrayList<String> compra = new ArrayList<String>();
 
-        for (int i = 0; i < vend.size(); i++) {
-            vende.add(vend.get(i));
+        for (int i = 0; i < comp.size(); i++) {
+            compra.add(comp.get(i));
         }
 
         for (int i = 0; i <7; i++) {
-            vende.remove(0);
+            compra.remove(0);
         }
-        return vende;
+        return compra;
     }
 }
