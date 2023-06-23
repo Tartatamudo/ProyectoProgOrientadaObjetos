@@ -16,12 +16,14 @@ public class Menu {
     public static void menu(){
         ArrayList<Usuario> compradores = new ArrayList<Usuario>();
         ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
+        ArrayList<ArrayList> usuarios = new ArrayList<ArrayList>();
 
         ValidarArchivos();
 
         CargarCompradoresAPrograma(compradores);
         CargarVendedoresAPrograma(vendedores);
-
+        usuarios.add(compradores);
+        usuarios.add(vendedores);
         int eleccion = 1;
         while(eleccion > 0 && eleccion < 3){
         System.out.println("[1] Crear Usuario");
@@ -32,10 +34,10 @@ public class Menu {
 
         switch (eleccion) {
             case 1:
-                CrearUsuario(compradores, vendedores);
+                CrearUsuario(usuarios);
                 break;
             case 2:
-                MenuLogin(compradores, vendedores);
+                MenuLogin(usuarios);
                 break;
             }
         }

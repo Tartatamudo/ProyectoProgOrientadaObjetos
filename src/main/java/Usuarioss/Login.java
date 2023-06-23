@@ -24,23 +24,19 @@ public class Login {
         return clase;
     }
 
-    public static void MenuLogin(ArrayList<Usuario> compradores, ArrayList<Vendedor> vendedores){
+    public static void MenuLogin(ArrayList<ArrayList> usuarios){
         String numLogin;
         String clase = ClaseLogin();
 
-        ArrayList<ArrayList> usuarios = new ArrayList<>();
-
-        usuarios.add(compradores);
-        usuarios.add(vendedores);
         if (clase.equals("Comprador")){
-            numLogin = LoginComprador(compradores);
+            numLogin = LoginComprador(usuarios.get(0));
 
             if(numLogin != ""){
                 MenuLogeadoComprador(usuarios, Integer.parseInt(numLogin));
             }
 
         }else{
-            numLogin  = LoginVendedor(vendedores);
+            numLogin  = LoginVendedor(usuarios.get(0));
 
             if(numLogin != ""){
                 MenuLogeadoVendedor(usuarios, Integer.parseInt(numLogin));

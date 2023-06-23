@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 
 import static Datos.GestorArchivosCompradores.AñadirCompradoresArchivo;
-import static Datos.GestorArchivosVendedores.AñadirVendedorArchivo;
 import static Datos.GestorArchivosVendedores.AñadirVendedoresArchivo;
 import static Usuarioss.GestionServicios.*;
 import static Usuarioss.GestionUsuarios.ImprimirPerfilComprador;

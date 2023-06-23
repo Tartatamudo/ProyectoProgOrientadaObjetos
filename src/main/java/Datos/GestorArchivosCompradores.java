@@ -2,7 +2,6 @@ package Datos;
 
 import Usuarioss.Servicio;
 import Usuarioss.Usuario;
-import Usuarioss.Vendedor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
