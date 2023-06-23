@@ -10,21 +10,10 @@ import java.util.List;
 public class GestorArchivosVendedores {
 
     public static void AñadirVendedoresArchivo(ArrayList<Vendedor> vendedores){
-        GestionArchivos.crearArchivo("vendedores.csv", "nombre;apellido;correo;rut;numero;contrasena;servicios;");
+        GestionArchivos.crearArchivo("vendedores.csv", "nombre;apellido;correo;rut;numero;contrasena;estrellas;comentarios;confirmaciones;servicios;");
         for (int i = 0; i < vendedores.size(); i++) {
             Vendedor vendedor = vendedores.get(i);
-            /*
-            String nombre = vendedores.get(i).getNombre();
-            String apellido = vendedores.get(i).getApellido();
-            String correo = vendedores.get(i).getCorreo();
-            String rut = vendedores.get(i).getRut();
-            int numero = vendedores.get(i).getNumero();
-            String contraseña = vendedores.get(i).getContraseña();
-            ArrayList<ArrayList> serv = vendedores.get(i).getListaDeListaServicios();
 
-            GestionArchivos.nuevaLinea("vendedores.csv",nombre + ";" + apellido + ";" + correo + ";" + rut + ";" + numero + ";" + contraseña + ";" + serv + ";");
-
-             */
             AñadirVendedorArchivo(vendedor);
         }
     }
@@ -35,9 +24,12 @@ public class GestorArchivosVendedores {
         String rut = vendedor.getRut();
         int numero = vendedor.getNumero();
         String contraseña = vendedor.getContraseña();
+        ArrayList<Integer> estrellas = vendedor.GetEstrellas();
+        ArrayList<String> comentarios = vendedor.GetComentarios();
+        ArrayList<String> confirmaciones = vendedor.GetConfirmaciones();
         ArrayList<ArrayList> serv = vendedor.getListaDeListaServicios();
 
-        GestionArchivos.nuevaLinea("vendedores.csv",nombre + ";" + apellido + ";" + correo + ";" + rut + ";" + numero + ";" + contraseña + ";" + serv + ";");
+        GestionArchivos.nuevaLinea("vendedores.csv",nombre + ";" + apellido + ";" + correo + ";" + rut + ";" + numero + ";" + contraseña + ";" + estrellas + ";" + comentarios + ";" + confirmaciones + ";" + serv + ";");
     }
     public static void CargarVendedoresAPrograma(ArrayList<Vendedor> vendedores){
         String vendedors =  GestionArchivos.leerArchivo("vendedores.csv");
@@ -50,7 +42,8 @@ public class GestorArchivosVendedores {
 
     }
     public static void AñadirAListaVendedores(ArrayList<Vendedor> vendedores, ArrayList<String> vende){
-        for (int i = 0; i < vende.size() - 1; i += 7) {
+        for (int i = 0; i < vende.size() - 1; i += 10) {
+
             String nombre = vende.get(i);
             String apellido = vende.get(i+1);
             String correo = vende.get(i+2);
@@ -60,25 +53,76 @@ public class GestorArchivosVendedores {
 
             Vendedor ven = new Vendedor(nombre, apellido, correo, rut,numero, contraseña);
 
-            String strObjetos = vende.get(i+6);
-            strObjetos = strObjetos.replaceAll("\\[", "");
-            strObjetos = strObjetos.replaceAll("\\]", "");
-            strObjetos = strObjetos.replaceAll(" ", "");
+            //A partir de aqui se agregan los atributos que son arrays
+            String strEstrellas = vende.get(i+6);
+            AgregarEstrellasVendedor(strEstrellas, ven);
 
-            List<String> listObjetos = Arrays.asList(strObjetos.split(","));
+            String strComentarios = vende.get(i+7);
+            AgregarComenentariosVendedor(strComentarios, ven);
 
-            ArrayList<Servicio> serv = new ArrayList<>();
+            String strConfirmaciones = vende.get(i+8);
+            AgregarConfirmacionesVendedor(strConfirmaciones,ven);
 
-            if (strObjetos != "") {
-                for (int j = 0; j < listObjetos.size() ; j+= 2) {
-                    Servicio ser = new Servicio();
-                    ser.setExtNombre(listObjetos.get(j));
-                    ser.setExtDescricion(listObjetos.get(j+1));
-                    serv.add(ser);
-                }
-                ven.agregarExtServ(serv);
-            }
+            String strObjetos = vende.get(i+9);
+            AgregarServiciosVendedor(strObjetos, ven);
+
             vendedores.add(ven);
+        }
+    }
+    public static void AgregarConfirmacionesVendedor(String strConfirmaciones, Vendedor vendedor){
+        strConfirmaciones = strConfirmaciones.replaceAll("\\[", "");
+        strConfirmaciones = strConfirmaciones.replaceAll("\\]", "");
+        strConfirmaciones = strConfirmaciones.replaceAll(" ", "");
+
+        List<String> confirmacionList = Arrays.asList(strConfirmaciones.split(","));
+
+        vendedor.AgregarConfExt(confirmacionList);
+    }
+    public static void AgregarComenentariosVendedor(String strComentarios, Vendedor vendedor){
+        strComentarios = strComentarios.replaceAll("\\[", "");
+        strComentarios = strComentarios.replaceAll("\\]", "");
+        strComentarios = strComentarios.replaceAll(" ", "");
+
+        List<String> comentariosList = Arrays.asList(strComentarios.split(","));
+
+        vendedor.AgregarComExt(comentariosList);
+    }
+    public static void AgregarEstrellasVendedor(String strEstrellas, Vendedor vendedor){
+        strEstrellas = strEstrellas.replaceAll("\\[", "");
+        strEstrellas = strEstrellas.replaceAll("\\]", "");
+        strEstrellas = strEstrellas.replaceAll(" ", "");
+
+        List<String> estrellasList = Arrays.asList(strEstrellas.split(","));
+
+        ArrayList<Integer> estrellasListInt = new ArrayList<Integer>();
+
+        if(estrellasList.size() != 1){
+            for (int i = 0; i < estrellasList.size(); i++) {
+                estrellasListInt.add(Integer.parseInt(estrellasList.get(i)));
+            }
+            vendedor.AgregarEstExt(estrellasListInt);
+        }
+
+    }
+
+    public static void AgregarServiciosVendedor(String strObjetos, Vendedor ven){
+
+        strObjetos = strObjetos.replaceAll("\\[", "");
+        strObjetos = strObjetos.replaceAll("\\]", "");
+        strObjetos = strObjetos.replaceAll(" ", "");
+
+        List<String> listObjetos = Arrays.asList(strObjetos.split(","));
+
+        ArrayList<Servicio> serv = new ArrayList<>();
+
+        if (strObjetos != "") {
+            for (int j = 0; j < listObjetos.size() ; j+= 2) {
+                Servicio ser = new Servicio();
+                ser.setExtNombre(listObjetos.get(j));
+                ser.setExtDescricion(listObjetos.get(j+1));
+                serv.add(ser);
+            }
+            ven.agregarExtServ(serv);
         }
     }
     public static ArrayList<String> CrearArrayIdoneoVendedores(String vendedors){
@@ -89,7 +133,7 @@ public class GestorArchivosVendedores {
             vende.add(vend.get(i));
         }
 
-        for (int i = 0; i <7; i++) {
+        for (int i = 0; i < 10; i++) {
             vende.remove(0);
         }
 
