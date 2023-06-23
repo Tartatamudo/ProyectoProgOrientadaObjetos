@@ -1,5 +1,9 @@
 package Utilidades;
 
+import Usuarioss.Usuario;
+import Usuarioss.Vendedor;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -33,27 +37,49 @@ public class Validadores {
     }
 
     //Obtiene rut de la forma 12345678-9 o 1234567-8, no importa cuantos puntos o guiones se pongan, ya que tod0 eso será eliminado
-    public static String GetRut(){
+    public static String GetRut(ArrayList<ArrayList> usuarios){
+
         String rut = "";
         boolean valido = false;
-        while (!valido){
-            System.out.println("Ingrese rut");
-            rut  = GetCadena();// RUT a validar
+        while (!valido) {
 
-            valido = validarRutChileno(rut);
+                System.out.println("Ingrese rut");
+                rut = GetCadena();// RUT a validar
 
-            if (valido) {
-                System.out.println("El RUT es valido.");
-            } else {
-                System.out.println("El RUT no es valido.");
+                    valido = validarRutChileno(rut, usuarios);
+
+                    if (valido) {
+                        System.out.println("El RUT es valido.");
+                    } else {
+                        System.out.println("El RUT no es valido o a sido ingresado con anterioridad.");
+                    }
             }
-        }
+
         return rut;
     }
-    public static boolean validarRutChileno(String rut) {
+    public static boolean ConfirmarUnicidadRut(String rut,ArrayList<ArrayList> usuarios){
+        ArrayList<Usuario> compradores = usuarios.get(0);
+        ArrayList<Vendedor> vendedores = usuarios.get(1);
+        for (int i = 0; i < compradores.size(); i++) {
+            if(rut.contains(compradores.get(i).getRut())){
+                return false;
+            }
+        }
+        for (int i = 0; i < vendedores.size(); i++) {
+            if(rut.contains(vendedores.get(i).getRut())){
+                return false;
+            }
+        }
+        return true;
+    }
+    public static boolean validarRutChileno(String rut, ArrayList<ArrayList> usuarios) {
         // Eliminar puntos y guion del RUT
         rut = rut.replace(".", "").replace("-", "");
 
+        //Confirmar si es la primera vez que se ha utilizado el rut
+        if (ConfirmarUnicidadRut(rut, usuarios) == false){
+            return false;
+        }
         // Validar el formato del RUT utilizando una expresión regular
         if (!rut.matches("\\d{7,8}[0-9Kk]")) {
             return false;

@@ -8,7 +8,7 @@ import static Utilidades.Validadores.*;
 
 public class CrearUsuario {
 
-    public static void CrearUsuario(ArrayList<Usuario> compradores, ArrayList<Vendedor> vendedores) {
+    public static void CrearUsuario(ArrayList<ArrayList> usuarios) {
         System.out.println("Que quieres ser:");
         System.out.println("[1]Comprador");
         System.out.println("[2]Vendedor");
@@ -16,23 +16,25 @@ public class CrearUsuario {
         int eleccion = GetEntero();
         switch (eleccion) {
             case 1:
-                CrearComprador(compradores);
+                CrearComprador(usuarios);
                 break;
             case 2:
-                CrearVendedor(vendedores);
+                CrearVendedor(usuarios);
                 break;
         }
     }
 
     //Estos son los creadores de usuarios especificos a sus Arraylist
-    public static void CrearComprador(ArrayList<Usuario> compradores) {
+    public static void CrearComprador(ArrayList<ArrayList> usuarios) {
+        ArrayList<Usuario> compradores = usuarios.get(0);
+
         System.out.println("Ingrese nombre");
         String nombre = GetCadena();
 
         System.out.println("Ingrese apellido");
         String apellido = GetCadena();
 
-        String rut = GetRut();
+        String rut = GetRut(usuarios);
 
         String correo = GetCorreo();
 
@@ -47,14 +49,15 @@ public class CrearUsuario {
         AñadirCompradorArchivo(com);
     }
 
-    public static void CrearVendedor(ArrayList<Vendedor> vendedores) {
+    public static void CrearVendedor(ArrayList<ArrayList> usuarios) {
+        ArrayList<Vendedor> vendedores = usuarios.get(1);
         System.out.println("Ingrese nombre");
         String nombre = GetCadena();
 
         System.out.println("Ingrese apellido");
         String apellido = GetCadena();
 
-        String rut = GetRut();
+        String rut = GetRut(usuarios);
 
         String correo = GetCorreo();
 

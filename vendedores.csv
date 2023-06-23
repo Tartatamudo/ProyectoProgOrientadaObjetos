@@ -1,21 +1,21 @@
-nombre;apellido;correo;rut;numero;contrasena;servicios;
-Juan;Gómez;juangomez@email.com;21079526k;98765432;abc123;[[balo, palo], [sabo, dabo], [ahora, mismo], [a, b]];
-María;López;mlopez@email.com;21079526k;23456789;pass123;[[CADA, VENTA]];
-Pedro;Rodríguez;prodriguez@email.com;21079526k;34567890;securepass;[];
-Laura;Martínez;lmartinez@email.com;21079526k;45678901;pw123;[];
-Carlos;González;cgonzalez@email.com;21079526k;56789012;password;[];
-Ana;Hernández;ahernandez@email.com;21079526k;67890123;abc1234;[];
-José;Torres;jtorres@email.com;21079526k;78901234;pass1234;[];
-Laura;Pérez;lperez@email.com;21079526k;89012345;securepass123;[];
-Roberto;Sánchez;rsanchez@email.com;21079526k;90123456;123456;[];
-Claudia;Ramírez;cramirez@email.com;21079526k;1234567;password123;[];
-Andrés;Vargas;avargas@email.com;21079526k;12345678;pass12345;[];
-Sofía;Gutiérrez;sgutierrez@email.com;21079526k;23456789;securepass1234;[];
-Carolina;López;clopez@email.com;21079526k;34567890;abc12345;[];
-Daniel;Hernández;dhernandez@email.com;21079526k;45678901;pass123456;[];
-Andrea;Torres;atorres@email.com;21079526k;56789012;password1234;[];
-Juan;Gómez;juangomez2@email.com;21079526k;67890123;securepass12345;[];
-Laura;Pérez;lperez2@email.com;21079526k;78901234;123456789;[];
-Gabriel;Vargas;gvargas@email.com;21079526k;89012345;pass1234567;[];
-Ana;Martínez;amartinez@email.com;21079526k;90123456;securepass123456;[];
-Ricardo;González;rgonzalez@email.com;21079526k;12345678;password123456;[[vvavavsvg, 1234efv]];
+nombre;apellido;correo;rut;numero;contrasena;estrellas;comentarios;confirmaciones;servicios;
+Juan;Gómez;juangomez@email.com;399933491;98765432;abc123;[];[];[];[[balo, palo], [sabo, dabo], [ahora, mismo], [a, b]];
+María;López;mlopez@email.com;473058976;23456789;pass123;[];[];[];[[CADA, VENTA]];
+Pedro;Rodríguez;prodriguez@email.com;445506001;34567890;securepass;[];[];[];[];
+Laura;Martínez;lmartinez@email.com;176415086;45678901;pw123;[];[];[];[];
+Carlos;González;cgonzalez@email.com;699117330;56789012;password;[];[];[];[];
+Ana;Hernández;ahernandez@email.com;706569232;67890123;abc1234;[];[];[];[];
+José;Torres;jtorres@email.com;201662842;78901234;pass1234;[];[];[];[];
+Laura;Pérez;lperez@email.com;226820440;89012345;securepass123;[];[];[];[];
+Roberto;Sánchez;rsanchez@email.com;566783719;90123456;123456;[];[];[];[];
+Claudia;Ramírez;cramirez@email.com;286299311;1234567;password123;[];[];[];[];
+Andrés;Vargas;avargas@email.com;471103758;12345678;pass12345;[];[];[];[];
+Sofía;Gutiérrez;sgutierrez@email.com;993816673;23456789;securepass1234;[];[];[];[];
+Carolina;López;clopez@email.com;763343900;34567890;abc12345;[];[];[];[];
+Daniel;Hernández;dhernandez@email.com;425784945;45678901;pass123456;[];[];[];[];
+Andrea;Torres;atorres@email.com;887706804;56789012;password1234;[];[];[];[];
+Juan;Gómez;juangomez2@email.com;339033400;67890123;securepass12345;[];[];[];[];
+Laura;Pérez;lperez2@email.com;760205686;78901234;123456789;[];[];[];[];
+Gabriel;Vargas;gvargas@email.com;781258936;89012345;pass1234567;[];[];[];[];
+Ana;Martínez;amartinez@email.com;124909992;90123456;securepass123456;[];[];[];[];
+Ricardo;González;rgonzalez@email.com;21079526k;12345678;password123456;[];[];[, 127069255true, 127069255true];[[vvavavsvg, 1234efv]];

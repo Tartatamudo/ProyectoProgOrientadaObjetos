@@ -1,14 +1,18 @@
 package Usuarioss;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Usuario {
     protected String nombre;
     protected String apellido;
     protected String correo;
     private String rut;
-    private String contraseña;
+
     protected int numero;
+    private String contraseña;
+
+    protected ArrayList<String> confirmaciones = new ArrayList<>();
 
     private ArrayList<Servicio> servicios = new ArrayList<Servicio>();
 
@@ -84,6 +88,18 @@ public class Usuario {
     public void agregarExtServ(ArrayList<Servicio> serv) {
         for (int i = 0; i < serv.size(); i++) {
             servicios.add(serv.get(i));
+        }
+    }
+    public void AgregarConfirmacion(String rut){
+        confirmaciones.remove("");
+        confirmaciones.add(rut);
+    }
+    public ArrayList<String> GetConfirmaciones(){
+        return confirmaciones;
+    }
+    public void AgregarConfExt(List<String> confirmacionesList){
+        for (int i = 0; i < confirmacionesList.size(); i++) {
+            confirmaciones.add(confirmacionesList.get(i));
         }
     }
 }
