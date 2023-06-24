@@ -17,13 +17,14 @@ public class MenuLogueado {
     public static void MenuLogeadoComprador(ArrayList<ArrayList> usuarios, int numLogin){
         Usuario comprador = (Usuario) usuarios.get(0).get(numLogin);
         int eleccion = 1;
-        while(eleccion >0 && eleccion < 6 ) {
+        while(eleccion >0 && eleccion < 7 ) {
             System.out.println("Que desea hacer:");
             System.out.println("[1]Mostrar servicios de vendedores");
             System.out.println("[2]Mostrar perfil de vendedor");
             System.out.println("[3]Crear publicacion");
             System.out.println("[4]Mostrar mis publicaciones");
             System.out.println("[5]Evaluar vendedor");
+            System.out.println("[6]Filtrar publicaciones");
             System.out.println("Escriba cualquier otro numero para salir");
 
             eleccion = GetEntero();
@@ -35,7 +36,7 @@ public class MenuLogueado {
                     ImprimirPerfilVendedor(usuarios.get(1), comprador);
 
                     AñadirVendedoresArchivo(usuarios.get(1));
-                    AñadirCompradoresArchivo(usuarios.get(0));
+
                     break;
                 case 3:
                     CrearServicioCompra(comprador, usuarios.get(0));
@@ -47,6 +48,9 @@ public class MenuLogueado {
                     EvaluarVendedor(usuarios.get(1), comprador);
                     AñadirCompradoresArchivo(usuarios.get(0));
                     AñadirVendedoresArchivo(usuarios.get(1));
+                    break;
+                case 6:
+                    FiltrarServiciosVenta(usuarios.get(1));
             }
         }
     }
@@ -54,13 +58,14 @@ public class MenuLogueado {
     public static void MenuLogeadoVendedor(ArrayList<ArrayList> usuarios, int numLogin){
         Vendedor vendedor = (Vendedor) usuarios.get(1).get(numLogin);
         int eleccion = 1;
-        while( (eleccion>0) && (eleccion< 6)){
+        while( (eleccion>0) && (eleccion< 7)){
             System.out.println("Que desea hacer:");
             System.out.println("[1]Mostrar servicios de compradores");
             System.out.println("[2]Mostrar perfil de comprador");
             System.out.println("[3]Crear publicacion");
             System.out.println("[4]Mostrar mis publicaciones");
             System.out.println("[5]Confirmar contacto");
+            System.out.println("[6]Filtrar publicaciones");
             System.out.println("Escriba cualquier otro numero para salir");
 
             eleccion = GetEntero();
@@ -82,6 +87,9 @@ public class MenuLogueado {
 
                     AñadirVendedoresArchivo(usuarios.get(1));
                     AñadirCompradoresArchivo(usuarios.get(0));
+                    break;
+                case 6:
+                    FiltrarServiciosCompra(usuarios.get(0));
             }
         }
     }
@@ -105,6 +113,7 @@ public class MenuLogueado {
             int eleccion = GetEntero();
             String rut = compradoresConf.get(eleccion).getRut();
             vendedor.CambiarConfirmacion(rut);
+            compradoresConf.get(eleccion).AgregarConfirmacion(vendedor.getRut());
         }else{
             System.out.println("No tiene confirmaciones que confirmar");
         }
@@ -114,7 +123,7 @@ public class MenuLogueado {
 
     private static void EvaluarVendedor(ArrayList<Vendedor> usuarios, Usuario comprador) {
         ArrayList<String> vendedoresStr = comprador.GetConfirmaciones();
-        System.out.println(vendedoresStr.get(0));
+
         ArrayList<Vendedor> vendedores = new ArrayList<>();
         for (int i = 0; i < vendedoresStr.size(); i++) {
             for (int j = 0; j < usuarios.size(); j++) {
@@ -124,7 +133,6 @@ public class MenuLogueado {
                 }
             }
         }
-        System.out.println(vendedores.size());
         if(vendedores.size() != 0  ) {
 
             System.out.println("Eliga a quien quiere evaluar");
@@ -142,7 +150,7 @@ public class MenuLogueado {
                 System.out.println("Escriba el comentario");
                 vendedores.get(eleccion).AgregarComentario();
                 vendedores.get(eleccion).RemoverConfirmacion(rutConf);
-
+                comprador.RemoverConfirmacion(vendedores.get(eleccion).getRut());
             }
         }else{
             System.out.println("No tiene a nadie para evaluar");

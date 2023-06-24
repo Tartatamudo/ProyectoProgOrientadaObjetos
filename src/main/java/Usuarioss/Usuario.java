@@ -60,8 +60,10 @@ public class Usuario {
 
         servicios.add(servicio);
     }
-
-    public void getServicios() {
+    public ArrayList<Servicio> getServicios(){
+        return servicios;
+    }
+    public void ImprimirServicios() {
         for (int i = 0; i < servicios.size(); i++) {
             servicios.get(i).getServicio();
         }
@@ -69,8 +71,8 @@ public class Usuario {
 
     public void getDatos() {
         System.out.println(getNombre() + " " + apellido + ":");
-        System.out.println("correo: " + correo);
-        System.out.println("numero: +569 " + numero);
+        System.out.println("    correo: " + correo);
+        System.out.println("    numero: +569 " + numero);
 
     }
     public int GetLargoServicios(){
@@ -92,7 +94,18 @@ public class Usuario {
     }
     public void AgregarConfirmacion(String rut){
         confirmaciones.remove("");
-        confirmaciones.add(rut);
+        boolean bool = false;
+        for (int i = 0; i < confirmaciones.size(); i++) {
+            if(confirmaciones.get(i).equals(rut)){
+                bool = true;
+            }
+        }
+        if (bool == false) {
+            confirmaciones.add(rut);
+        }
+    }
+    public void RemoverConfirmacion(String rutConf){
+        confirmaciones.remove(rutConf);
     }
     public ArrayList<String> GetConfirmaciones(){
         return confirmaciones;

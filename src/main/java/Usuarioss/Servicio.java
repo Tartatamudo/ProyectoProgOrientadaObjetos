@@ -16,16 +16,16 @@ public class Servicio {
     public void setDescripcion(){
       descripcion = GetCadena();
     }
-    public void getNombre(){
-        System.out.println(nombre);
+    public String getNombre(){
+        return nombre;
     }
-    public void getDescripcion(){
-        System.out.println(descripcion);
+    public String getDescripcion(){
+        return  descripcion;
     }
 
     public void getServicio(){
-        System.out.println(nombre + ": ");
-        System.out.println("    " + descripcion);
+        System.out.println("    " + nombre + ": ");
+        System.out.println("        " + descripcion);
     }
     public ArrayList<String> getLista(){
         ArrayList<String> lista = new ArrayList<>();

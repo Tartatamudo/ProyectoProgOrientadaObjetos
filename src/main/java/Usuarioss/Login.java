@@ -11,6 +11,7 @@ public class Login {
     public static String ClaseLogin() {
         System.out.println("[1]Ingresar como comprador");
         System.out.println("[2]Ingresar como vendedor");
+        System.out.println("Escriba otro numero si desea salir");
         String clase = "";
 
         int eleccion = GetEntero();
@@ -19,7 +20,7 @@ public class Login {
                 return "Comprador";
 
             case 2:
-                return "Vendedeor";
+                return "Vendedor";
         }
         return clase;
     }
@@ -35,8 +36,8 @@ public class Login {
                 MenuLogeadoComprador(usuarios, Integer.parseInt(numLogin));
             }
 
-        }else{
-            numLogin  = LoginVendedor(usuarios.get(0));
+        }else if (clase.equals("Vendedor")){
+            numLogin  = LoginVendedor(usuarios.get(1));
 
             if(numLogin != ""){
                 MenuLogeadoVendedor(usuarios, Integer.parseInt(numLogin));

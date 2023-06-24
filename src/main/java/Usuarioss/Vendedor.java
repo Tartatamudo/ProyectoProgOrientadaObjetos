@@ -15,12 +15,13 @@ public class Vendedor extends Usuario{
     }
     public void getDatos() {
         System.out.println(getNombre() + " " + apellido + ":");
-        System.out.println("correo: " + correo);
-        System.out.println("numero: " + numero);
-
+        System.out.println("    correo: " + correo);
+        System.out.println("    numero: " + numero);
+        System.out.println("comentarios:");
         for (int i = 0; i < comentarios.size(); i++) {
-            System.out.println(comentarios.get(i));
+            System.out.println("    " + comentarios.get(i));
         }
+        System.out.println("Estrellas:");
         getnEstrellas();
     }
 
@@ -34,6 +35,7 @@ public class Vendedor extends Usuario{
         estrellas.add(num);
     }
     public void AgregarComentario(){
+        comentarios.remove("");
         String comentario = GetCadena();
         comentarios.add(comentario);
     }
@@ -41,11 +43,11 @@ public class Vendedor extends Usuario{
     public void getnEstrellas() {
         double acum = 0;
         for (int i = 0; i < estrellas.size(); i++) {
-            acum = acum + i;
+            acum = acum + estrellas.get(i);
         }
         acum = acum/ estrellas.size();
-        System.out.println("Promedio: " + acum);
-        System.out.println("De un total de: " + estrellas.size());
+        System.out.print("Promedio: " + acum);
+        System.out.println("De un total de: " + estrellas.size() + " calificaciones");
     }
 
     public ArrayList<String> GetComentarios() {
@@ -71,15 +73,6 @@ public class Vendedor extends Usuario{
                 confirmaciones.set(i,rutConf);
             }
         }
-    }
-    public void RemoverConfirmacion(String rutConf){
-        int i = 0;
-        for (int j = 0; j < confirmaciones.size(); j++) {
-            if(confirmaciones.get(j) == rutConf){
-                i = j;
-            }
-        }
-        confirmaciones.remove(i);
     }
 
     public void AgregarEstExt(List<Integer> estrellasList){

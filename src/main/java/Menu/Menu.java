@@ -18,12 +18,14 @@ public class Menu {
         ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
         ArrayList<ArrayList> usuarios = new ArrayList<ArrayList>();
 
+
         ValidarArchivos();
 
         CargarCompradoresAPrograma(compradores);
         CargarVendedoresAPrograma(vendedores);
         usuarios.add(compradores);
         usuarios.add(vendedores);
+
         int eleccion = 1;
         while(eleccion > 0 && eleccion < 3){
         System.out.println("[1] Crear Usuario");
@@ -39,8 +41,13 @@ public class Menu {
             case 2:
                 MenuLogin(usuarios);
                 break;
+            default:
+                Salir();
             }
         }
+    }
+    public static void Salir(){
+        System.exit(1);
     }
 
 }

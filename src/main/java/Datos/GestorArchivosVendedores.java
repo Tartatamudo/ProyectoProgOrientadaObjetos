@@ -95,8 +95,7 @@ public class GestorArchivosVendedores {
         List<String> estrellasList = Arrays.asList(strEstrellas.split(","));
 
         ArrayList<Integer> estrellasListInt = new ArrayList<Integer>();
-
-        if(estrellasList.size() != 1){
+        if(estrellasList.get(0) != ""){
             for (int i = 0; i < estrellasList.size(); i++) {
                 estrellasListInt.add(Integer.parseInt(estrellasList.get(i)));
             }

@@ -11,7 +11,7 @@ public class GestionUsuarios {
         int num = GetEntero();
         if (vendedores.get(num) != null){
             vendedores.get(num).getDatos();
-            comprador.AgregarConfirmacion(vendedores.get(num).getRut());
+
             vendedores.get(num).AgregarConfirmacion(comprador.getRut());
         }else{
             System.out.println("El vendedor que eligio no existe");
