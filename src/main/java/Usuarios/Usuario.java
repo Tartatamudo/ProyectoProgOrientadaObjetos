@@ -1,4 +1,4 @@
-package Usuarioss;
+package Usuarios;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +6,9 @@ import java.util.List;
 public class Usuario {
     protected String nombre;
     protected String apellido;
+
     protected String correo;
     private String rut;
-
     protected int numero;
     private String contraseña;
 
@@ -25,94 +25,94 @@ public class Usuario {
         this.numero = numero;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String GetNombre() {
+        return this.nombre;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String GetApellido() {
+        return this.apellido;
     }
 
-    public  String getCorreo(){
-        return correo;
+    public  String GetCorreo(){
+        return this.correo;
     }
 
-        public String getRut(){
-        return rut;
+    public String GetRut(){
+        return this.rut;
     }
 
-    public String getContraseña(){
-        return contraseña;
+    public String GetContraseña(){
+        return this.contraseña;
     }
 
-    public int getNumero(){
-        return numero;
+    public int GetNumero(){
+        return this.numero;
     }
 
-    public void crearPublicacion() {
+    public void CrearPublicacion() {
         Servicio servicio = new Servicio();
 
         System.out.println("Escriba el nombre");
-        servicio.setNombre();
+        servicio.SetNombre();
 
         System.out.println("Escriba la descripcion");
-        servicio.setDescripcion();
+        servicio.SetDescripcion();
 
-        servicios.add(servicio);
+        this.servicios.add(servicio);
     }
-    public ArrayList<Servicio> getServicios(){
-        return servicios;
+    public ArrayList<Servicio> GetServicios(){
+        return this.servicios;
     }
     public void ImprimirServicios() {
-        for (int i = 0; i < servicios.size(); i++) {
-            servicios.get(i).getServicio();
+        for (int i = 0; i < this.servicios.size(); i++) {
+            this.servicios.get(i).GetServicio();
         }
     }
 
-    public void getDatos() {
-        System.out.println(getNombre() + " " + apellido + ":");
-        System.out.println("    correo: " + correo);
-        System.out.println("    numero: +569 " + numero);
+    public void ImprimirDatos() {
+        System.out.println(GetNombre() + " " + this.apellido + ":");
+        System.out.println("    correo: " + this.correo);
+        System.out.println("    numero: +569 " + this.numero);
 
     }
     public int GetLargoServicios(){
-        return servicios.size();
+        return this.servicios.size();
     }
 
-    public ArrayList<ArrayList> getListaDeListaServicios() {
+    public ArrayList<ArrayList> GetListaDeListaServicios() {
         ArrayList<ArrayList> lista = new ArrayList<>();
-        for (int i = 0; i < servicios.size(); i++) {
-            lista.add(servicios.get(i).getLista());
+        for (int i = 0; i < this.servicios.size(); i++) {
+            lista.add(this.servicios.get(i).GetLista());
         }
         return lista;
     }
 
-    public void agregarExtServ(ArrayList<Servicio> serv) {
+    public void AgregarExtServ(ArrayList<Servicio> serv) {
         for (int i = 0; i < serv.size(); i++) {
-            servicios.add(serv.get(i));
+            this.servicios.add(serv.get(i));
         }
     }
     public void AgregarConfirmacion(String rut){
-        confirmaciones.remove("");
+        this.confirmaciones.remove("");
         boolean bool = false;
-        for (int i = 0; i < confirmaciones.size(); i++) {
-            if(confirmaciones.get(i).equals(rut)){
+        for (int i = 0; i < this.confirmaciones.size(); i++) {
+            if(this.confirmaciones.get(i).equals(rut)){
                 bool = true;
             }
         }
         if (bool == false) {
-            confirmaciones.add(rut);
+            this.confirmaciones.add(rut);
         }
     }
     public void RemoverConfirmacion(String rutConf){
-        confirmaciones.remove(rutConf);
+        this.confirmaciones.remove(rutConf);
     }
     public ArrayList<String> GetConfirmaciones(){
-        return confirmaciones;
+        return this.confirmaciones;
     }
     public void AgregarConfExt(List<String> confirmacionesList){
         for (int i = 0; i < confirmacionesList.size(); i++) {
-            confirmaciones.add(confirmacionesList.get(i));
+            this.confirmaciones.add(confirmacionesList.get(i));
         }
     }
 }

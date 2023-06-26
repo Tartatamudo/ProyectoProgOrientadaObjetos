@@ -1,30 +1,35 @@
 package Menu;
 
-import Usuarioss.Usuario;
-import Usuarioss.Vendedor;
+import Usuarios.CrearUsuario;
+import Usuarios.Usuario;
+import Usuarios.Vendedor;
 
 import java.util.ArrayList;
 
-import static Usuarioss.CrearUsuario.CrearUsuario;
-import static Usuarioss.Login.MenuLogin;
 import static Datos.GestorArchivosCompradores.CargarCompradoresAPrograma;
 import static Datos.GestorArchivosVendedores.CargarVendedoresAPrograma;
+import static Login.Login.MenuLogin;
 import static Utilidades.Validadores.GetEntero;
 import static Utilidades.Validadores.ValidarArchivos;
 
 public class Menu {
-    public static void menu(){
-        ArrayList<Usuario> compradores = new ArrayList<Usuario>();
-        ArrayList<Vendedor> vendedores = new ArrayList<Vendedor>();
-        ArrayList<ArrayList> usuarios = new ArrayList<ArrayList>();
+    private ArrayList<Usuario> compradores = new ArrayList<>();
+    private ArrayList<Vendedor> vendedores = new ArrayList<>();
+    private ArrayList<ArrayList> usuarios = new ArrayList<>();
 
+    public Menu() {
+        CargarCompradoresAPrograma(this.compradores);
+        CargarVendedoresAPrograma(this.vendedores);
+
+        this.usuarios.add(this.compradores);
+        this.usuarios.add(this.vendedores);
+
+        MenuIni();
+    }
+
+    public void MenuIni(){
 
         ValidarArchivos();
-
-        CargarCompradoresAPrograma(compradores);
-        CargarVendedoresAPrograma(vendedores);
-        usuarios.add(compradores);
-        usuarios.add(vendedores);
 
         int eleccion = 1;
         while(eleccion > 0 && eleccion < 3){
@@ -36,17 +41,17 @@ public class Menu {
 
         switch (eleccion) {
             case 1:
-                CrearUsuario(usuarios);
+                CrearUsuario crearUsuario = new CrearUsuario(this.usuarios);
                 break;
             case 2:
-                MenuLogin(usuarios);
+                MenuLogin(this.usuarios);
                 break;
             default:
                 Salir();
             }
         }
     }
-    public static void Salir(){
+    public void Salir(){
         System.exit(1);
     }
 

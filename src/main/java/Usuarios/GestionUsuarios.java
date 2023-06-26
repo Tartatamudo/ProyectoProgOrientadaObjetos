@@ -1,4 +1,7 @@
-package Usuarioss;
+package Usuarios;
+
+import Usuarios.Usuario;
+import Usuarios.Vendedor;
 
 import java.util.ArrayList;
 
@@ -10,9 +13,9 @@ public class GestionUsuarios {
         System.out.println("Eliga el numer del vendedor que desea ver");
         int num = GetEntero();
         if (vendedores.get(num) != null){
-            vendedores.get(num).getDatos();
+            vendedores.get(num).ImprimirDatos();
 
-            vendedores.get(num).AgregarConfirmacion(comprador.getRut());
+            vendedores.get(num).AgregarConfirmacion(comprador.GetRut());
         }else{
             System.out.println("El vendedor que eligio no existe");
         }
@@ -22,7 +25,7 @@ public class GestionUsuarios {
 
         int num = GetEntero();
         if (compradores.get(num) != null){
-            compradores.get(num).getDatos();
+            compradores.get(num).ImprimirDatos();
         }else{
             System.out.println("El vendedor que eligio no existe");
         }

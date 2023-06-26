@@ -1,4 +1,8 @@
-package Usuarioss;
+package Usuarios;
+
+import Usuarios.Servicio;
+import Usuarios.Usuario;
+import Usuarios.Vendedor;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -39,12 +43,12 @@ public class GestionServicios {
 
     //Crear publicacion
     public static void CrearServicioCompra(Usuario comprador, ArrayList<Usuario> compradores) {
-        comprador.crearPublicacion();
+        comprador.CrearPublicacion();
         AñadirCompradoresArchivo(compradores);
         System.out.println("Servicio añadido con exito");
     }
     public static void CrearServicioVenta(Vendedor vendedor, ArrayList<Vendedor> vendedores) {
-        vendedor.crearPublicacion();
+        vendedor.CrearPublicacion();
         AñadirVendedoresArchivo(vendedores);
         System.out.println("Servicio añadido con exito");
     }
@@ -86,7 +90,6 @@ public class GestionServicios {
                 strEleccion = "gasfiter";
                 ImprimirEleccionCompra(strEleccion, compradores);
         }
-
     }
 
     private static void ImprimirEleccionCompra(String strEleccion, ArrayList<Usuario> compradores) {
@@ -94,14 +97,14 @@ public class GestionServicios {
 
         System.out.println("--------------------------------");
         for (int i = 0; i < compradores.size(); i++) {
-            servicios = compradores.get(i).getServicios();
+            servicios = compradores.get(i).GetServicios();
 
-            for (int j = 0; j <servicios.size() ; j++) {
-                String strNomServ = servicios.get(j).getNombre().toLowerCase(Locale.ROOT);
+            for (Servicio servicio: servicios) {
+                String strNomServ = servicio.GetNombre().toLowerCase(Locale.ROOT);
                 if ( strEleccion.equals(strNomServ)){
                     System.out.println("Comprador " + i);
-                    System.out.println("    " + servicios.get(j).getNombre() + ":");
-                    System.out.println("        " + servicios.get(j).getDescripcion());
+                    System.out.println("    " + servicio.GetNombre() + ":");
+                    System.out.println("        " + servicio.GetDescripcion());
                     System.out.println("--------------------------------");
                 }
             }
@@ -113,14 +116,14 @@ public class GestionServicios {
 
         System.out.println("--------------------------------");
         for (int i = 0; i < vendedores.size(); i++) {
-            servicios = vendedores.get(i).getServicios();
+            servicios = vendedores.get(i).GetServicios();
 
             for (int j = 0; j <servicios.size() ; j++) {
-                String strNomServ = servicios.get(j).getNombre().toLowerCase(Locale.ROOT);
+                String strNomServ = servicios.get(j).GetNombre().toLowerCase(Locale.ROOT);
                 if ( strEleccion.equals(strNomServ)){
                     System.out.println("Vendedor " + i);
-                    System.out.println("    " + servicios.get(j).getNombre() + ":");
-                    System.out.println("        " + servicios.get(j).getDescripcion());
+                    System.out.println("    " + servicios.get(j).GetNombre() + ":");
+                    System.out.println("        " + servicios.get(j).GetDescripcion());
                     System.out.println("--------------------------------");
                 }
             }

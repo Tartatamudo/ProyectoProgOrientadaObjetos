@@ -1,21 +1,20 @@
-package Menu;
+package Login;
 
-import Usuarioss.Usuario;
-import Usuarioss.Vendedor;
+import Usuarios.Usuario;
+import Usuarios.Vendedor;
 
 import java.util.ArrayList;
 
 
 import static Datos.GestorArchivosCompradores.AñadirCompradoresArchivo;
 import static Datos.GestorArchivosVendedores.AñadirVendedoresArchivo;
-import static Usuarioss.GestionServicios.*;
-import static Usuarioss.GestionUsuarios.ImprimirPerfilComprador;
-import static Usuarioss.GestionUsuarios.ImprimirPerfilVendedor;
+import static Usuarios.GestionServicios.*;
+import static Usuarios.GestionUsuarios.ImprimirPerfilComprador;
+import static Usuarios.GestionUsuarios.ImprimirPerfilVendedor;
 import static Utilidades.Validadores.GetEntero;
 
 public class MenuLogueado {
-    public static void MenuLogeadoComprador(ArrayList<ArrayList> usuarios, int numLogin){
-        Usuario comprador = (Usuario) usuarios.get(0).get(numLogin);
+    public static void MenuLogeadoComprador(ArrayList<ArrayList> usuarios, Usuario comprador){
         int eleccion = 1;
         while(eleccion >0 && eleccion < 7 ) {
             System.out.println("Que desea hacer:");
@@ -54,9 +53,7 @@ public class MenuLogueado {
             }
         }
     }
-
-    public static void MenuLogeadoVendedor(ArrayList<ArrayList> usuarios, int numLogin){
-        Vendedor vendedor = (Vendedor) usuarios.get(1).get(numLogin);
+    public static void MenuLogeadoVendedor(ArrayList<ArrayList> usuarios, Vendedor vendedor){
         int eleccion = 1;
         while( (eleccion>0) && (eleccion< 7)){
             System.out.println("Que desea hacer:");
@@ -97,61 +94,81 @@ public class MenuLogueado {
     private static void ConfirmarContacto(Vendedor vendedor, ArrayList<Usuario> compradores) {
         ArrayList<String> confirmaciones = vendedor.GetConfirmaciones();
 
+        //Aqui se añaden al ArrayList compradoresConf solo los compradores que tienen su rut en el aparto confirmaciones del vendedor, pero solo su rut
         ArrayList<Usuario> compradoresConf = new ArrayList<>();
         for (int i = 0; i < confirmaciones.size(); i++) {
             for (int j = 0; j < compradores.size(); j++) {
-                if (confirmaciones.get(i).equals(compradores.get(j).getRut())){
+                if (confirmaciones.get(i).equals(compradores.get(j).GetRut())){
                     compradoresConf.add(compradores.get(j));
                 }
             }
         }
+        //Aqui se muestran los compradores que tienen su rut y solo su rut en el apartado confirmaciones del vendedor
+        //Si no hay compradores a los que confirmarles el contacto se le indica que no tiene
         if (compradoresConf.size() != 0){
             System.out.println("Eliga la confirmacion que quiere confirmar");
             for (int i = 0; i < compradoresConf.size(); i++) {
-                System.out.println(i + ". " + compradoresConf.get(i).getNombre() + " " + compradoresConf.get(i).getApellido());
+                System.out.println(i + ". " + compradoresConf.get(i).GetNombre() + " " + compradoresConf.get(i).GetApellido());
             }
+            //Aqui se confirma que el numero entregado por el usuario este dentro del rango de numeros que se entrego con anterioridad
+            //Si es asi se cambia el rut del comprador que esta en el apartado confirmaciones añadiendole la palabra "true"
+            //Si el numero no entra se le indica
             int eleccion = GetEntero();
-            String rut = compradoresConf.get(eleccion).getRut();
-            vendedor.CambiarConfirmacion(rut);
-            compradoresConf.get(eleccion).AgregarConfirmacion(vendedor.getRut());
+            if ((eleccion < compradoresConf.size()) && (eleccion >= 0)){
+                String rut = compradoresConf.get(eleccion).GetRut();
+                vendedor.CambiarConfirmacion(rut);
+                compradoresConf.get(eleccion).AgregarConfirmacion(vendedor.GetRut());
+            }else {
+                System.out.println("Debe ingresar un numero que este en la lista entregada");
+            }
+
         }else{
             System.out.println("No tiene confirmaciones que confirmar");
         }
-
 
     }
 
     private static void EvaluarVendedor(ArrayList<Vendedor> usuarios, Usuario comprador) {
         ArrayList<String> vendedoresStr = comprador.GetConfirmaciones();
 
-        ArrayList<Vendedor> vendedores = new ArrayList<>();
+        //Aqui se añaden al ArrayList vendedoresConf los vendedores que esten en el apartado confirmaciones del comprador
+        ArrayList<Vendedor> vendedoresConf = new ArrayList<>();
         for (int i = 0; i < vendedoresStr.size(); i++) {
             for (int j = 0; j < usuarios.size(); j++) {
-                if (vendedoresStr.get(i).equals(usuarios.get(j).getRut())) {
-                    vendedores.add(usuarios.get(j));
-                    usuarios.get(j).getNombre();
+                if (vendedoresStr.get(i).equals(usuarios.get(j).GetRut())) {
+                    vendedoresConf.add(usuarios.get(j));
+                    usuarios.get(j).GetNombre();
                 }
             }
         }
-        if(vendedores.size() != 0  ) {
+        //Si hay vendedores en el ArrayList, se confirma que este el rut+true del comprador
+        // en el apartado confirmaciones del vendedor para poder mostrarlo
+        if(vendedoresConf.size() != 0  ) {
 
             System.out.println("Eliga a quien quiere evaluar");
-            String rutConf = comprador.getRut() + "true";
-            for (int i = 0; i < vendedores.size(); i++) {
-                if(vendedores.get(i).GetConfirmacion(rutConf) == true){
+            String rutConf = comprador.GetRut() + "true";
+            for (int i = 0; i < vendedoresConf.size(); i++) {
+                if(vendedoresConf.get(i).GetConfirmacion(rutConf) == true){
 
-                    System.out.println(i + ". " + vendedores.get(i).getNombre() + " " + vendedores.get(i).getApellido());
+                    System.out.println(i + ". " + vendedoresConf.get(i).GetNombre() + " " + vendedoresConf.get(i).GetApellido());
                 }
             }
+
+            //Se confirma que la eleccion esta dentro del rango, si no es asi se le avisa
+            //si se confirma, le da entrada a darle la cantidad de estrellas y darle un comentario al vendedor
             int eleccion = GetEntero();
-            if(vendedores.get(eleccion).GetConfirmacion(rutConf) == true) {
+            if ( eleccion < vendedoresConf.size() && eleccion >= 0){
+
                 System.out.println("Eliga las estrellas que quiera");
-                vendedores.get(eleccion).AgregarEstrellas();
+                vendedoresConf.get(eleccion).AgregarEstrellas();
                 System.out.println("Escriba el comentario");
-                vendedores.get(eleccion).AgregarComentario();
-                vendedores.get(eleccion).RemoverConfirmacion(rutConf);
-                comprador.RemoverConfirmacion(vendedores.get(eleccion).getRut());
+                vendedoresConf.get(eleccion).AgregarComentario();
+                vendedoresConf.get(eleccion).RemoverConfirmacion(rutConf);
+                comprador.RemoverConfirmacion(vendedoresConf.get(eleccion).GetRut());
+            }else {
+                System.out.println("Debe ingresar un numero que este en la lista entregada");
             }
+
         }else{
             System.out.println("No tiene a nadie para evaluar");
         }

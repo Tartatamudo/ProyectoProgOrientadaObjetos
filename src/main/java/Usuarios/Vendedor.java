@@ -1,4 +1,4 @@
-package Usuarioss;
+package Usuarios;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,16 +13,16 @@ public class Vendedor extends Usuario{
     public Vendedor(String nombre, String apellido, String correo, String rut, int numero, String contraseña) {
         super(nombre, apellido, correo, rut, numero, contraseña);
     }
-    public void getDatos() {
-        System.out.println(getNombre() + " " + apellido + ":");
-        System.out.println("    correo: " + correo);
-        System.out.println("    numero: " + numero);
+    public void ImprimirDatos() {
+        System.out.println(GetNombre() + " " + this.apellido + ":");
+        System.out.println("    correo: " + this.correo);
+        System.out.println("    numero: " + this.numero);
         System.out.println("comentarios:");
-        for (int i = 0; i < comentarios.size(); i++) {
-            System.out.println("    " + comentarios.get(i));
+        for (int i = 0; i < this.comentarios.size(); i++) {
+            System.out.println("    " + this.comentarios.get(i));
         }
         System.out.println("Estrellas:");
-        getnEstrellas();
+        GetnEstrellas();
     }
 
     public void AgregarEstrellas(){
@@ -40,50 +40,49 @@ public class Vendedor extends Usuario{
         comentarios.add(comentario);
     }
 
-    public void getnEstrellas() {
+    public void GetnEstrellas() {
         double acum = 0;
-        for (int i = 0; i < estrellas.size(); i++) {
-            acum = acum + estrellas.get(i);
+        for (int i = 0; i < this.estrellas.size(); i++) {
+            acum = acum + this.estrellas.get(i);
         }
-        acum = acum/ estrellas.size();
+        acum = acum/ this.estrellas.size();
         System.out.print("Promedio: " + acum);
-        System.out.println("De un total de: " + estrellas.size() + " calificaciones");
+        System.out.println("De un total de: " + this.estrellas.size() + " calificaciones");
     }
 
     public ArrayList<String> GetComentarios() {
-        return comentarios;
+        return this.comentarios;
     }
     public ArrayList<Integer> GetEstrellas(){
-        return estrellas;
+        return this.estrellas;
     }
     public boolean GetConfirmacion(String rutConf){
         boolean bool = false;
-        for (int i = 0; i < confirmaciones.size(); i++) {
-            if(confirmaciones.get(i).equals(rutConf)){
+        for (int i = 0; i < this.confirmaciones.size(); i++) {
+            if(this.confirmaciones.get(i).equals(rutConf)){
                 return true;
             }
         }
         return false;
     }
     public void CambiarConfirmacion(String rut){
-        for (int i = 0; i < confirmaciones.size(); i++) {
-            if (confirmaciones.get(i).contains(rut)){
-                System.out.println(confirmaciones.get(i));
+        for (int i = 0; i < this.confirmaciones.size(); i++) {
+            if (this.confirmaciones.get(i).contains(rut)){
                 String rutConf = rut + "true";
-                confirmaciones.set(i,rutConf);
+                this.confirmaciones.set(i,rutConf);
             }
         }
     }
 
     public void AgregarEstExt(List<Integer> estrellasList){
         for (int i = 0; i < estrellasList.size(); i++) {
-            estrellas.add(estrellasList.get(i));
+            this.estrellas.add(estrellasList.get(i));
         }
     }
 
     public void AgregarComExt(List<String> comentariosList){
         for (int i = 0; i < comentariosList.size(); i++) {
-            comentarios.add(comentariosList.get(i));
+            this.comentarios.add(comentariosList.get(i));
         }
     }
 }
