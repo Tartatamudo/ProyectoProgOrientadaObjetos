@@ -3,10 +3,11 @@ package Usuarios;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Utilidades.Validadores.GetCadena;
+
 public class Usuario {
     protected String nombre;
     protected String apellido;
-
     protected String correo;
     private String rut;
     protected int numero;
@@ -49,36 +50,58 @@ public class Usuario {
         return this.numero;
     }
 
-    public void CrearPublicacion() {
-        Servicio servicio = new Servicio();
-
+    //Consola
+    public void CrearPublicacionn() {
         System.out.println("Escriba el nombre");
-        servicio.SetNombre();
+        String nom = GetCadena();
 
         System.out.println("Escriba la descripcion");
-        servicio.SetDescripcion();
+        String descripcion = GetCadena();
+
+        Servicio servicio = new Servicio(nom, descripcion);
 
         this.servicios.add(servicio);
     }
+    //Ventana
+    public void CrearPublicacion(Servicio servicio) {
+        this.servicios.add(servicio);
+    }
+
+    //Ventana y consola
     public ArrayList<Servicio> GetServicios(){
         return this.servicios;
     }
+
+    //Consola
     public void ImprimirServicios() {
         for (int i = 0; i < this.servicios.size(); i++) {
-            this.servicios.get(i).GetServicio();
+            System.out.println(this.servicios.get(i).GetNombre() + " :" + this.servicios.get(i).GetDescripcion() );
         }
     }
 
+    //Ventana y consola
+    public String DevolverStrServicos(){
+        String texto = "";
+        for (int i = 0; i < this.servicios.size(); i++) {
+            texto = texto + servicios.get(i).GetNombre()+ ": " + servicios.get(i).GetDescripcion() + ", ";
+        }
+        return texto;
+    }
+
+    //Consola
     public void ImprimirDatos() {
         System.out.println(GetNombre() + " " + this.apellido + ":");
         System.out.println("    correo: " + this.correo);
         System.out.println("    numero: +569 " + this.numero);
 
     }
+
+    //Ventana y consola
     public int GetLargoServicios(){
         return this.servicios.size();
     }
 
+    //Gestion archivos
     public ArrayList<ArrayList> GetListaDeListaServicios() {
         ArrayList<ArrayList> lista = new ArrayList<>();
         for (int i = 0; i < this.servicios.size(); i++) {
@@ -86,12 +109,14 @@ public class Usuario {
         }
         return lista;
     }
-
+    //Gestion Archivos
     public void AgregarExtServ(ArrayList<Servicio> serv) {
         for (int i = 0; i < serv.size(); i++) {
             this.servicios.add(serv.get(i));
         }
     }
+
+    //Ventana y consola
     public void AgregarConfirmacion(String rut){
         this.confirmaciones.remove("");
         boolean bool = false;
@@ -104,12 +129,18 @@ public class Usuario {
             this.confirmaciones.add(rut);
         }
     }
+
+    //Ventana y consola
     public void RemoverConfirmacion(String rutConf){
         this.confirmaciones.remove(rutConf);
     }
+
+    //Ventana, consola y gestion archivos
     public ArrayList<String> GetConfirmaciones(){
         return this.confirmaciones;
     }
+
+    //Gestion archivos
     public void AgregarConfExt(List<String> confirmacionesList){
         for (int i = 0; i < confirmacionesList.size(); i++) {
             this.confirmaciones.add(confirmacionesList.get(i));

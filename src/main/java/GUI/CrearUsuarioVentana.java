@@ -3,6 +3,7 @@ package GUI;
 import Usuarios.CrearUsuario;
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
+import Utilidades.Validadores;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import static Utilidades.Validadores.*;
 
 public class CrearUsuarioVentana extends JFrame implements ActionListener {
+    Validadores validador = new Validadores();
     private JFrame jFrame = new JFrame();
     private ArrayList<Usuario> compradores;
     private ArrayList<Vendedor> vendedores;
@@ -55,13 +57,13 @@ public class CrearUsuarioVentana extends JFrame implements ActionListener {
         setVisible(true);
     }
     public boolean ValidarEntradas(){
-        if (!ValidarRutChileno(rutTF.getText(), usuarios)){
+        if (!validador.ValidarRutChileno(rutTF.getText(), usuarios)){
             return false;
         }
-        if (!ValidarCorreoElectronico(correoTF.getText(), usuarios)){
+        if (!validador.ValidarCorreoElectronico(correoTF.getText(), usuarios)){
             return false;
         }
-        if (!ValidarNumero(numeroTF.getText())){
+        if (!validador.ValidarNumero(numeroTF.getText())){
             return false;
         }
        return true;
@@ -74,14 +76,18 @@ public class CrearUsuarioVentana extends JFrame implements ActionListener {
                 String apellido = apellidoTF.getText();
                 String correo = correoTF.getText();
                 String rut = rutTF.getText();
+                rut = rut.replace(".", "").replace("-", "");
                 int numero = Integer.parseInt(numeroTF.getText());
                 String contraseña = String.valueOf(contraseñaTF.getPassword());
 
                 Usuario com = new Usuario(nombre, apellido, correo, rut, numero, contraseña);
 
                 CrearUsuario crearUsuario = new CrearUsuario(com, usuarios);
-            }else{
-                JOptionPane.showMessageDialog(jFrame, "Se equivoco en las entradas");
+                JOptionPane.showMessageDialog(jFrame, "Comoprador creado exitosamente");
+
+                LoginVentana loginVentana = new LoginVentana();
+                loginVentana.Pantalla();
+                setVisible(false);
             }
         } else if (e.getSource() == btnCrearVend) {
             if (ValidarEntradas() == true){
@@ -95,9 +101,13 @@ public class CrearUsuarioVentana extends JFrame implements ActionListener {
                 Vendedor vendedor = new Vendedor(nombre, apellido, correo, rut, numero, contraseña);
 
                 CrearUsuario crearUsuario = new CrearUsuario(vendedor, usuarios);
-            }else{
-                JOptionPane.showMessageDialog(jFrame, "Se equivoco en las entradas");
+                JOptionPane.showMessageDialog(jFrame, "Vendedor creado exitosamente");
+
+                LoginVentana loginVentana = new LoginVentana();
+                loginVentana.Pantalla();
+                setVisible(false);
             }
+
         } else if (e.getSource() == btnVolver) {
             LoginVentana loginVentana = new LoginVentana();
             loginVentana.Pantalla();

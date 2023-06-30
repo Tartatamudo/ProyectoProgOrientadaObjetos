@@ -1,9 +1,5 @@
 package Usuarios;
 
-import Usuarios.Servicio;
-import Usuarios.Usuario;
-import Usuarios.Vendedor;
-
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -13,6 +9,30 @@ import static Utilidades.Validadores.GetEntero;
 
 public class GestionServicios {
     //Imprimir servicios que se buscan
+
+    //Ventana
+    public static String DevolverStrServiciosCompra(ArrayList<Usuario> compradores){
+        String texto = "";
+        for (int i = 0; i <compradores.size() ; i++) {
+            if(compradores.get(i).GetLargoServicios() != 0){
+                texto = texto+ "Comprador " + String.valueOf(i) + ". "+ compradores.get(i).DevolverStrServicos() +";";
+
+            }
+        }
+        return texto;
+    }
+    //Ventana
+    public static String DevolverStrServiciosVenta(ArrayList<Vendedor> vendedores){
+        String texto = "";
+        for (int i = 0; i <vendedores.size() ; i++) {
+            if(vendedores.get(i).GetLargoServicios() != 0){
+                texto = texto+ "Vendedor " + String.valueOf(i) + ". " + vendedores.get(i).DevolverStrServicos() +";";
+            }
+        }
+        return texto;
+    }
+
+    //Consola
     public static void ImprimirServiciosCompra(ArrayList<Usuario> compradores){
         System.out.println("--------------------------------");
         for (int i = 0; i <compradores.size() ; i++) {
@@ -23,6 +43,8 @@ public class GestionServicios {
             }
         }
     }
+
+    //Consola
     public static void ImprimirServiciosVenta(ArrayList<Vendedor> vendedores){
         System.out.println("--------------------------------");
         for (int i = 0; i <vendedores.size() ; i++) {
@@ -34,26 +56,33 @@ public class GestionServicios {
         }
     }
     //Impresion de los servicios propios
+    //Consola
     public static void ImprimirNuestrosServiciosVenta(Vendedor vendedor){
         vendedor.ImprimirServicios();
     }
+
+    //Consola
     public static void ImprimirNuestrosServiciosCompra(Usuario comprador){
         comprador.ImprimirServicios();
     }
 
     //Crear publicacion
+    //Consola
     public static void CrearServicioCompra(Usuario comprador, ArrayList<Usuario> compradores) {
-        comprador.CrearPublicacion();
+        comprador.CrearPublicacionn();
         AñadirCompradoresArchivo(compradores);
         System.out.println("Servicio añadido con exito");
     }
+
+    //Consola
     public static void CrearServicioVenta(Vendedor vendedor, ArrayList<Vendedor> vendedores) {
-        vendedor.CrearPublicacion();
+        vendedor.CrearPublicacionn();
         AñadirVendedoresArchivo(vendedores);
         System.out.println("Servicio añadido con exito");
     }
 
     //Filtrar servicios
+    //Consola
     public static void FiltrarServiciosVenta(ArrayList<Vendedor> vendedores){
         int eleccion = 0;
         String strEleccion = "";
@@ -73,6 +102,7 @@ public class GestionServicios {
         }
 
     }
+    //Consola
     public static void FiltrarServiciosCompra(ArrayList<Usuario> compradores){
         int eleccion = 0;
         String strEleccion = "";
@@ -92,6 +122,7 @@ public class GestionServicios {
         }
     }
 
+    //Impresion del filtro consola
     private static void ImprimirEleccionCompra(String strEleccion, ArrayList<Usuario> compradores) {
         ArrayList<Servicio> servicios;
 
@@ -111,6 +142,7 @@ public class GestionServicios {
         }
     }
 
+    //Consola
     private static void ImprimirEleccionVenta(String strEleccion, ArrayList<Vendedor> vendedores) {
         ArrayList<Servicio> servicios;
 
@@ -128,6 +160,46 @@ public class GestionServicios {
                 }
             }
         }
+    }
+
+    //Ventana
+    public static String DevolverStrEleccionVenta(String strEleccion, ArrayList<Vendedor> vendedores) {
+        String texto = "";
+        ArrayList<Servicio> servicios;
+
+        for (int i = 0; i < vendedores.size(); i++) {
+            servicios = vendedores.get(i).GetServicios();
+
+            for (Servicio servicio : servicios) {
+                String strNomServ = servicio.GetNombre().toLowerCase(Locale.ROOT);
+                if ( strEleccion.equals(strNomServ)){
+                    texto = texto +"Vendedor " + i + ": ";
+                    texto = texto + servicio.GetNombre() + ": ";
+                    texto = texto + servicio.GetDescripcion() + ";";
+                }
+            }
+        }
+        return texto;
+    }
+
+    //Ventana
+    public static String DevolverStrEleccionCompra(String strEleccion, ArrayList<Usuario> compradores) {
+        String texto = "";
+        ArrayList<Servicio> servicios;
+
+        for (int i = 0; i < compradores.size(); i++) {
+            servicios = compradores.get(i).GetServicios();
+
+            for (Servicio servicio: servicios) {
+                String strNomServ = servicio.GetNombre().toLowerCase(Locale.ROOT);
+                if ( strEleccion.equals(strNomServ)){
+                    texto = texto +"Comprador " + i + ": ";
+                    texto = texto + servicio.GetNombre() + ": ";
+                    texto = texto + servicio.GetDescripcion() + ";";
+                }
+            }
+        }
+        return texto;
     }
 
 }

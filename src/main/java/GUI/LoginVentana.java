@@ -1,5 +1,7 @@
 package GUI;
 
+import GUI.CompradorVents.LogueadoCompradorVentana;
+import GUI.VendedorVents.LogueadoVendedorVentana;
 import Login.Login;
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
@@ -71,8 +73,14 @@ public class LoginVentana extends JFrame implements ActionListener {
 
             if(comprador != null){
                 JOptionPane.showMessageDialog(jFrame, "Entro como comprador");
+                LogueadoCompradorVentana logueadoCompradorVentana = new LogueadoCompradorVentana(usuarios, comprador);
+                logueadoCompradorVentana.Pantalla();
+                setVisible(false);
             } else if (vendedor != null) {
                 JOptionPane.showMessageDialog(jFrame, "Entro como vendedor");
+                LogueadoVendedorVentana logueadoVendedorVentana = new LogueadoVendedorVentana(usuarios, vendedor);
+                logueadoVendedorVentana.Pantalla();
+                setVisible(false);
             }else{
                 JOptionPane.showMessageDialog(jFrame, "No se encontro cuenta asociada al correo y contraseña entregados");
             }

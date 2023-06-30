@@ -28,6 +28,7 @@ public class Login {
 
     }
 
+    //Ventana
     public Vendedor LoginVendedor(){
         for (Vendedor vendedor : this.vendedores){
             if (vendedor.GetCorreo().equals(this.correo) && vendedor.GetContraseña().equals(this.contraseña)){
@@ -36,6 +37,7 @@ public class Login {
         }
         return null;
     }
+    //Ventana
     public Usuario LoginUsuario(){
         for (Usuario comprador : this.compradores){
             if (comprador.GetCorreo().equals(this.correo) && comprador.GetContraseña().equals(this.contraseña)){
@@ -44,7 +46,7 @@ public class Login {
         }
         return null;
     }
-    public static void MenuLogin(ArrayList<ArrayList> usuarios){
+    public static void MenuLogin(ArrayList<ArrayList> usuarios){//Consola
         ArrayList<Usuario> compradores = usuarios.get(0);
         ArrayList<Vendedor> vendedores = usuarios.get(1);
 

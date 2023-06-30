@@ -17,6 +17,7 @@ public class Menu {
     private ArrayList<Vendedor> vendedores = new ArrayList<>();
     private ArrayList<ArrayList> usuarios = new ArrayList<>();
 
+    //Consola
     public Menu() {
         CargarCompradoresAPrograma(this.compradores);
         CargarVendedoresAPrograma(this.vendedores);
@@ -27,6 +28,7 @@ public class Menu {
         MenuIni();
     }
 
+    //Consola
     public void MenuIni(){
 
         ValidarArchivos();
@@ -51,6 +53,7 @@ public class Menu {
             }
         }
     }
+    //Consola
     public void Salir(){
         System.exit(1);
     }

@@ -19,6 +19,7 @@ public class CrearUsuario {
         this.vendedores = usuarios.get(1);
         CrearUsuarioMetod();
     }
+
     //Constructores Ventanas
     public CrearUsuario(Usuario comprador, ArrayList<ArrayList> usuarios) {
         this.usuarios = usuarios;
@@ -43,6 +44,7 @@ public class CrearUsuario {
         this.vendedores.add(vendedor);
         AñadirVendedorArchivo(vendedor);
     }
+    //-------------------------------------------------------------
     //Crear usuarios consola
     public  void CrearUsuarioMetod() {
         System.out.println("Que quieres ser:");

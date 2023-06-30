@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GestorArchivosVendedores {
-
+    //Ventana y consola
     public static void AñadirVendedoresArchivo(ArrayList<Vendedor> vendedores){
         GestionArchivos.CrearArchivo("vendedores.csv", "nombre;apellido;correo;rut;numero;contrasena;estrellas;comentarios;confirmaciones;servicios;");
         for (int i = 0; i < vendedores.size(); i++) {
@@ -117,9 +117,11 @@ public class GestorArchivosVendedores {
 
         if (strObjetos != "") {
             for (int j = 0; j < listObjetos.size() ; j+= 2) {
-                Servicio servicio = new Servicio();
-                servicio.SetExtNombre(listObjetos.get(j));
-                servicio.SetExtDescricion(listObjetos.get(j+1));
+                String nombre = listObjetos.get(j);
+                String descripcion = listObjetos.get(j);
+
+                Servicio servicio = new Servicio(nombre, descripcion);
+
                 serv.add(servicio);
             }
             ven.AgregarExtServ(serv);
