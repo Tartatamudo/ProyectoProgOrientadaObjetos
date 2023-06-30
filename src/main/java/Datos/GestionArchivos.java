@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 public class GestionArchivos {
     //crear un archivo
-    public static void crearArchivo(String ruta, String contenido) {
+    public static void CrearArchivo(String ruta, String contenido) {
         Path archivo = Paths.get(ruta);
         try {
             Files.write(archivo, contenido.getBytes());
@@ -18,14 +18,13 @@ public class GestionArchivos {
     }
 
     //nuevaLinea
-    public static void nuevaLinea(String ruta, String contenido) {
-        String oldContenido = leerArchivo(ruta);
-        crearArchivo(ruta, oldContenido + "\n" + contenido);
+    public static void NuevaLinea(String ruta, String contenido) {
+        String oldContenido = LeerArchivo(ruta);
+        CrearArchivo(ruta, oldContenido + "\n" + contenido);
     }
 
-
     //leer un archivo
-    public static String leerArchivo(String ruta) {
+    public static String LeerArchivo(String ruta) {
         Path archivo = Paths.get(ruta);
         String contenido = "";
         try {
