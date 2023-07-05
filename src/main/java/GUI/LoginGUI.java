@@ -9,30 +9,31 @@ import Usuarios.Vendedor;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 
 import static Datos.GestorArchivosCompradores.CargarCompradoresAPrograma;
 import static Datos.GestorArchivosVendedores.CargarVendedoresAPrograma;
 import static Utilidades.Validadores.ValidarArchivos;
 
-public class LoginVentana extends JFrame implements ActionListener {
+public class LoginGUI extends JFrame implements ActionListener, FocusListener {
     private JFrame jFrame = new JFrame();
     private ArrayList<Usuario> compradores = new ArrayList<>();
     private ArrayList<Vendedor> vendedores = new ArrayList<>();
     private ArrayList<ArrayList> usuarios = new ArrayList<>();
 
-    private JPanel ventana;
+    private JPanel ventanaPNL;
+    private JPanel todoPNL;
+    private JLabel iconLBL;
     private JTextField correoTF;
-    private JPasswordField contraseñaTF;
-    private JButton btnIniciarSesion;
-    private JButton btnRegistrarse;
-    private JPanel SSSS;
-    private JLabel SSSSlabel;
-    private JLabel correoLbl;
-    private JLabel contraseñaLbl;
-    private JButton btnSalir;
+    private JPasswordField clavePF;
+    private JButton registrarseBTN;
+    private JButton ingresarBTN;
+    private JButton salirBTN;
 
-    public LoginVentana() {
+
+    public LoginGUI() {
 
         ValidarArchivos();
 
@@ -43,6 +44,8 @@ public class LoginVentana extends JFrame implements ActionListener {
         usuarios.add(vendedores);
 
     }
+
+
     public void Pantalla(){
         // Configuramos la ventana
         setTitle("Login");
@@ -51,20 +54,25 @@ public class LoginVentana extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setResizable(false);
 
-        setContentPane(ventana);
+        setContentPane(ventanaPNL);
 
+        ventanaPNL.setFocusable(true);
+        ventanaPNL.requestFocusInWindow();
 
-        btnIniciarSesion.addActionListener(this);
-        btnRegistrarse.addActionListener(this);
-        btnSalir.addActionListener(this);
+        correoTF.addFocusListener(this);
+        clavePF.addFocusListener(this);
+
+        ingresarBTN.addActionListener(this);
+        registrarseBTN.addActionListener(this);
+        salirBTN.addActionListener(this);
         setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btnIniciarSesion ){
+        if (e.getSource() == ingresarBTN ){
             String correo = correoTF.getText();
-            String contraseña = String.valueOf(contraseñaTF.getPassword());
+            String contraseña = String.valueOf(clavePF.getPassword());
 
             Login login = new Login(correo, contraseña, usuarios);
 
@@ -85,13 +93,33 @@ public class LoginVentana extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(jFrame, "No se encontro cuenta asociada al correo y contraseña entregados");
             }
 
-        }else if ( e.getSource() == btnRegistrarse){
-            CrearUsuarioVentana crearUsuarioVentana = new CrearUsuarioVentana(usuarios);
+        }else if ( e.getSource() == registrarseBTN){
+            CrearUsuarioGUI crearUsuarioVentana = new CrearUsuarioGUI(usuarios);
             crearUsuarioVentana.Pantalla();
             setVisible(false);
 
-        }else if (e.getSource() == btnSalir){
+        }else if (e.getSource() == salirBTN){
             System.exit(WIDTH);
         }
+
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        if (e.getSource() == correoTF) {
+            if (correoTF.getText().equals("Ingrese su correo electrónico")) {
+                correoTF.setText("");
+            }
+        } else if (e.getSource() == clavePF) {
+            if (clavePF.getText().equals("123456789")) {
+                clavePF.setText("");
+            }
+        }
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        // No se realiza ninguna acción al perder el foco de los campos de texto
     }
 }
+
