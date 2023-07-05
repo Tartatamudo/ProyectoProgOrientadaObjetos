@@ -3,8 +3,6 @@ package Usuarios;
 import java.util.ArrayList;
 import java.util.List;
 
-import static Utilidades.Validadores.GetCadena;
-
 public class Usuario {
     protected String nombre;
     protected String apellido;
@@ -50,18 +48,6 @@ public class Usuario {
         return this.numero;
     }
 
-    //Consola
-    public void CrearPublicacionn() {
-        System.out.println("Escriba el nombre");
-        String nom = GetCadena();
-
-        System.out.println("Escriba la descripcion");
-        String descripcion = GetCadena();
-
-        Servicio servicio = new Servicio(nom, descripcion);
-
-        this.servicios.add(servicio);
-    }
     //Ventana
     public void CrearPublicacion(Servicio servicio) {
         this.servicios.add(servicio);
@@ -72,13 +58,6 @@ public class Usuario {
         return this.servicios;
     }
 
-    //Consola
-    public void ImprimirServicios() {
-        for (int i = 0; i < this.servicios.size(); i++) {
-            System.out.println(this.servicios.get(i).GetNombre() + " :" + this.servicios.get(i).GetDescripcion() );
-        }
-    }
-
     //Ventana y consola
     public String DevolverStrServicos(){
         String texto = "";
@@ -86,14 +65,6 @@ public class Usuario {
             texto = texto + servicios.get(i).GetNombre()+ ": " + servicios.get(i).GetDescripcion() + ", ";
         }
         return texto;
-    }
-
-    //Consola
-    public void ImprimirDatos() {
-        System.out.println(GetNombre() + " " + this.apellido + ":");
-        System.out.println("    correo: " + this.correo);
-        System.out.println("    numero: +569 " + this.numero);
-
     }
 
     //Ventana y consola

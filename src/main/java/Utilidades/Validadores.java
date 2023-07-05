@@ -17,57 +17,7 @@ public class Validadores {
     public Validadores() {
     }
 
-    //Son los más generales, solo es entero y cadena normales
-
-    //Consola
-    public static String GetCadena() {
-        Scanner teclado = new Scanner(System.in);
-        String cadena = teclado.nextLine();
-        return cadena;
-    }
-
-    //Consola
-    public static int GetEntero() {
-        Scanner scanner = new Scanner(System.in);
-        boolean valid = false;
-        int numero = 0;
-
-        while (!valid) {
-            String numStr = scanner.nextLine();
-
-            try {
-                numero = Integer.parseInt(numStr);
-                valid = true; // Si no se produce una excepción, el número es válido
-            } catch (NumberFormatException e) {
-                System.out.println("Error: Debe ingresar un numero entero valido.");
-            }
-        }
-        return numero;
-    }
-
     //Obtiene rut de la forma 12345678-9 o 1234567-8, no importa cuantos puntos o guiones se pongan, ya que tod0 eso será eliminado
-    //consola
-    public static String GetRut(ArrayList<ArrayList> usuarios){
-
-        String rut = "";
-        boolean valido = false;
-        while (!valido) {
-
-                System.out.println("Ingrese rut");
-                rut = GetCadena();// RUT a validar
-
-                    valido = true;//ValidarRutChileno(rut, usuarios)
-
-                    if (valido) {
-                        System.out.println("El RUT es valido.");
-                    } else {
-                        System.out.println("El RUT no es valido o a sido ingresado con anterioridad.");
-                    }
-            }
-
-        return rut;
-    }
-
     //Ventana y consola
     public boolean ConfirmarUnicidadRut(String rut,ArrayList<ArrayList> usuarios){
         ArrayList<Usuario> compradores = usuarios.get(0);
@@ -122,27 +72,6 @@ public class Validadores {
     }
 
     //Obtiene correo de la forma ejemplo@gmail.com hasta que el usuario lo entregue de esa manera
-    //Consola
-    public static String GetCorreo(ArrayList<ArrayList> usuarios) {
-            String correo = "";
-
-            boolean valido = false;
-            while (!valido) {
-                System.out.println("Ingrese correo");
-                correo = GetCadena();// Correo a validar
-
-                valido = true;//ValidarCorreoElectronico(correo, usuarios)
-
-                if (valido) {
-                    System.out.println("El correo electronico es valido.");
-                } else {
-                    System.out.println("El correo electronico no es valido.");
-                }
-
-            }
-            return correo;
-        }
-
     //Ventana y consola
     public boolean ConfirmarUnicidadCorreo(String correo,ArrayList<ArrayList> usuarios){
         ArrayList<Usuario> compradores = usuarios.get(0);
@@ -180,28 +109,6 @@ public class Validadores {
     }
 
     //Repite hasta que validador se confirme
-    //Consola
-    public static int GetNumero(){
-        String numero = "";
-        int num = 0;
-
-        boolean validar = false;
-        while(!validar){
-
-            System.out.println("Ingrese numero");
-            numero  = Integer.toString(GetEntero());
-            validar = true;//ValidarNumero(numero)
-
-            if (validar){
-                num =Integer.parseInt(numero);
-                System.out.println("El numero es valido.");
-            }else{
-                System.out.println("El numero no es valido.");
-            }
-        }
-        return num;
-    }
-
     //Ventana y consola
     public boolean ValidarNumero(String num){
         //Valida que el largo del numero sea si o si de 8 y luego sean solo numeros
