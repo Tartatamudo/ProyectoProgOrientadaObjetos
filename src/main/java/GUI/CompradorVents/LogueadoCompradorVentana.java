@@ -1,7 +1,6 @@
 package GUI.CompradorVents;
 
 import GUI.CrearPublicacionVentana;
-import GUI.LoginVentana;
 import GUI.VerMisPublicVentana;
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
