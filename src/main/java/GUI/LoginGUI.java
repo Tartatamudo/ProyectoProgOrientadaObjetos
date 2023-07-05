@@ -94,7 +94,7 @@ public class LoginGUI extends JFrame implements ActionListener, FocusListener {
             }
 
         }else if ( e.getSource() == registrarseBTN){
-            CrearUsuarioVentana crearUsuarioVentana = new CrearUsuarioVentana(usuarios);
+            CrearUsuarioGUI crearUsuarioVentana = new CrearUsuarioGUI(usuarios);
             crearUsuarioVentana.Pantalla();
             setVisible(false);
 

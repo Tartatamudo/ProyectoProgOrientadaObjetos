@@ -1,6 +1,7 @@
 package GUI.VendedorVents;
 
 import GUI.CrearPublicacionVentana;
+import GUI.LoginGUI;
 import GUI.VerMisPublicVentana;
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
@@ -68,7 +69,7 @@ public class LogueadoVendedorVentana extends JFrame implements ActionListener {
             confirmarEncuentroVentana.Pantalla();
             setVisible(false);
         } else if (e.getSource() == volverButton) {
-            LoginVentana loginVentana = new LoginVentana();
+            LoginGUI loginVentana = new LoginGUI();
             loginVentana.Pantalla();
             setVisible(false);
         }
