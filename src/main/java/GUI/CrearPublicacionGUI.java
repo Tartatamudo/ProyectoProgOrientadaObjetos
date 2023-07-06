@@ -2,10 +2,7 @@ package GUI;
 
 import GUI.CompradorVents.LogueadoCompradorVentana;
 import GUI.VendedorVents.LogueadoVendedorVentana;
-import Usuarios.GestionUsuarios;
-import Usuarios.Servicio;
-import Usuarios.Usuario;
-import Usuarios.Vendedor;
+import Usuarios.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -67,9 +64,9 @@ public class CrearPublicacionGUI extends JFrame implements ActionListener {
             String descripcion = descripcionTF.getText();
             Servicio servicio = new Servicio(nombre, descripcion);
             if ( comprador != null){
-                comprador.CrearPublicacion(servicio);
-                GestionUsuarios gestionUsuarios = new GestionUsuarios(usuarios);
-                gestionUsuarios.ActualizarCompradores();
+                GestionServicios gestionServicios = new GestionServicios(usuarios);
+                gestionServicios.AgregarServicioComprador(servicio, comprador);
+
                 JOptionPane.showMessageDialog(jFrame, "publicación de  COMPRA creada exitosamente");
 
                 LogueadoCompradorVentana logueadoCompradorVentana = new LogueadoCompradorVentana(usuarios, comprador);
@@ -77,10 +74,9 @@ public class CrearPublicacionGUI extends JFrame implements ActionListener {
                 setVisible(false);
 
             } else if (vendedor != null) {
-                vendedor.CrearPublicacion(servicio);
+                GestionServicios gestionServicios = new GestionServicios(usuarios);
+                gestionServicios.AgregarServicioVendedor(servicio, vendedor);
 
-                GestionUsuarios gestionUsuarios = new GestionUsuarios(usuarios);
-                gestionUsuarios.ActualizarVendedores();
                 JOptionPane.showMessageDialog(jFrame, "publicacion VENTA creada exitosamente");
 
                 LogueadoVendedorVentana logueadoVendedorVentana = new LogueadoVendedorVentana(usuarios, vendedor);

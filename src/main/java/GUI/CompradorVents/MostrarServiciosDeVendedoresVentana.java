@@ -16,6 +16,7 @@ import java.util.List;
 public class MostrarServiciosDeVendedoresVentana extends JFrame implements ActionListener {
     private Usuario comprador;
     private ArrayList<ArrayList> usuarios;
+    private ArrayList<Vendedor> vendedoresConServicios;
     private ArrayList<Vendedor> vendedores;
     private JList vendedoresList;
     private JPanel ventana;
@@ -33,9 +34,9 @@ public class MostrarServiciosDeVendedoresVentana extends JFrame implements Actio
     }
     public void AñadirLista(){
         GestionServicios gestionServicios = new GestionServicios(usuarios);
-
-        List<String> ListTexto = Arrays.asList(gestionServicios.DevolverStrServiciosVenta(vendedores).split(";"));
-
+        this.vendedoresConServicios = gestionServicios.DevolverVendedoresConPublicaciones(vendedores);
+        List<String> ListTexto = Arrays.asList(gestionServicios.DevolverStrServiciosVenta(vendedoresConServicios).split(";"));
+        SetComboVendedores(vendedoresConServicios.size());
         vendedoresList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         DefaultListModel modelo = new DefaultListModel();
 
@@ -45,8 +46,9 @@ public class MostrarServiciosDeVendedoresVentana extends JFrame implements Actio
 
         vendedoresList.setModel(modelo);
     }
-    private void SetComboVendedores(){
-        for (int i = 0; i < vendedores.size(); i++) {
+    private void SetComboVendedores(int num){
+        cBoxVendedor.removeAllItems();
+        for (int i = 0; i < num; i++) {
             cBoxVendedor.addItem(i);
         }
     }
@@ -59,7 +61,10 @@ public class MostrarServiciosDeVendedoresVentana extends JFrame implements Actio
         GestionServicios gestionServicios = new GestionServicios(usuarios);
 
         String eleccion =(String) cBoxFiltro.getSelectedItem();
-        List<String> ListTexto = Arrays.asList(gestionServicios.DevolverStrEleccionVenta(eleccion, vendedores).split(";"));
+
+        vendedoresConServicios = gestionServicios.DevolverVendedoresFiltro(vendedoresConServicios, eleccion);
+        List<String> ListTexto = Arrays.asList(gestionServicios.DevolverStrEleccionVenta(eleccion, vendedoresConServicios).split(";"));
+        SetComboVendedores(ListTexto.size());
 
         vendedoresList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         DefaultListModel modelo = new DefaultListModel();
@@ -82,7 +87,6 @@ public class MostrarServiciosDeVendedoresVentana extends JFrame implements Actio
 
         AñadirLista();
         SetComboFiltro();
-        SetComboVendedores();
         setContentPane(ventana);
 
         setVisible(true);
@@ -95,7 +99,7 @@ public class MostrarServiciosDeVendedoresVentana extends JFrame implements Actio
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnPerfilVendedor){
             int numero = (Integer) cBoxVendedor.getSelectedItem();
-            Vendedor vendedor = vendedores.get(numero);
+            Vendedor vendedor = vendedoresConServicios.get(numero);
             MostrarPerfilVendedorVentana mostrarPerfilVendedorVentana = new MostrarPerfilVendedorVentana(usuarios, vendedor, comprador);
             vendedor.AgregarConfirmacion(comprador.GetRut());
             mostrarPerfilVendedorVentana.Pantalla();

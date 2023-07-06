@@ -18,6 +18,7 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
     private Vendedor vendedor;
     private ArrayList<ArrayList> usuarios;
     private ArrayList<Usuario> compradores;
+    private ArrayList<Usuario> compradoresConServicios;
     private JPanel ventana;
     private JComboBox cBoxFiltro;
     private JButton btnFiltrar;
@@ -34,7 +35,11 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
     }
     public void AñadirLista(){
         GestionServicios gestionServicios = new GestionServicios(usuarios);
-        List<String> ListTexto = Arrays.asList(gestionServicios.DevolverStrServiciosCompra(compradores).split(";"));
+
+        this.compradoresConServicios = gestionServicios.DevolverCompradoresConPublicaciones(compradores);
+        List<String> ListTexto = Arrays.asList(gestionServicios.DevolverStrServiciosCompra(compradoresConServicios).split(";"));
+
+        SetComboCompradores(compradoresConServicios.size());
 
         compradoresList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         DefaultListModel modelo = new DefaultListModel();
@@ -45,8 +50,9 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
 
         compradoresList.setModel(modelo);
     }
-    private void SetComboCompradores(){
-        for (int i = 0; i < compradores.size(); i++) {
+    private void SetComboCompradores(int num){
+        cBoxComprador.removeAllItems();
+        for (int i = 0; i < num; i++) {
             cBoxComprador.addItem(i);
         }
     }
@@ -59,7 +65,10 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
         GestionServicios gestionServicios = new GestionServicios(usuarios);
 
         String eleccion =(String) cBoxFiltro.getSelectedItem();
-        List<String> ListTexto = Arrays.asList(gestionServicios.DevolverStrEleccionCompra(eleccion, compradores).split(";"));
+
+        compradoresConServicios = gestionServicios.DevolverCompradoresFiltro(compradoresConServicios, eleccion);
+        List<String> ListTexto = Arrays.asList(gestionServicios.DevolverStrEleccionCompra(eleccion, compradoresConServicios).split(";"));
+        SetComboCompradores(compradoresConServicios.size());
 
         compradoresList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         DefaultListModel modelo = new DefaultListModel();
@@ -82,7 +91,7 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
 
         AñadirLista();
         SetComboFiltro();
-        SetComboCompradores();
+
         setContentPane(ventana);
 
         setVisible(true);
@@ -95,7 +104,7 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnPerfilComprador){
             int numero = (Integer) cBoxComprador.getSelectedItem();
-            Usuario comprador = compradores.get(numero);
+            Usuario comprador = compradoresConServicios.get(numero);
            MostrarPerfilCompradorVentana mostrarPerfilCompradorVentana = new MostrarPerfilCompradorVentana(usuarios, comprador, vendedor);
 
             mostrarPerfilCompradorVentana.Pantalla();

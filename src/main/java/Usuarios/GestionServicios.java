@@ -69,7 +69,7 @@ public class GestionServicios {
         return texto;
     }
 
-    public void AgrergarServicioComprador(Servicio servicio, Usuario comprador){
+    public void AgregarServicioComprador(Servicio servicio, Usuario comprador){
         comprador.CrearPublicacion(servicio);
 
         GestionUsuarios gestionUsuarios = new GestionUsuarios(usuarios);
@@ -81,5 +81,49 @@ public class GestionServicios {
 
         GestionUsuarios gestionUsuarios = new GestionUsuarios(usuarios);
         gestionUsuarios.ActualizarVendedores();
+    }
+    public ArrayList<Vendedor> DevolverVendedoresConPublicaciones(ArrayList<Vendedor> vendedores){
+        ArrayList<Vendedor> vendedoresConf = new ArrayList<>();
+        for (Vendedor vendedor: vendedores) {
+            if( vendedor.GetLargoServicios() != 0){
+                vendedoresConf.add(vendedor);
+            }
+        }return vendedoresConf;
+    }
+    public ArrayList<Usuario> DevolverCompradoresConPublicaciones(ArrayList<Usuario> compradores){
+        ArrayList<Usuario> compradoresConf = new ArrayList<>();
+        for (Usuario comprador: compradores) {
+            if( comprador.GetLargoServicios() != 0){
+                compradoresConf.add(comprador);
+            }
+        }return compradoresConf;
+    }
+
+    public ArrayList<Vendedor> DevolverVendedoresFiltro(ArrayList<Vendedor> vendedores, String filtro){
+        ArrayList<Vendedor> vendedoresConf = new ArrayList<>();
+
+        for (Vendedor vendedor: vendedores) {
+            ArrayList<Servicio> servicios = vendedor.GetServicios();
+            for(Servicio servicio: servicios){
+                if (servicio.GetNombre().equals(filtro)){
+                    vendedoresConf.add(vendedor);
+                }
+            }
+        }
+        return vendedoresConf;
+    }
+
+    public ArrayList<Usuario> DevolverCompradoresFiltro(ArrayList<Usuario> compradores, String filtro){
+        ArrayList<Usuario> compradoresConf = new ArrayList<>();
+
+        for (Usuario comprador: compradores) {
+            ArrayList<Servicio> servicios = comprador.GetServicios();
+            for(Servicio servicio: servicios){
+                if (servicio.GetNombre().equals(filtro)){
+                    compradoresConf.add(comprador);
+                }
+            }
+        }
+        return compradoresConf;
     }
 }
