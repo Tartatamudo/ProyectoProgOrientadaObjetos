@@ -151,7 +151,7 @@ public class CrearUsuarioGUI extends JFrame implements ActionListener , FocusLis
             }
         }
         else if (e.getSource() == telefonoTF) {
-            if (telefonoTF.getText().equals("Ingrese Número telefónico")) {
+            if (telefonoTF.getText().equals("Ingrese Número telefónico sin +56 9")) {
                 telefonoTF.setText("");
             }
         }

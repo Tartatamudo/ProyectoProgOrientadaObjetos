@@ -1,10 +1,13 @@
 package GUI;
 
+import Datos.GestorArchivos;
 import GUI.CompradorVents.LogueadoCompradorVentana;
 import GUI.VendedorVents.LogueadoVendedorVentana;
 import Login.Login;
+
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
+import Utilidades.Validadores;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -12,10 +15,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
-
-import static Datos.GestorArchivosCompradores.CargarCompradoresAPrograma;
-import static Datos.GestorArchivosVendedores.CargarVendedoresAPrograma;
-import static Utilidades.Validadores.ValidarArchivos;
 
 public class LoginGUI extends JFrame implements ActionListener, FocusListener {
     private JFrame jFrame = new JFrame();
@@ -34,15 +33,15 @@ public class LoginGUI extends JFrame implements ActionListener, FocusListener {
 
 
     public LoginGUI() {
+        Validadores validadores = new Validadores();
+        validadores.ValidarArchivos();
 
-        ValidarArchivos();
-
-        CargarCompradoresAPrograma(compradores);
-        CargarVendedoresAPrograma(vendedores);
+        GestorArchivos gestorArchivos = new GestorArchivos();
+        gestorArchivos.CargarCompradoresAPrograma(compradores);
+        gestorArchivos.CargarVendedoresAPrograma(vendedores);
 
         usuarios.add(compradores);
         usuarios.add(vendedores);
-
     }
 
 

@@ -1,37 +1,32 @@
 package Usuarios;
 
-import Usuarios.Usuario;
-import Usuarios.Vendedor;
+
+import Datos.GestorArchivos;
 
 import java.util.ArrayList;
 
-import static Utilidades.Validadores.GetEntero;
-
 public class GestionUsuarios {
-    //impresion de los perfiles cuando se pida. Se pide el numero de la posicin del usuario en su respectivo Arraylist
-
-    //Consola
-    public static void ImprimirPerfilVendedor(ArrayList<Vendedor> vendedores, Usuario comprador){
-        System.out.println("Eliga el numer del vendedor que desea ver");
-        int num = GetEntero();
-        if (vendedores.get(num) != null){
-            vendedores.get(num).ImprimirDatos();
-
-            vendedores.get(num).AgregarConfirmacion(comprador.GetRut());
-        }else{
-            System.out.println("El vendedor que eligio no existe");
-        }
+    private ArrayList<ArrayList> usuarios;
+    public GestionUsuarios(ArrayList<ArrayList> usuarios){
+        this.usuarios = usuarios;
     }
 
-    //Consola
-    public static void ImprimirPerfilComprador(ArrayList<Usuario> compradores){
-        System.out.println("Eliga el numer del vendedor que desea ver");
+    public void ConfirmarEncuentro(Vendedor vendedor, int numComprador, ArrayList<Usuario> compradoresConf){
+        String rut = compradoresConf.get(numComprador).GetRut();
+        vendedor.CambiarConfirmacion(rut);
+        compradoresConf.get(numComprador).AgregarConfirmacion(vendedor.GetRut());
 
-        int num = GetEntero();
-        if (compradores.get(num) != null){
-            compradores.get(num).ImprimirDatos();
-        }else{
-            System.out.println("El vendedor que eligio no existe");
-        }
+        GestorArchivos gestorArchivos = new GestorArchivos();
+
+        gestorArchivos.AñadirCompradoresArchivo(usuarios.get(0));
+        gestorArchivos.AñadirVendedoresArchivo(usuarios.get(1));
+    }
+    public void ActualizarVendedores(){
+        GestorArchivos gestorArchivos = new GestorArchivos();
+        gestorArchivos.AñadirVendedoresArchivo(usuarios.get(1));
+    }
+    public void ActualizarCompradores(){
+        GestorArchivos gestorArchivos = new GestorArchivos();
+        gestorArchivos.AñadirCompradoresArchivo(usuarios.get(0));
     }
 }

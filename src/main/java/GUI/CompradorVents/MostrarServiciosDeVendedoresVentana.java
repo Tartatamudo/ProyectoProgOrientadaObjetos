@@ -1,5 +1,8 @@
 package GUI.CompradorVents;
 
+
+import Usuarios.GestionServicios;
+import Usuarios.GestionUsuarios;
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
 
@@ -9,10 +12,6 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static Datos.GestorArchivosVendedores.AñadirVendedoresArchivo;
-import static Usuarios.GestionServicios.DevolverStrEleccionVenta;
-import static Usuarios.GestionServicios.DevolverStrServiciosVenta;
 
 public class MostrarServiciosDeVendedoresVentana extends JFrame implements ActionListener {
     private Usuario comprador;
@@ -32,9 +31,10 @@ public class MostrarServiciosDeVendedoresVentana extends JFrame implements Actio
         this.vendedores = usuarios.get(1);
         this.comprador = comprador;
     }
-
     public void AñadirLista(){
-        List<String> ListTexto = Arrays.asList(DevolverStrServiciosVenta(vendedores).split(";"));
+        GestionServicios gestionServicios = new GestionServicios(usuarios);
+
+        List<String> ListTexto = Arrays.asList(gestionServicios.DevolverStrServiciosVenta(vendedores).split(";"));
 
         vendedoresList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         DefaultListModel modelo = new DefaultListModel();
@@ -56,8 +56,10 @@ public class MostrarServiciosDeVendedoresVentana extends JFrame implements Actio
         cBoxFiltro.addItem("electricista");
     }
     private void FiltrarLista(){
+        GestionServicios gestionServicios = new GestionServicios(usuarios);
+
         String eleccion =(String) cBoxFiltro.getSelectedItem();
-        List<String> ListTexto = Arrays.asList(DevolverStrEleccionVenta(eleccion, vendedores).split(";"));
+        List<String> ListTexto = Arrays.asList(gestionServicios.DevolverStrEleccionVenta(eleccion, vendedores).split(";"));
 
         vendedoresList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         DefaultListModel modelo = new DefaultListModel();
@@ -89,7 +91,6 @@ public class MostrarServiciosDeVendedoresVentana extends JFrame implements Actio
         btnFiltrar.addActionListener(this);
         btnVolver.addActionListener(this);
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnPerfilVendedor){
@@ -99,6 +100,9 @@ public class MostrarServiciosDeVendedoresVentana extends JFrame implements Actio
             vendedor.AgregarConfirmacion(comprador.GetRut());
             mostrarPerfilVendedorVentana.Pantalla();
             setVisible(false);
+
+            GestionUsuarios gestionUsuarios = new GestionUsuarios(usuarios);
+            gestionUsuarios.ActualizarVendedores();
         }else if (e.getSource() == btnFiltrar){
             vendedoresList.removeAll();
 
@@ -118,6 +122,6 @@ public class MostrarServiciosDeVendedoresVentana extends JFrame implements Actio
             logueadoCompradorVentana.Pantalla();
             setVisible(false);
         }
-        AñadirVendedoresArchivo(vendedores);
+
     }
 }
