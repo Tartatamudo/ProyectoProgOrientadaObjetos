@@ -45,7 +45,7 @@ public class GestorArchivos {
         AñadirAListaCompradores(compradores, compraIdoneo);
 
     }
-    public void AñadirAListaCompradores(ArrayList<Usuario> compradores, ArrayList<String> compraIdoneo){
+    private void AñadirAListaCompradores(ArrayList<Usuario> compradores, ArrayList<String> compraIdoneo){
 
         for (int i = 0; i < compraIdoneo.size() - 1; i += 8) {
             String nombre = compraIdoneo.get(i);
@@ -59,7 +59,7 @@ public class GestorArchivos {
 
             //A partir de aqui se agregan los atributos que son arrays y que no estan en el constructor
             String strConfirmaciones = compraIdoneo.get(i+6);
-            AgregarConfirmacionesVendedor(strConfirmaciones, comprador);
+            AgregarConfirmacionesComprador(strConfirmaciones, comprador);
 
             String strObjetos = compraIdoneo.get(i+7);
             AgregarServiciosComprador(strObjetos, comprador);
@@ -67,7 +67,7 @@ public class GestorArchivos {
             compradores.add(comprador);
         }
     }
-    public void AgregarConfirmacionesVendedor(String strConfirmaciones, Usuario comprador){
+    private void AgregarConfirmacionesComprador(String strConfirmaciones, Usuario comprador){
         strConfirmaciones = strConfirmaciones.replaceAll("\\[", "");
         strConfirmaciones = strConfirmaciones.replaceAll("\\]", "");
         strConfirmaciones = strConfirmaciones.replaceAll(" ", "");
@@ -77,7 +77,7 @@ public class GestorArchivos {
         comprador.AgregarConfExt(confirmacionesList);
     }
 
-    public static void AgregarServiciosComprador(String strObjetos, Usuario comprador){
+    private static void AgregarServiciosComprador(String strObjetos, Usuario comprador){
 
         strObjetos = strObjetos.replaceAll("\\[", "");
         strObjetos = strObjetos.replaceAll("\\]", "");
@@ -98,7 +98,7 @@ public class GestorArchivos {
             comprador.AgregarExtServ(serv);
         }
     }
-    public ArrayList<String> CrearArrayIdoneoCompradores(String strCompradores){
+    private ArrayList<String> CrearArrayIdoneoCompradores(String strCompradores){
         List<String> compradoresList = Arrays.asList(strCompradores.split(";"));
         ArrayList<String> compraDefList = new ArrayList<String>();
 
@@ -145,7 +145,7 @@ public class GestorArchivos {
         AñadirAListaVendedores(vendedores, vendeIdoneo);
     }
 
-    public void AñadirAListaVendedores(ArrayList<Vendedor> vendedores, ArrayList<String> vendeIdoneo) {
+    private void AñadirAListaVendedores(ArrayList<Vendedor> vendedores, ArrayList<String> vendeIdoneo) {
         for (int i = 0; i < vendeIdoneo.size() - 1; i += 10) {
             String nombre = vendeIdoneo.get(i);
             String apellido = vendeIdoneo.get(i + 1);
@@ -172,7 +172,7 @@ public class GestorArchivos {
         }
     }
 
-    public void AgregarConfirmacionesVendedor(String strConfirmaciones, Vendedor vendedor) {
+    private void AgregarConfirmacionesVendedor(String strConfirmaciones, Vendedor vendedor) {
         strConfirmaciones = strConfirmaciones.replaceAll("\\[", "");
         strConfirmaciones = strConfirmaciones.replaceAll("\\]", "");
         strConfirmaciones = strConfirmaciones.replaceAll(" ", "");
@@ -182,7 +182,7 @@ public class GestorArchivos {
         vendedor.AgregarConfExt(confirmacionesList);
     }
 
-    public void AgregarComenentariosVendedor(String strComentarios, Vendedor vendedor) {
+    private void AgregarComenentariosVendedor(String strComentarios, Vendedor vendedor) {
         strComentarios = strComentarios.replaceAll("\\[", "");
         strComentarios = strComentarios.replaceAll("\\]", "");
 
@@ -191,7 +191,7 @@ public class GestorArchivos {
         vendedor.AgregarComExt(comentariosList);
     }
 
-    public void AgregarEstrellasVendedor(String strEstrellas, Vendedor vendedor) {
+    private void AgregarEstrellasVendedor(String strEstrellas, Vendedor vendedor) {
         strEstrellas = strEstrellas.replaceAll("\\[", "");
         strEstrellas = strEstrellas.replaceAll("\\]", "");
         strEstrellas = strEstrellas.replaceAll(" ", "");
@@ -207,7 +207,7 @@ public class GestorArchivos {
         vendedor.AgregarEstExt(estrellasListInt);
     }
 
-    public void AgregarServiciosVendedor(String strObjetos, Vendedor ven) {
+    private void AgregarServiciosVendedor(String strObjetos, Vendedor ven) {
         strObjetos = strObjetos.replaceAll("\\[", "");
         strObjetos = strObjetos.replaceAll("\\]", "");
 
@@ -229,7 +229,7 @@ public class GestorArchivos {
         }
     }
 
-    public ArrayList<String> CrearArrayIdoneoVendedores(String strVendedores) {
+    private ArrayList<String> CrearArrayIdoneoVendedores(String strVendedores) {
         List<String> vendedoresList = Arrays.asList(strVendedores.split(";"));
         ArrayList<String> vendeDefList = new ArrayList<>(vendedoresList);
         for (int i = 0; i < 10; i++) {

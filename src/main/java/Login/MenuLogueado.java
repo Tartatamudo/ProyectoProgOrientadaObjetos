@@ -17,7 +17,7 @@ public class MenuLogueado {
 
             String rutConf = comprador.GetRut() + "true";
             for (int i = 0; i < vendedoresConf.size(); i++) {
-                if (vendedoresConf.get(i).GetConfirmacion(rutConf) == true) {
+                if (vendedoresConf.get(i).ValidarConfirmacion(rutConf) == true) {
 
                     texto = texto + i + ". " + vendedoresConf.get(i).GetNombre() + " " + vendedoresConf.get(i).GetApellido() + ";";
                 }

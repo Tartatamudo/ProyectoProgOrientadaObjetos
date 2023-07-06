@@ -33,18 +33,15 @@ public class Vendedor extends Usuario{
         return texto;
     }
 
-
     public ArrayList<String> GetComentarios() {
         return this.comentarios;
     }
-
 
     public ArrayList<Integer> GetEstrellas(){
         return this.estrellas;
     }
 
-
-    public boolean GetConfirmacion(String rutConf){
+    public boolean ValidarConfirmacion(String rutConf){
         boolean bool = false;
         for (int i = 0; i < this.confirmaciones.size(); i++) {
             if(this.confirmaciones.get(i).equals(rutConf)){

@@ -1,6 +1,5 @@
 package GUI;
 
-import Login.Login;
 import Usuarios.CrearUsuario;
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
@@ -68,7 +67,7 @@ public class CrearUsuarioGUI extends JFrame implements ActionListener , FocusLis
     }
 
     public boolean ValidarEntradas(){
-        if (!validador.ValidarRutChileno(rutTF.getText(), usuarios)){
+        if (!validador.ValidarRut(rutTF.getText(), usuarios)){
             return false;
         }
         if (!validador.ValidarCorreoElectronico(correoTF.getText(), usuarios)){
