@@ -14,30 +14,32 @@ import java.util.ArrayList;
 import static Datos.GestorArchivosCompradores.AñadirCompradoresArchivo;
 import static Datos.GestorArchivosVendedores.AñadirVendedoresArchivo;
 
-public class CrearPublicacionVentana extends JFrame implements ActionListener  {
+public class crearPublicacionGUI extends JFrame implements ActionListener {
     private JFrame jFrame = new JFrame();
     private ArrayList<ArrayList> usuarios;
     private Usuario comprador;
     private Vendedor vendedor;
     private ArrayList<Usuario> compradores;
     private ArrayList<Vendedor> vendedores;
-    private JPanel ventana;
-    private JTextField nombreServTF;
-    private JLabel lblDescServ;
+
+    private JPanel ventanaPNL;
+    private JPanel todoPNL;
+    private JLabel iconLBL;
+    private JTextField tituloTF;
     private JTextField descripcionTF;
-    private JLabel lblNomPublicacion;
-    private JButton btnCrearPublicacion;
-    private JButton btnVolver;
+    private JButton crearPublicacionBTN;
+    private JButton volverBTN;
+    private JLabel tituloLBL;
+    private JLabel descripcionLBL;
 
-    public CrearPublicacionVentana(Usuario comprador, ArrayList<ArrayList> usuarios) {
+
+    public crearPublicacionGUI(Usuario comprador, ArrayList<ArrayList> usuarios) {
         this.usuarios = usuarios;
-
         this.comprador = comprador;
         this.compradores = usuarios.get(0);
     }
-    public CrearPublicacionVentana(ArrayList<ArrayList> usuarios, Vendedor vendedor) {
+    public crearPublicacionGUI(ArrayList<ArrayList> usuarios, Vendedor vendedor) {
         this.usuarios = usuarios;
-
         this.vendedor = vendedor;
         this.vendedores = usuarios.get(1);
     }
@@ -49,23 +51,27 @@ public class CrearPublicacionVentana extends JFrame implements ActionListener  {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
-        setContentPane(ventana);
+        setContentPane(ventanaPNL);
 
-        btnCrearPublicacion.addActionListener(this);
-        btnVolver.addActionListener(this);
+        ventanaPNL.setFocusable(true);
+        ventanaPNL.requestFocusInWindow();
+
+        crearPublicacionBTN.addActionListener(this);
+        volverBTN.addActionListener(this);
         setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if ( e.getSource() == btnCrearPublicacion){
-            String nombre = nombreServTF.getText();
+
+        if ( e.getSource() == crearPublicacionBTN){
+            String nombre = tituloTF.getText();
             String descripcion = descripcionTF.getText();
             Servicio servicio = new Servicio(nombre, descripcion);
             if ( comprador != null){
                 comprador.CrearPublicacion(servicio);
                 AñadirCompradoresArchivo(compradores);
-                JOptionPane.showMessageDialog(jFrame, "publicaCion COMPRA creada exitosamente");
+                JOptionPane.showMessageDialog(jFrame, "publicación de  COMPRA creada exitosamente");
 
                 LogueadoCompradorVentana logueadoCompradorVentana = new LogueadoCompradorVentana(usuarios, comprador);
                 logueadoCompradorVentana.Pantalla();
@@ -82,7 +88,7 @@ public class CrearPublicacionVentana extends JFrame implements ActionListener  {
                 setVisible(false);
             }
 
-        }else if(e.getSource() == btnVolver){
+        }else if(e.getSource() == volverBTN){
             if (comprador != null){
                 LogueadoCompradorVentana logueadoCompradorVentana = new LogueadoCompradorVentana(usuarios, comprador);
                 logueadoCompradorVentana.Pantalla();
@@ -93,5 +99,6 @@ public class CrearPublicacionVentana extends JFrame implements ActionListener  {
                 setVisible(false);
             }
         }
+
     }
 }
