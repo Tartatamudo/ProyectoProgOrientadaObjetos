@@ -1,17 +1,13 @@
 package Usuarios;
 
-import java.util.ArrayList;
+import Datos.GestorArchivos;
 
-import static Datos.GestorArchivosCompradores.AñadirCompradorArchivo;
-import static Datos.GestorArchivosVendedores.AñadirVendedorArchivo;
-import static Utilidades.Validadores.*;
+import java.util.ArrayList;
 
 public class CrearUsuario {
     private ArrayList<Usuario> compradores;
     private ArrayList<Vendedor> vendedores;
     private ArrayList<ArrayList> usuarios;
-
-    //Constructores Ventanas
     public CrearUsuario(Usuario comprador, ArrayList<ArrayList> usuarios) {
         this.usuarios = usuarios;
 
@@ -26,14 +22,18 @@ public class CrearUsuario {
         this.vendedores = usuarios.get(1);
         CrearVendedor(vendedor);
     }
-    //Crear usuarios ventana
+
     public void CrearComprador(Usuario comprador) {
         this.compradores.add(comprador);
-        AñadirCompradorArchivo(comprador);
+
+        GestorArchivos gestorArchivos = new GestorArchivos();
+        gestorArchivos.AñadirCompradorArchivo(comprador);
     }
     private void CrearVendedor(Vendedor vendedor) {
         this.vendedores.add(vendedor);
-        AñadirVendedorArchivo(vendedor);
+
+        GestorArchivos gestorArchivos = new GestorArchivos();
+        gestorArchivos.AñadirVendedorArchivo(vendedor);
     }
 
 }

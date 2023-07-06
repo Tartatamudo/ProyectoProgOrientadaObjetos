@@ -12,7 +12,6 @@ public class Vendedor extends Usuario{
         super(nombre, apellido, correo, rut, numero, contraseña);
     }
 
-    //Ventana
     public void AgregarEstrellas(int numero){
         estrellas.add(numero);
     }
@@ -20,7 +19,7 @@ public class Vendedor extends Usuario{
         this.comentarios.remove("");
         comentarios.add(comentario);
     }
-    //Ventana
+
     public String DevolverStrEstrellas(){
         String texto = "";
         double acum = 0;
@@ -34,17 +33,17 @@ public class Vendedor extends Usuario{
         return texto;
     }
 
-    //Ventana y gesstor archivos
+
     public ArrayList<String> GetComentarios() {
         return this.comentarios;
     }
 
-    //Gestor archivos
+
     public ArrayList<Integer> GetEstrellas(){
         return this.estrellas;
     }
 
-    //Ventana y consola
+
     public boolean GetConfirmacion(String rutConf){
         boolean bool = false;
         for (int i = 0; i < this.confirmaciones.size(); i++) {
@@ -55,7 +54,7 @@ public class Vendedor extends Usuario{
         return false;
     }
 
-    //Ventana y consola
+
     public void CambiarConfirmacion(String rut){
         for (int i = 0; i < this.confirmaciones.size(); i++) {
             if (this.confirmaciones.get(i).contains(rut)){
@@ -65,14 +64,14 @@ public class Vendedor extends Usuario{
         }
     }
 
-    //Gestor archivos
+
     public void AgregarEstExt(List<Integer> estrellasList){
         for (int i = 0; i < estrellasList.size(); i++) {
             this.estrellas.add(estrellasList.get(i));
         }
     }
 
-    //Gestor archivos
+
     public void AgregarComExt(List<String> comentariosList){
         for (int i = 0; i < comentariosList.size(); i++) {
             this.comentarios.add(comentariosList.get(i));

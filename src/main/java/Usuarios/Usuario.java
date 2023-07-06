@@ -48,17 +48,17 @@ public class Usuario {
         return this.numero;
     }
 
-    //Ventana
+
     public void CrearPublicacion(Servicio servicio) {
         this.servicios.add(servicio);
     }
 
-    //Ventana y consola
+
     public ArrayList<Servicio> GetServicios(){
         return this.servicios;
     }
 
-    //Ventana y consola
+
     public String DevolverStrServicos(){
         String texto = "";
         for (int i = 0; i < this.servicios.size(); i++) {
@@ -67,12 +67,12 @@ public class Usuario {
         return texto;
     }
 
-    //Ventana y consola
+
     public int GetLargoServicios(){
         return this.servicios.size();
     }
 
-    //Gestion archivos
+
     public ArrayList<ArrayList> GetListaDeListaServicios() {
         ArrayList<ArrayList> lista = new ArrayList<>();
         for (int i = 0; i < this.servicios.size(); i++) {
@@ -80,14 +80,14 @@ public class Usuario {
         }
         return lista;
     }
-    //Gestion Archivos
+
     public void AgregarExtServ(ArrayList<Servicio> serv) {
         for (int i = 0; i < serv.size(); i++) {
             this.servicios.add(serv.get(i));
         }
     }
 
-    //Ventana y consola
+
     public void AgregarConfirmacion(String rut){
         this.confirmaciones.remove("");
         boolean bool = false;
@@ -101,17 +101,17 @@ public class Usuario {
         }
     }
 
-    //Ventana y consola
+
     public void RemoverConfirmacion(String rutConf){
         this.confirmaciones.remove(rutConf);
     }
 
-    //Ventana, consola y gestion archivos
+
     public ArrayList<String> GetConfirmaciones(){
         return this.confirmaciones;
     }
 
-    //Gestion archivos
+
     public void AgregarConfExt(List<String> confirmacionesList){
         for (int i = 0; i < confirmacionesList.size(); i++) {
             this.confirmaciones.add(confirmacionesList.get(i));

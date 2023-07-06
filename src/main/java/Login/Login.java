@@ -5,6 +5,7 @@ import Usuarios.Vendedor;
 
 import java.util.ArrayList;
 
+
 public class Login {
     private ArrayList<Usuario> compradores;
 
@@ -25,7 +26,7 @@ public class Login {
 
     }
 
-    //Ventana
+
     public Vendedor LoginVendedor(){
         for (Vendedor vendedor : this.vendedores){
             if (vendedor.GetCorreo().equals(this.correo) && vendedor.GetContraseña().equals(this.contraseña)){
@@ -34,10 +35,10 @@ public class Login {
         }
         return null;
     }
-    //Ventana
-    public Usuario LoginUsuario() {
-        for (Usuario comprador : this.compradores) {
-            if (comprador.GetCorreo().equals(this.correo) && comprador.GetContraseña().equals(this.contraseña)) {
+
+    public Usuario LoginUsuario(){
+        for (Usuario comprador : this.compradores){
+            if (comprador.GetCorreo().equals(this.correo) && comprador.GetContraseña().equals(this.contraseña)){
                 return comprador;
             }
         }

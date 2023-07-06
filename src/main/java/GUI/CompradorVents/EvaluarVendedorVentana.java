@@ -1,5 +1,8 @@
 package GUI.CompradorVents;
 
+import Datos.GestorArchivos;
+import Login.MenuLogueado;
+import Usuarios.GestionUsuarios;
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
 
@@ -10,10 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static Datos.GestorArchivosCompradores.AñadirCompradoresArchivo;
-import static Datos.GestorArchivosVendedores.AñadirVendedoresArchivo;
-import static Login.MenuLogueado.EvaluarVendedor;
-import static Login.MenuLogueado.VendedoresConfirm;
 
 public class EvaluarVendedorVentana extends JFrame implements ActionListener {
     private JFrame jFrame;
@@ -44,9 +43,9 @@ public class EvaluarVendedorVentana extends JFrame implements ActionListener {
     }
 
     public void SetListaVendedores(){
-
-        this.vendedoresConf = VendedoresConfirm(vendedores, comprador);
-        List<String> ListTexto = Arrays.asList(EvaluarVendedor(vendedores, comprador).split(";"));
+        MenuLogueado menuLogueado = new MenuLogueado();
+        this.vendedoresConf = menuLogueado.VendedoresConfirm(vendedores, comprador);
+        List<String> ListTexto = Arrays.asList(menuLogueado.EvaluarVendedor(vendedores, comprador).split(";"));
         SetComboBoxVendedores(ListTexto.size());
 
         vendedoresEvalList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
@@ -116,9 +115,13 @@ public class EvaluarVendedorVentana extends JFrame implements ActionListener {
             scrollVendEval.revalidate();
             scrollVendEval.repaint();
 
-            AñadirVendedoresArchivo(vendedores);
-            AñadirCompradoresArchivo(compradores);
+            GestionUsuarios gestionUsuarios = new GestionUsuarios(usuarios);
+            gestionUsuarios.ActualizarVendedores();
+            gestionUsuarios.ActualizarCompradores();
 
+            LogueadoCompradorVentana logueadoCompradorVentana = new LogueadoCompradorVentana(usuarios, comprador);
+            logueadoCompradorVentana.Pantalla();
+            setVisible(false);
         }else if ( e.getSource() == btnVolver){
             LogueadoCompradorVentana logueadoCompradorVentana = new LogueadoCompradorVentana(usuarios, comprador);
             logueadoCompradorVentana.Pantalla();

@@ -1,5 +1,6 @@
 package GUI.VendedorVents;
 
+import Usuarios.GestionServicios;
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static Datos.GestorArchivosCompradores.AñadirCompradoresArchivo;
+
 import static Usuarios.GestionServicios.*;
 
 public class MostrarServiciosDeCompradoresVentana extends JFrame implements ActionListener {
@@ -31,9 +32,9 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
         this.compradores = usuarios.get(0);
         this.vendedor = vendedor;
     }
-
     public void AñadirLista(){
-        List<String> ListTexto = Arrays.asList(DevolverStrServiciosCompra(compradores).split(";"));
+        GestionServicios gestionServicios = new GestionServicios(usuarios);
+        List<String> ListTexto = Arrays.asList(gestionServicios.DevolverStrServiciosCompra(compradores).split(";"));
 
         compradoresList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         DefaultListModel modelo = new DefaultListModel();
@@ -55,8 +56,10 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
         cBoxFiltro.addItem("electricista");
     }
     private void FiltrarLista(){
+        GestionServicios gestionServicios = new GestionServicios(usuarios);
+
         String eleccion =(String) cBoxFiltro.getSelectedItem();
-        List<String> ListTexto = Arrays.asList(DevolverStrEleccionCompra(eleccion, compradores).split(";"));
+        List<String> ListTexto = Arrays.asList(gestionServicios.DevolverStrEleccionCompra(eleccion, compradores).split(";"));
 
         compradoresList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         DefaultListModel modelo = new DefaultListModel();
@@ -88,7 +91,6 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
         btnFiltrar.addActionListener(this);
         btnVolver.addActionListener(this);
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnPerfilComprador){
@@ -116,6 +118,5 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
             logueadoVendedorVentana.Pantalla();
             setVisible(false);
         }
-        AñadirCompradoresArchivo(compradores);
     }
 }

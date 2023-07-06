@@ -30,7 +30,7 @@ public class MostrarPerfilCompradorVentana extends JFrame implements ActionListe
         lblNombre.setText(nombre);
 
         lblCorreo.setText("Correo: " + comprador.GetCorreo());
-        lblNumero.setText("Numero telefonico: " + comprador.GetNumero());
+        lblNumero.setText("Numero telefonico: +56 9 " + comprador.GetNumero());
     }
 
     public void Pantalla(){

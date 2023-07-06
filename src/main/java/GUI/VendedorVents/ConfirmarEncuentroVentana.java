@@ -1,5 +1,8 @@
 package GUI.VendedorVents;
 
+
+import Login.MenuLogueado;
+import Usuarios.GestionUsuarios;
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
 
@@ -10,8 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static Datos.GestorArchivosCompradores.AñadirCompradoresArchivo;
-import static Datos.GestorArchivosVendedores.AñadirVendedoresArchivo;
 import static Login.MenuLogueado.*;
 
 public class ConfirmarEncuentroVentana extends JFrame implements ActionListener {
@@ -40,9 +41,11 @@ public class ConfirmarEncuentroVentana extends JFrame implements ActionListener 
     }
 
     public void SetListaCompradores(){
-        this.compradoresConf = ConfirmarContacto(vendedor, compradores);
+        MenuLogueado menuLogueado = new MenuLogueado();
 
-        List<String> ListTexto = Arrays.asList(StrConfirmarContacto(vendedor, compradoresConf).split(";"));
+        this.compradoresConf = menuLogueado.ConfirmarContacto(vendedor, compradores);
+
+        List<String> ListTexto = Arrays.asList(menuLogueado.StrConfirmarContacto(compradoresConf).split(";"));
         SetComboBoxCompradores(ListTexto.size());
 
         compradoresConfList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
@@ -90,10 +93,8 @@ public class ConfirmarEncuentroVentana extends JFrame implements ActionListener 
         if ( e.getSource() == btnConfirmar){
             int numComprador = (Integer)cBoxCompradoresConf.getSelectedItem();
 
-            String rut = compradoresConf.get(numComprador).GetRut();
-            vendedor.CambiarConfirmacion(rut);
-            compradoresConf.get(numComprador).AgregarConfirmacion(vendedor.GetRut());
-
+            GestionUsuarios gestionUsuarios = new GestionUsuarios(usuarios);
+            gestionUsuarios.ConfirmarEncuentro(vendedor, numComprador, compradoresConf);
 
             compradoresConf.remove(numComprador);
             SetListaCompradores();
@@ -101,8 +102,6 @@ public class ConfirmarEncuentroVentana extends JFrame implements ActionListener 
             scroollCompradoresList.revalidate();
             scroollCompradoresList.repaint();
 
-            AñadirCompradoresArchivo(compradores);
-            AñadirVendedoresArchivo(vendedores);
         }else if (e.getSource() == btnVolver){
             LogueadoVendedorVentana logueadoVendedorVentana = new LogueadoVendedorVentana(usuarios, vendedor);
             logueadoVendedorVentana.Pantalla();

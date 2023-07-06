@@ -34,7 +34,7 @@ public class MostrarPerfilVendedorVentana extends JFrame implements ActionListen
         nombreLabel.setText(nombre);
 
         correoLabel.setText("Correo: " + vendedor.GetCorreo());
-        numeroLabel.setText("Numero telefonico: " + vendedor.GetNumero());
+        numeroLabel.setText("Numero telefonico: +56 9 " + vendedor.GetNumero());
     }
     public void SetComentarios(){
         ArrayList<String> comentarios = vendedor.GetComentarios();

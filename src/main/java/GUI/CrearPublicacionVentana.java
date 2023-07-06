@@ -1,7 +1,9 @@
 package GUI;
 
+
 import GUI.CompradorVents.LogueadoCompradorVentana;
 import GUI.VendedorVents.LogueadoVendedorVentana;
+import Usuarios.GestionServicios;
 import Usuarios.Servicio;
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
@@ -10,9 +12,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import static Datos.GestorArchivosCompradores.AñadirCompradoresArchivo;
-import static Datos.GestorArchivosVendedores.AñadirVendedoresArchivo;
 
 public class CrearPublicacionVentana extends JFrame implements ActionListener  {
     private JFrame jFrame = new JFrame();
@@ -58,23 +57,23 @@ public class CrearPublicacionVentana extends JFrame implements ActionListener  {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        GestionServicios gestionServicios = new GestionServicios(usuarios);
+
         if ( e.getSource() == btnCrearPublicacion){
             String nombre = nombreServTF.getText();
             String descripcion = descripcionTF.getText();
             Servicio servicio = new Servicio(nombre, descripcion);
             if ( comprador != null){
-                comprador.CrearPublicacion(servicio);
-                AñadirCompradoresArchivo(compradores);
-                JOptionPane.showMessageDialog(jFrame, "publicaCion COMPRA creada exitosamente");
+
+                gestionServicios.AgrergarServicioComprador(servicio, comprador);
+                JOptionPane.showMessageDialog(jFrame, "publicacion COMPRA creada exitosamente");
 
                 LogueadoCompradorVentana logueadoCompradorVentana = new LogueadoCompradorVentana(usuarios, comprador);
                 logueadoCompradorVentana.Pantalla();
                 setVisible(false);
 
             } else if (vendedor != null) {
-                vendedor.CrearPublicacion(servicio);
-
-                AñadirVendedoresArchivo(this.vendedores);
+                gestionServicios.AgregarServicioVendedor(servicio, vendedor);
                 JOptionPane.showMessageDialog(jFrame, "publicacion VENTA creada exitosamente");
 
                 LogueadoVendedorVentana logueadoVendedorVentana = new LogueadoVendedorVentana(usuarios, vendedor);

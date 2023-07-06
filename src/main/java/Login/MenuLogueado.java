@@ -6,8 +6,11 @@ import Usuarios.Vendedor;
 import java.util.ArrayList;
 
 public class MenuLogueado {
-    //Ventana
-    public static String EvaluarVendedor(ArrayList<Vendedor> vendedoresConf, Usuario comprador) {
+    public MenuLogueado(){
+
+    }
+
+    public String EvaluarVendedor(ArrayList<Vendedor> vendedoresConf, Usuario comprador) {
         String texto = "";
 
         if (vendedoresConf.size() != 0) {
@@ -23,8 +26,7 @@ public class MenuLogueado {
         return texto;
     }
 
-    //Ventana
-    public static ArrayList<Vendedor> VendedoresConfirm(ArrayList<Vendedor> usuarios, Usuario comprador) {
+    public ArrayList<Vendedor> VendedoresConfirm(ArrayList<Vendedor> usuarios, Usuario comprador) {
 
         ArrayList<String> vendedoresStr = comprador.GetConfirmaciones();
 
@@ -40,8 +42,8 @@ public class MenuLogueado {
         return vendedoresConf;
     }
 
-    //Ventana
-    public static ArrayList<Usuario> ConfirmarContacto(Vendedor vendedor, ArrayList<Usuario> compradores) {
+
+    public ArrayList<Usuario> ConfirmarContacto(Vendedor vendedor, ArrayList<Usuario> compradores) {
         ArrayList<String> confirmaciones = vendedor.GetConfirmaciones();
 
         //Aqui se añaden al ArrayList compradoresConf solo los compradores que tienen su rut en el aparto confirmaciones del vendedor, pero solo su rut
@@ -56,8 +58,7 @@ public class MenuLogueado {
         return compradoresConf;
     }
 
-    //Ventana
-    public static String StrConfirmarContacto(Vendedor vendedor, ArrayList<Usuario> compradoresConf) {
+    public String StrConfirmarContacto(ArrayList<Usuario> compradoresConf) {
         String texto = "";
         //Aqui se muestran los compradores que tienen su rut y solo su rut en el apartado confirmaciones del vendedor
         //Si no hay compradores a los que confirmarles el contacto se le indica que no tiene

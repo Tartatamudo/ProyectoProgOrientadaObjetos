@@ -1,11 +1,15 @@
 package Corre;
 
-import GUI.LoginVentana;
+import GUI.LoginGUI;
 
 public class Main {
     public static void main(String[] args) {
-        LoginVentana loginVentana = new LoginVentana();
-        loginVentana.Pantalla();
+        //Menu menu = new Menu();
+
+        //LoginVentana loginVentana = new LoginVentana();
+        //loginVentana.Pantalla();
+        LoginGUI sas = new LoginGUI();
+        sas.Pantalla();
 
     }
 }

@@ -1,24 +1,21 @@
 package Utilidades;
 
+import Datos.GestionArchivos;
+
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
 
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.regex.Pattern;
 
-import static Datos.GestionArchivos.CrearArchivo;
-import static Datos.GestionArchivos.LeerArchivo;
 
 public class Validadores {
     private JFrame jFrame = new JFrame();
 
     public Validadores() {
     }
-
     //Obtiene rut de la forma 12345678-9 o 1234567-8, no importa cuantos puntos o guiones se pongan, ya que tod0 eso será eliminado
-    //Ventana y consola
     public boolean ConfirmarUnicidadRut(String rut,ArrayList<ArrayList> usuarios){
         ArrayList<Usuario> compradores = usuarios.get(0);
         ArrayList<Vendedor> vendedores = usuarios.get(1);
@@ -72,7 +69,7 @@ public class Validadores {
     }
 
     //Obtiene correo de la forma ejemplo@gmail.com hasta que el usuario lo entregue de esa manera
-    //Ventana y consola
+
     public boolean ConfirmarUnicidadCorreo(String correo,ArrayList<ArrayList> usuarios){
         ArrayList<Usuario> compradores = usuarios.get(0);
         ArrayList<Vendedor> vendedores = usuarios.get(1);
@@ -89,7 +86,7 @@ public class Validadores {
         return true;
     }
 
-    //Ventana y consola
+
     public boolean ValidarCorreoElectronico(String correo, ArrayList<ArrayList> usuarios) {
         //Confirmar si es la primera vez que se ha utilizado el rut
         if (ConfirmarUnicidadCorreo(correo, usuarios) == false){
@@ -109,7 +106,8 @@ public class Validadores {
     }
 
     //Repite hasta que validador se confirme
-    //Ventana y consola
+
+
     public boolean ValidarNumero(String num){
         //Valida que el largo del numero sea si o si de 8 y luego sean solo numeros
         if (!num.matches("\\d{7}[0-9]")) {
@@ -122,13 +120,14 @@ public class Validadores {
     }
 
     //Ve si estan los archivos, si no esta, lo crea
-    //Ventana y consola
-    public static void ValidarArchivos(){
-        if(LeerArchivo("vendedores.csv").equals("")){
-            CrearArchivo("vendedores.csv","nombre;apellido;correo;rut;numero;contrasena;servicios;");
+
+    public void ValidarArchivos(){
+        GestionArchivos gestionArchivos = new GestionArchivos();
+        if(gestionArchivos.LeerArchivo("vendedores.csv").equals("")){
+            gestionArchivos.CrearArchivo("vendedores.csv","nombre;apellido;correo;rut;numero;contrasena;servicios;");
         }
-        if(LeerArchivo("compradores.csv").equals("")){
-            CrearArchivo("compradores.csv","nombre;apellido;correo;rut;numero;contrasena;servicios;");
+        if(gestionArchivos.LeerArchivo("compradores.csv").equals("")){
+            gestionArchivos.CrearArchivo("compradores.csv","nombre;apellido;correo;rut;numero;contrasena;servicios;");
         }
     }
 }
