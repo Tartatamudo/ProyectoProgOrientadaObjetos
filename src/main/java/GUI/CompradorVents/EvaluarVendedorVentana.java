@@ -45,7 +45,7 @@ public class EvaluarVendedorVentana extends JFrame implements ActionListener {
     public void SetListaVendedores(){
         MenuLogueado menuLogueado = new MenuLogueado();
         this.vendedoresConf = menuLogueado.VendedoresConfirm(vendedores, comprador);
-        List<String> ListTexto = Arrays.asList(menuLogueado.EvaluarVendedor(vendedores, comprador).split(";"));
+        List<String> ListTexto = Arrays.asList(menuLogueado.EvaluarVendedor(vendedoresConf, comprador).split(";"));
         SetComboBoxVendedores(ListTexto.size());
 
         vendedoresEvalList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
