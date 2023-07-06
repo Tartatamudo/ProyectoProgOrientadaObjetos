@@ -33,6 +33,7 @@ public class LoginGUI extends JFrame implements ActionListener, FocusListener {
 
 
     public LoginGUI() {
+
         Validadores validadores = new Validadores();
         validadores.ValidarArchivos();
 

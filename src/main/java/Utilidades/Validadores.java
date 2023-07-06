@@ -31,7 +31,7 @@ public class Validadores {
         }
         return true;
     }
-    public boolean ValidarRutChileno(String rut, ArrayList<ArrayList> usuarios) {
+    public boolean ValidarRut(String rut, ArrayList<ArrayList> usuarios) {
         // Eliminar puntos y guion del RUT
         rut = rut.replace(".", "").replace("-", "");
 
@@ -86,7 +86,6 @@ public class Validadores {
         return true;
     }
 
-
     public boolean ValidarCorreoElectronico(String correo, ArrayList<ArrayList> usuarios) {
         //Confirmar si es la primera vez que se ha utilizado el rut
         if (ConfirmarUnicidadCorreo(correo, usuarios) == false){
@@ -106,8 +105,6 @@ public class Validadores {
     }
 
     //Repite hasta que validador se confirme
-
-
     public boolean ValidarNumero(String num){
         //Valida que el largo del numero sea si o si de 8 y luego sean solo numeros
         if (!num.matches("\\d{7}[0-9]")) {
