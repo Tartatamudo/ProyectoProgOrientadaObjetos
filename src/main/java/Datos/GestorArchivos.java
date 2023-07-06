@@ -81,7 +81,6 @@ public class GestorArchivos {
 
         strObjetos = strObjetos.replaceAll("\\[", "");
         strObjetos = strObjetos.replaceAll("\\]", "");
-        strObjetos = strObjetos.replaceAll(" ", "");
 
         List<String> listObjetos = Arrays.asList(strObjetos.split(","));
 
@@ -211,7 +210,7 @@ public class GestorArchivos {
     public void AgregarServiciosVendedor(String strObjetos, Vendedor ven) {
         strObjetos = strObjetos.replaceAll("\\[", "");
         strObjetos = strObjetos.replaceAll("\\]", "");
-        strObjetos = strObjetos.replaceAll(" ", "");
+
 
         List<String> listObjetos = Arrays.asList(strObjetos.split(","));
 
