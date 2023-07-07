@@ -128,7 +128,7 @@ public class MostrarServiciosVendedoresGUI extends JFrame implements ActionListe
             vendedoresSCROLL.repaint();
 
         } else if (e.getSource() == volverBTN){
-            LogueadoCompradorVentana logueadoCompradorVentana = new LogueadoCompradorVentana(usuarios, comprador);
+            MenuCompradorGUI logueadoCompradorVentana = new MenuCompradorGUI(usuarios, comprador);
             logueadoCompradorVentana.Pantalla();
             setVisible(false);
         }

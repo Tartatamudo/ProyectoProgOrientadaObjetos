@@ -59,7 +59,7 @@ public class EvaluarVendedorGUI extends  JFrame implements ActionListener {
         }else {
             //Si no hay nadie ni siquiera dar opcion a elegir, sacar la ventana y volver atras
             JOptionPane.showMessageDialog(jFrame, "No tiene a nadie para evaluar");
-            LogueadoCompradorVentana logueadoCompradorVentana = new LogueadoCompradorVentana(usuarios, comprador);
+            MenuCompradorGUI logueadoCompradorVentana = new MenuCompradorGUI(usuarios, comprador);
             logueadoCompradorVentana.Pantalla();
             setVisible(false);
         }
@@ -122,11 +122,11 @@ public class EvaluarVendedorGUI extends  JFrame implements ActionListener {
             gestionUsuarios.ActualizarVendedores();
             gestionUsuarios.ActualizarCompradores();
 
-            LogueadoCompradorVentana logueadoCompradorVentana = new LogueadoCompradorVentana(usuarios, comprador);
+            MenuCompradorGUI logueadoCompradorVentana = new MenuCompradorGUI(usuarios, comprador);
             logueadoCompradorVentana.Pantalla();
             setVisible(false);
         }else if ( e.getSource() == volverBTN){
-            LogueadoCompradorVentana logueadoCompradorVentana = new LogueadoCompradorVentana(usuarios, comprador);
+            MenuCompradorGUI logueadoCompradorVentana = new MenuCompradorGUI(usuarios, comprador);
             logueadoCompradorVentana.Pantalla();
             setVisible(false);
         }

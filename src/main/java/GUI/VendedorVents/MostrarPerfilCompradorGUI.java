@@ -56,7 +56,7 @@ public class MostrarPerfilCompradorGUI extends JFrame implements ActionListener 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == volverBTN){
-            MostrarServiciosDeCompradoresVentana mostrarServiciosDeCompradoresVentana = new MostrarServiciosDeCompradoresVentana(usuarios, vendedor);
+            MostrarServicioCompradoresGUI mostrarServiciosDeCompradoresVentana = new MostrarServicioCompradoresGUI(usuarios, vendedor);
             mostrarServiciosDeCompradoresVentana.Pantalla();
             setVisible(false);
         }
