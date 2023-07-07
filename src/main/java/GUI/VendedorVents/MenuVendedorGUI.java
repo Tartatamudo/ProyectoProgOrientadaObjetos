@@ -11,20 +11,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class LogueadoVendedorVentana extends JFrame implements ActionListener {
-
+public class MenuVendedorGUI extends JFrame implements ActionListener {
     private Vendedor vendedor;//Este es el usuario que se logueo con antelacion, estara en todas las ventanas
     private ArrayList<Usuario> compradores;
     private ArrayList<Vendedor> vendedores;
     private ArrayList<ArrayList> usuarios;
-    private JPanel ventana;
-    private JButton mostrarServiciosDeCompradoresButton;
-    private JButton crearPublicacionButton;
-    private JButton verMisPublicacionesButton;
-    private JButton confirmarEncuentrosButton;
-    private JButton volverButton;
+    private JPanel ventanaPNL;
+    private JButton mostrarServiciosBTN;
+    private JButton crearPublicacionBTN;
+    private JButton verPublicacionesBTN;
+    private JButton confirmarBTN;
+    private JButton cerrarBTN;
+    private JLabel icon;
 
-    public LogueadoVendedorVentana(ArrayList<ArrayList> usuarios, Vendedor vendedor) {
+    public MenuVendedorGUI(ArrayList<ArrayList> usuarios, Vendedor vendedor) {
         this.usuarios = usuarios;
 
         this.compradores = usuarios.get(0);
@@ -39,36 +39,38 @@ public class LogueadoVendedorVentana extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
-        setContentPane(ventana);
+        setContentPane(ventanaPNL);
+        ventanaPNL.setFocusable(true);
+        ventanaPNL.requestFocusInWindow();
 
-        mostrarServiciosDeCompradoresButton.addActionListener(this);
-        crearPublicacionButton.addActionListener(this);
-        verMisPublicacionesButton.addActionListener(this);
-        confirmarEncuentrosButton.addActionListener(this);
-        volverButton.addActionListener(this);
+        mostrarServiciosBTN.addActionListener(this);
+        crearPublicacionBTN.addActionListener(this);
+        verPublicacionesBTN.addActionListener(this);
+        confirmarBTN.addActionListener(this);
+        cerrarBTN.addActionListener(this);
         setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == mostrarServiciosDeCompradoresButton) {
+        if (e.getSource() == mostrarServiciosBTN) {
             MostrarServicioCompradoresGUI mostrarServiciosDeCompradoresVentana = new MostrarServicioCompradoresGUI(usuarios, vendedor);
             mostrarServiciosDeCompradoresVentana.Pantalla();
             setVisible(false);
 
-        }else if (e.getSource() == crearPublicacionButton){
+        }else if (e.getSource() == crearPublicacionBTN){
             CrearPublicacionGUI crearPublicacionVentana = new CrearPublicacionGUI(usuarios, vendedor);
             crearPublicacionVentana.Pantalla();
             setVisible(false);
-        }else if (e.getSource() == verMisPublicacionesButton){
+        }else if (e.getSource() == verPublicacionesBTN){
             VerPublicacionesGUI verMisPublicVentana = new VerPublicacionesGUI(usuarios, vendedor);
             verMisPublicVentana.Pantalla();
             setVisible(false);
-        }else if (e.getSource() == confirmarEncuentrosButton){
+        }else if (e.getSource() == confirmarBTN){
             ConfirmarEncuentroGUI confirmarEncuentroVentana = new ConfirmarEncuentroGUI(vendedor, usuarios);
             confirmarEncuentroVentana.Pantalla();
             setVisible(false);
-        } else if (e.getSource() == volverButton) {
+        } else if (e.getSource() == cerrarBTN) {
             LoginGUI loginVentana = new LoginGUI();
             loginVentana.Pantalla();
             setVisible(false);

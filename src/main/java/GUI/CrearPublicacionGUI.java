@@ -1,7 +1,7 @@
 package GUI;
 
 import GUI.CompradorVents.MenuCompradorGUI;
-import GUI.VendedorVents.LogueadoVendedorVentana;
+import GUI.VendedorVents.MenuVendedorGUI;
 import Usuarios.*;
 
 import javax.swing.*;
@@ -79,7 +79,7 @@ public class CrearPublicacionGUI extends JFrame implements ActionListener {
 
                 JOptionPane.showMessageDialog(jFrame, "publicacion VENTA creada exitosamente");
 
-                LogueadoVendedorVentana logueadoVendedorVentana = new LogueadoVendedorVentana(usuarios, vendedor);
+                MenuVendedorGUI logueadoVendedorVentana = new MenuVendedorGUI(usuarios, vendedor);
                 logueadoVendedorVentana.Pantalla();
                 setVisible(false);
             }
@@ -90,7 +90,7 @@ public class CrearPublicacionGUI extends JFrame implements ActionListener {
                 logueadoCompradorVentana.Pantalla();
                 setVisible(false);
             }else if ( vendedor != null){
-                LogueadoVendedorVentana logueadoVendedorVentana = new LogueadoVendedorVentana(usuarios, vendedor);
+                MenuVendedorGUI logueadoVendedorVentana = new MenuVendedorGUI(usuarios, vendedor);
                 logueadoVendedorVentana.Pantalla();
                 setVisible(false);
             }

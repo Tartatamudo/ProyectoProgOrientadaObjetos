@@ -55,7 +55,7 @@ public class ConfirmarEncuentroGUI extends JFrame implements ActionListener {
         }else {
             //Si no hay nadie ni siquiera dar opcion a elegir, sacar la ventana y volver atras
             JOptionPane.showMessageDialog(jFrame, "No tiene a nadie para evaluar");
-            LogueadoVendedorVentana logueadoVendedorVentana = new LogueadoVendedorVentana(usuarios, vendedor);
+            MenuVendedorGUI logueadoVendedorVentana = new MenuVendedorGUI(usuarios, vendedor);
             logueadoVendedorVentana.Pantalla();
             setVisible(false);
         }
@@ -103,7 +103,7 @@ public class ConfirmarEncuentroGUI extends JFrame implements ActionListener {
             compradoresSCROLL.repaint();
 
         }else if (e.getSource() == volverBTN){
-            LogueadoVendedorVentana logueadoVendedorVentana = new LogueadoVendedorVentana(usuarios, vendedor);
+            MenuVendedorGUI logueadoVendedorVentana = new MenuVendedorGUI(usuarios, vendedor);
             logueadoVendedorVentana.Pantalla();
             setVisible(false);
         }

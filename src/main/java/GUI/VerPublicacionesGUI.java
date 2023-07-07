@@ -1,7 +1,7 @@
 package GUI;
 
 import GUI.CompradorVents.MenuCompradorGUI;
-import GUI.VendedorVents.LogueadoVendedorVentana;
+import GUI.VendedorVents.MenuVendedorGUI;
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
 
@@ -88,7 +88,7 @@ public class VerPublicacionesGUI extends JFrame implements ActionListener {
                 logueadoCompradorVentana.Pantalla();
                 setVisible(false);
             } else if (vendedor != null) {
-                LogueadoVendedorVentana logueadoVendedorVentana = new LogueadoVendedorVentana(usuarios, vendedor);
+                MenuVendedorGUI logueadoVendedorVentana = new MenuVendedorGUI(usuarios, vendedor);
                 logueadoVendedorVentana.Pantalla();
                 setVisible(false);
             }
