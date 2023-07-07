@@ -1,8 +1,8 @@
 package GUI;
 
 import Datos.GestorArchivos;
-import GUI.CompradorVents.LogueadoCompradorVentana;
-import GUI.VendedorVents.LogueadoVendedorVentana;
+import GUI.CompradorVents.MenuCompradorGUI;
+import GUI.VendedorVents.MenuVendedorGUI;
 import Login.Login;
 
 import Usuarios.Usuario;
@@ -84,12 +84,12 @@ public class LoginGUI extends JFrame implements ActionListener, FocusListener {
             }
             if(comprador != null){
                 JOptionPane.showMessageDialog(jFrame, "Entro como comprador");
-                LogueadoCompradorVentana logueadoCompradorVentana = new LogueadoCompradorVentana(usuarios, comprador);
+                MenuCompradorGUI logueadoCompradorVentana = new MenuCompradorGUI(usuarios, comprador);
                 logueadoCompradorVentana.Pantalla();
                 setVisible(false);
             } else if (vendedor != null) {
                 JOptionPane.showMessageDialog(jFrame, "Entro como vendedor");
-                LogueadoVendedorVentana logueadoVendedorVentana = new LogueadoVendedorVentana(usuarios, vendedor);
+                MenuVendedorGUI logueadoVendedorVentana = new MenuVendedorGUI(usuarios, vendedor);
                 logueadoVendedorVentana.Pantalla();
                 setVisible(false);
             }else{
