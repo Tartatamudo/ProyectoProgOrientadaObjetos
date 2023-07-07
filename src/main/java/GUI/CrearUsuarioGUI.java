@@ -88,14 +88,17 @@ public class CrearUsuarioGUI extends JFrame implements ActionListener , FocusLis
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String nombre = nombreTF.getText();
-        String apellido = apellidoTF.getText();
-        String correo = correoTF.getText();
-        String rut = rutTF.getText();
-        int numero = Integer.parseInt(telefonoTF.getText());
-        String contraseña = String.valueOf(claveTF.getText());
 
         if(e.getSource() == compradorBTN){
+            if (!ValidarEntradas()){
+                return;
+            }
+            String nombre = nombreTF.getText();
+            String apellido = apellidoTF.getText();
+            String correo = correoTF.getText();
+            String rut = rutTF.getText();
+            int numero = Integer.parseInt(telefonoTF.getText());
+            String contraseña = String.valueOf(claveTF.getText());
 
             if (ValidarEntradas() == true){
                 Usuario com = new Usuario(nombre, apellido, correo, rut, numero, contraseña);
@@ -109,6 +112,16 @@ public class CrearUsuarioGUI extends JFrame implements ActionListener , FocusLis
                 setVisible(false);
             }
         } else if (e.getSource() == vendedorBTN) {
+            if (!ValidarEntradas()){
+                return;
+            }
+            String nombre = nombreTF.getText();
+            String apellido = apellidoTF.getText();
+            String correo = correoTF.getText();
+            String rut = rutTF.getText();
+            int numero = Integer.parseInt(telefonoTF.getText());
+            String contraseña = String.valueOf(claveTF.getText());
+
             if (ValidarEntradas() == true){
 
                 Vendedor vendedor = new Vendedor(nombre, apellido, correo, rut, numero, contraseña);
