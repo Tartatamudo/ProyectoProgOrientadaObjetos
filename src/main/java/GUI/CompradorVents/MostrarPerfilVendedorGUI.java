@@ -10,54 +10,58 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class MostrarPerfilVendedorVentana extends JFrame implements ActionListener {
+public class MostrarPerfilVendedorGUI extends JFrame implements ActionListener {
     private Usuario comprador;
     private ArrayList<ArrayList> usuarios;
     private Vendedor vendedor;
-    private JLabel nombreLabel;
-    private JList comentariosList;
-    private JList estrellasList;
-    private JLabel correoLabel;
-    private JLabel numeroLabel;
-    private JPanel ventana;
-    private JScrollPane scrollComentarios;
-    private JScrollPane scrollEstrellas;
-    private JButton btnVolver;
+    private JPanel ventanaPNL;
+    private JList comentariosLIST;
+    private JList estrellasLIST;
+    private JLabel icon;
+    private JButton volverBTN;
+    private JLabel nombreLBL;
+    private JLabel correoLBL;
+    private JLabel numeroLBL;
+    private JLabel comentariosLBL;
+    private JLabel estrellasLBL;
+    private JScrollPane estrellasSCROLL;
+    private JScrollPane comentariosSCROLL;
 
-    public MostrarPerfilVendedorVentana(ArrayList<ArrayList> usuarios, Vendedor vendedor, Usuario comprador) {
+
+    public MostrarPerfilVendedorGUI(ArrayList<ArrayList> usuarios, Vendedor vendedor, Usuario comprador) {
         this.vendedor = vendedor;
         this.usuarios = usuarios;
         this.comprador = comprador;
     }
     public void SetDatosBasicos(){
         String nombre = "Nombre: " + vendedor.GetNombre() + " " + vendedor.GetApellido();
-        nombreLabel.setText(nombre);
+        nombreLBL.setText(nombre);
 
-        correoLabel.setText("Correo: " + vendedor.GetCorreo());
-        numeroLabel.setText("Numero telefonico: +56 9 " + vendedor.GetNumero());
+        correoLBL.setText("Correo: " + vendedor.GetCorreo());
+        numeroLBL.setText("Numero telefonico: +56 9 " + vendedor.GetNumero());
     }
     public void SetComentarios(){
         ArrayList<String> comentarios = vendedor.GetComentarios();
 
-        comentariosList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
+        comentariosLIST.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         DefaultListModel modelo = new DefaultListModel();
 
         for (int i = 0; i < comentarios.size(); i++) {
             modelo.addElement(comentarios.get(i));
         }
 
-        comentariosList.setModel(modelo);
+        comentariosLIST.setModel(modelo);
     }
     public void SetEstrrellas(){
         List<String> ListTexto = Arrays.asList(vendedor.DevolverStrEstrellas().split(";"));
 
-        estrellasList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
+        estrellasLIST.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         DefaultListModel modelo = new DefaultListModel();
 
         for (int i = 0; i < ListTexto.size(); i++) {
             modelo.addElement(ListTexto.get(i));
         }
-        estrellasList.setModel(modelo);
+        estrellasLIST.setModel(modelo);
     }
     public void Pantalla(){
 
@@ -70,21 +74,21 @@ public class MostrarPerfilVendedorVentana extends JFrame implements ActionListen
 
         SetComentarios();
         SetEstrrellas();
-        scrollComentarios.setViewportView(comentariosList);
-        scrollEstrellas.setViewportView(estrellasList);
+        comentariosSCROLL.setViewportView(comentariosLIST);
+        estrellasSCROLL.setViewportView(estrellasLIST);
 
         SetDatosBasicos();
 
-        setContentPane(ventana);
+        setContentPane(ventanaPNL);
 
         setVisible(true);
 
-        btnVolver.addActionListener(this);
+        volverBTN.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btnVolver){
+        if (e.getSource() == volverBTN){
             MostrarServiciosVendedoresGUI mostrarServiciosDeVendedoresVentana = new MostrarServiciosVendedoresGUI(usuarios, comprador);
             mostrarServiciosDeVendedoresVentana.Pantalla();
             setVisible(false);

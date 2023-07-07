@@ -106,7 +106,7 @@ public class MostrarServiciosVendedoresGUI extends JFrame implements ActionListe
         if (e.getSource() == buscarVendedorBTN){
             int numero = (Integer) vendedorCBOX.getSelectedItem();
             Vendedor vendedor = vendedoresConServicios.get(numero);
-            MostrarPerfilVendedorVentana mostrarPerfilVendedorVentana = new MostrarPerfilVendedorVentana(usuarios, vendedor, comprador);
+            MostrarPerfilVendedorGUI mostrarPerfilVendedorVentana = new MostrarPerfilVendedorGUI(usuarios, vendedor, comprador);
             vendedor.AgregarConfirmacion(comprador.GetRut());
             mostrarPerfilVendedorVentana.Pantalla();
             setVisible(false);
