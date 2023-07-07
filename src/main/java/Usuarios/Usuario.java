@@ -61,8 +61,8 @@ public class Usuario {
 
     public String DevolverStrServicos(){
         String texto = "";
-        for (int i = 0; i < this.servicios.size(); i++) {
-            texto = texto + servicios.get(i).GetNombre()+ ": " + servicios.get(i).GetDescripcion() + ", ";
+        for (Servicio servicio: servicios) {
+            texto = texto + servicio.GetNombre()+ ": " + servicio.GetDescripcion() + ", ";
         }
         return texto;
     }
@@ -89,18 +89,19 @@ public class Usuario {
 
 
     public void AgregarConfirmacion(String rut){
-        this.confirmaciones.remove("");
-        boolean bool = false;
-        for (int i = 0; i < this.confirmaciones.size(); i++) {
-            if(this.confirmaciones.get(i).equals(rut)){
-                bool = true;
-            }
-        }
-        if (bool == false) {
+        if (ConfirmarUnicidadConfirmacion(rut) == false) {
             this.confirmaciones.add(rut);
         }
     }
-
+    public boolean ConfirmarUnicidadConfirmacion(String rut){
+        this.confirmaciones.remove("");
+        for (int i = 0; i < this.confirmaciones.size(); i++) {
+            if(this.confirmaciones.get(i).equals(rut)){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void RemoverConfirmacion(String rutConf){
         this.confirmaciones.remove(rutConf);

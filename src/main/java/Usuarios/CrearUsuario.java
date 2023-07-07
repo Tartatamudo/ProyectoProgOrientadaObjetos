@@ -8,19 +8,18 @@ public class CrearUsuario {
     private ArrayList<Usuario> compradores;
     private ArrayList<Vendedor> vendedores;
     private ArrayList<ArrayList> usuarios;
+
     public CrearUsuario(Usuario comprador, ArrayList<ArrayList> usuarios) {
         this.usuarios = usuarios;
 
         this.compradores = usuarios.get(0);
         this.vendedores = usuarios.get(1);
-        CrearComprador(comprador);
     }
     public CrearUsuario(Vendedor vendedor, ArrayList<ArrayList> usuarios) {
         this.usuarios = usuarios;
 
         this.compradores = usuarios.get(0);
         this.vendedores = usuarios.get(1);
-        CrearVendedor(vendedor);
     }
 
     public void CrearComprador(Usuario comprador) {
@@ -29,7 +28,7 @@ public class CrearUsuario {
         GestorArchivos gestorArchivos = new GestorArchivos();
         gestorArchivos.AñadirCompradorArchivo(comprador);
     }
-    private void CrearVendedor(Vendedor vendedor) {
+    public void CrearVendedor(Vendedor vendedor) {
         this.vendedores.add(vendedor);
 
         GestorArchivos gestorArchivos = new GestorArchivos();

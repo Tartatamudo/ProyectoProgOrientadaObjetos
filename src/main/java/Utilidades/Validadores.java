@@ -11,14 +11,13 @@ import java.util.regex.Pattern;
 
 
 public class Validadores {
-    private JFrame jFrame = new JFrame();
-
     public Validadores() {
     }
     //Obtiene rut de la forma 12345678-9 o 1234567-8, no importa cuantos puntos o guiones se pongan, ya que tod0 eso será eliminado
     public boolean ConfirmarUnicidadRut(String rut,ArrayList<ArrayList> usuarios){
         ArrayList<Usuario> compradores = usuarios.get(0);
         ArrayList<Vendedor> vendedores = usuarios.get(1);
+
         for (int i = 0; i < compradores.size(); i++) {
             if(rut.contains(compradores.get(i).GetRut())){
                 return false;
@@ -31,18 +30,24 @@ public class Validadores {
         }
         return true;
     }
+    public boolean validarFormatoRut(String rut) {
+        // Validar el formato del RUT utilizando una expresión regular
+        if (!rut.matches("\\d{7,8}[0-9Kk]")) {
+            return false;
+        }
+
+        return true;
+    }
     public boolean ValidarRut(String rut, ArrayList<ArrayList> usuarios) {
         // Eliminar puntos y guion del RUT
         rut = rut.replace(".", "").replace("-", "");
 
         //Confirmar si es la primera vez que se ha utilizado el rut
         if (ConfirmarUnicidadRut(rut, usuarios) == false){
-            JOptionPane.showMessageDialog(jFrame, "No puede usar un rut que se haya utilizado con anterioridad");
             return false;
         }
         // Validar el formato del RUT utilizando una expresión regular
-        if (!rut.matches("\\d{7,8}[0-9Kk]")) {
-            JOptionPane.showMessageDialog(jFrame, "Rut malo");
+        if (!rut.matches("\\d{7,8}[0-9Kk]")) {;
             return false;
         }
 
@@ -63,7 +68,6 @@ public class Validadores {
         // Comparar el dígito verificador calculado con el dígito verificador del RUT entregado
         boolean bool = dv == dvEsperado || (dv == 'k' || dv == 'K') && dvEsperado == 'K';
         if (bool == false){
-            JOptionPane.showMessageDialog(jFrame, "Rut malo");
         }
         return bool;
     }
@@ -89,7 +93,6 @@ public class Validadores {
     public boolean ValidarCorreoElectronico(String correo, ArrayList<ArrayList> usuarios) {
         //Confirmar si es la primera vez que se ha utilizado el rut
         if (ConfirmarUnicidadCorreo(correo, usuarios) == false){
-            JOptionPane.showMessageDialog(jFrame, "No puede usar varias veces un mismo correo");
             return false;
         }
         //Confirma si el correo tiene la forma Ejemplo@ejemplo.com, letras, numeros y signos primero,
@@ -99,7 +102,6 @@ public class Validadores {
         boolean bool =  Pattern.matches(patron, correo);
 
         if ( bool == false){
-            JOptionPane.showMessageDialog(jFrame, "Correo erroneo");
         }
         return bool;
     }
@@ -108,7 +110,6 @@ public class Validadores {
     public boolean ValidarNumero(String num){
         //Valida que el largo del numero sea si o si de 8 y luego sean solo numeros
         if (!num.matches("\\d{7}[0-9]")) {
-            JOptionPane.showMessageDialog(jFrame, "Numero erroneo");
             return false;
         }
         else{
@@ -117,7 +118,6 @@ public class Validadores {
     }
 
     //Ve si estan los archivos, si no esta, lo crea
-
     public void ValidarArchivos(){
         GestionArchivos gestionArchivos = new GestionArchivos();
         if(gestionArchivos.LeerArchivo("vendedores.csv").equals("")){

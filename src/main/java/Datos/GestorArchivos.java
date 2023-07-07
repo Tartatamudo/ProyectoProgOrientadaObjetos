@@ -76,7 +76,6 @@ public class GestorArchivos {
 
         comprador.AgregarConfExt(confirmacionesList);
     }
-
     private static void AgregarServiciosComprador(String strObjetos, Usuario comprador){
 
         strObjetos = strObjetos.replaceAll("\\[", "");
@@ -111,9 +110,7 @@ public class GestorArchivos {
         }
         return compraDefList;
     }
-
     //------------------Archivo vendedores------------------------------------------------------------
-
     public void AñadirVendedoresArchivo(ArrayList<Vendedor> vendedores) {
         this.gestionArchivos.CrearArchivo("vendedores.csv", "nombre;apellido;correo;rut;numero;contrasena;estrellas;comentarios;confirmaciones;servicios;");
         for (int i = 0; i < vendedores.size(); i++) {
@@ -121,7 +118,6 @@ public class GestorArchivos {
             AñadirVendedorArchivo(vendedor);
         }
     }
-
     public void AñadirVendedorArchivo(Vendedor vendedor) {
         String nombre = vendedor.GetNombre();
         String apellido = vendedor.GetApellido();
@@ -137,14 +133,12 @@ public class GestorArchivos {
 
         this.gestionArchivos.NuevaLinea("vendedores.csv", nombre + ";" + apellido + ";" + correo + ";" + rut + ";" + numero + ";" + contraseña + ";" + estrellas + ";" + comentarios + ";" + confirmaciones + ";" + serv + ";");
     }
-
     public void CargarVendedoresAPrograma(ArrayList<Vendedor> vendedores) {
         String strVendedores = this.gestionArchivos.LeerArchivo("vendedores.csv");
         strVendedores = strVendedores.replaceAll("\\n", "");
         ArrayList<String> vendeIdoneo = CrearArrayIdoneoVendedores(strVendedores);
         AñadirAListaVendedores(vendedores, vendeIdoneo);
     }
-
     private void AñadirAListaVendedores(ArrayList<Vendedor> vendedores, ArrayList<String> vendeIdoneo) {
         for (int i = 0; i < vendeIdoneo.size() - 1; i += 10) {
             String nombre = vendeIdoneo.get(i);
@@ -171,7 +165,6 @@ public class GestorArchivos {
             vendedores.add(vendedor);
         }
     }
-
     private void AgregarConfirmacionesVendedor(String strConfirmaciones, Vendedor vendedor) {
         strConfirmaciones = strConfirmaciones.replaceAll("\\[", "");
         strConfirmaciones = strConfirmaciones.replaceAll("\\]", "");
@@ -181,7 +174,6 @@ public class GestorArchivos {
 
         vendedor.AgregarConfExt(confirmacionesList);
     }
-
     private void AgregarComenentariosVendedor(String strComentarios, Vendedor vendedor) {
         strComentarios = strComentarios.replaceAll("\\[", "");
         strComentarios = strComentarios.replaceAll("\\]", "");
@@ -190,7 +182,6 @@ public class GestorArchivos {
 
         vendedor.AgregarComExt(comentariosList);
     }
-
     private void AgregarEstrellasVendedor(String strEstrellas, Vendedor vendedor) {
         strEstrellas = strEstrellas.replaceAll("\\[", "");
         strEstrellas = strEstrellas.replaceAll("\\]", "");
@@ -206,7 +197,6 @@ public class GestorArchivos {
         }
         vendedor.AgregarEstExt(estrellasListInt);
     }
-
     private void AgregarServiciosVendedor(String strObjetos, Vendedor ven) {
         strObjetos = strObjetos.replaceAll("\\[", "");
         strObjetos = strObjetos.replaceAll("\\]", "");
@@ -228,7 +218,6 @@ public class GestorArchivos {
             ven.AgregarExtServ(serv);
         }
     }
-
     private ArrayList<String> CrearArrayIdoneoVendedores(String strVendedores) {
         List<String> vendedoresList = Arrays.asList(strVendedores.split(";"));
         ArrayList<String> vendeDefList = new ArrayList<>(vendedoresList);
