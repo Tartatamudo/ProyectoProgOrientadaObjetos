@@ -65,7 +65,7 @@ public class LogueadoVendedorVentana extends JFrame implements ActionListener {
             verMisPublicVentana.Pantalla();
             setVisible(false);
         }else if (e.getSource() == confirmarEncuentrosButton){
-            ConfirmarEncuentroVentana confirmarEncuentroVentana = new ConfirmarEncuentroVentana(vendedor, usuarios);
+            ConfirmarEncuentroGUI confirmarEncuentroVentana = new ConfirmarEncuentroGUI(vendedor, usuarios);
             confirmarEncuentroVentana.Pantalla();
             setVisible(false);
         } else if (e.getSource() == volverButton) {

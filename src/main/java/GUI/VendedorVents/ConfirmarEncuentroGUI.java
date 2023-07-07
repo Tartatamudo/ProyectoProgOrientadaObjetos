@@ -1,6 +1,5 @@
 package GUI.VendedorVents;
 
-
 import Login.MenuLogueado;
 import Usuarios.GestionUsuarios;
 import Usuarios.Usuario;
@@ -13,26 +12,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static Login.MenuLogueado.*;
-
-public class ConfirmarEncuentroVentana extends JFrame implements ActionListener {
-
+public class ConfirmarEncuentroGUI extends JFrame implements ActionListener {
     private JFrame jFrame = new JFrame();
     private Vendedor vendedor;
-
     private ArrayList<ArrayList> usuarios;
     private ArrayList<Vendedor> vendedores;
     private ArrayList<Usuario> compradores;
 
     private ArrayList<Usuario> compradoresConf;
-    private JList compradoresConfList;
-    private JPanel ventana;
-    private JScrollPane scroollCompradoresList;
-    private JComboBox cBoxCompradoresConf;
-    private JButton btnConfirmar;
-    private JButton btnVolver;
+    private JPanel ventanaPNL;
+    private JComboBox compradorCBOX;
+    private JButton confirmarBTN;
+    private JButton volverBTN;
+    private JList compradoresLIST;
+    private JLabel icon;
+    private JLabel tituloLBL;
+    private JScrollPane compradoresSCROLL;
 
-    public ConfirmarEncuentroVentana(Vendedor vendedor, ArrayList<ArrayList> usuarios) {
+    public ConfirmarEncuentroGUI(Vendedor vendedor, ArrayList<ArrayList> usuarios) {
         this.vendedor = vendedor;
         this.usuarios = usuarios;
 
@@ -48,13 +45,13 @@ public class ConfirmarEncuentroVentana extends JFrame implements ActionListener 
         List<String> ListTexto = Arrays.asList(menuLogueado.StrConfirmarContacto(compradoresConf).split(";"));
         SetComboBoxCompradores(ListTexto.size());
 
-        compradoresConfList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
+        compradoresLIST.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         DefaultListModel modelo = new DefaultListModel();
         if(ListTexto.get(0).equals("") == false){
             for (int i = 0; i < ListTexto.size(); i++) {
                 modelo.addElement(ListTexto.get(i));
             }
-            compradoresConfList.setModel(modelo);
+            compradoresLIST.setModel(modelo);
         }else {
             //Si no hay nadie ni siquiera dar opcion a elegir, sacar la ventana y volver atras
             JOptionPane.showMessageDialog(jFrame, "No tiene a nadie para evaluar");
@@ -65,7 +62,7 @@ public class ConfirmarEncuentroVentana extends JFrame implements ActionListener 
     }
     public void SetComboBoxCompradores(int tamaño){
         for (int i = 0; i < tamaño; i++) {
-            cBoxCompradoresConf.addItem(i);
+            compradorCBOX.addItem(i);
         }
     }
 
@@ -76,22 +73,25 @@ public class ConfirmarEncuentroVentana extends JFrame implements ActionListener 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
-        setContentPane(ventana);
+        setContentPane(ventanaPNL);
+        ventanaPNL.setFocusable(true);
+        ventanaPNL.requestFocusInWindow();
 
 
-        scroollCompradoresList.setViewportView(compradoresConfList);
+
+        compradoresSCROLL.setViewportView(compradoresLIST);
 
         setVisible(true);
 
         SetListaCompradores();
-        btnConfirmar.addActionListener(this);
-        btnVolver.addActionListener(this);
+        confirmarBTN.addActionListener(this);
+        volverBTN.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if ( e.getSource() == btnConfirmar){
-            int numComprador = (Integer)cBoxCompradoresConf.getSelectedItem();
+        if ( e.getSource() == confirmarBTN){
+            int numComprador = (Integer)compradorCBOX.getSelectedItem();
 
             GestionUsuarios gestionUsuarios = new GestionUsuarios(usuarios);
             gestionUsuarios.ConfirmarEncuentro(vendedor, numComprador, compradoresConf);
@@ -99,13 +99,15 @@ public class ConfirmarEncuentroVentana extends JFrame implements ActionListener 
             compradoresConf.remove(numComprador);
             SetListaCompradores();
 
-            scroollCompradoresList.revalidate();
-            scroollCompradoresList.repaint();
+            compradoresSCROLL.revalidate();
+            compradoresSCROLL.repaint();
 
-        }else if (e.getSource() == btnVolver){
+        }else if (e.getSource() == volverBTN){
             LogueadoVendedorVentana logueadoVendedorVentana = new LogueadoVendedorVentana(usuarios, vendedor);
             logueadoVendedorVentana.Pantalla();
             setVisible(false);
         }
     }
 }
+
+
