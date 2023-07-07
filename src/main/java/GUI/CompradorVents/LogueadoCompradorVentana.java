@@ -67,7 +67,7 @@ public class LogueadoCompradorVentana extends JFrame implements ActionListener {
             verMisPublicVentana.Pantalla();
             setVisible(false);
         }else if (e.getSource() == evaluarVendedorButton){
-            EvaluarVendedorVentana evaluarVendedorVentana = new EvaluarVendedorVentana(comprador, usuarios);
+            EvaluarVendedorGUI evaluarVendedorVentana = new EvaluarVendedorGUI(comprador, usuarios);
             evaluarVendedorVentana.Pantalla();
             setVisible(false);
         } else if (e.getSource() == volverButton) {
