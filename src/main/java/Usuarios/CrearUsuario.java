@@ -9,19 +9,12 @@ public class CrearUsuario {
     private ArrayList<Vendedor> vendedores;
     private ArrayList<ArrayList> usuarios;
 
-    public CrearUsuario(Usuario comprador, ArrayList<ArrayList> usuarios) {
+    public CrearUsuario(ArrayList<ArrayList> usuarios) {
         this.usuarios = usuarios;
 
         this.compradores = usuarios.get(0);
         this.vendedores = usuarios.get(1);
     }
-    public CrearUsuario(Vendedor vendedor, ArrayList<ArrayList> usuarios) {
-        this.usuarios = usuarios;
-
-        this.compradores = usuarios.get(0);
-        this.vendedores = usuarios.get(1);
-    }
-
     public void CrearComprador(Usuario comprador) {
         this.compradores.add(comprador);
 
