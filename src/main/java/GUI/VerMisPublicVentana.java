@@ -15,7 +15,7 @@ import java.util.List;
 public class VerMisPublicVentana extends JFrame implements ActionListener {
     private ArrayList<ArrayList> usuarios;
     private Usuario comprador;
-    private Vendedor vendedor;//recuerdo intento juntyar las 2
+    private Vendedor vendedor;
     private JList publicacionesList;
     private JScrollPane scrollPublicaciones;
     private JButton btnVolver;
@@ -31,8 +31,6 @@ public class VerMisPublicVentana extends JFrame implements ActionListener {
         this.vendedor = vendedor;
         this.usuarios = usuarios;
     }
-
-
     public void LLenarLista(){
         List<String> ListTexto = new ArrayList<>();
         if ( comprador != null){
@@ -50,7 +48,6 @@ public class VerMisPublicVentana extends JFrame implements ActionListener {
 
         publicacionesList.setModel(modelo);
     }
-
     public void LLenarBasico(){
         if (comprador != null){
             lblNombre.setText("Nombre: " + comprador.GetNombre() + " " + comprador.GetApellido());
@@ -74,7 +71,6 @@ public class VerMisPublicVentana extends JFrame implements ActionListener {
 
         setVisible(true);
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if ( e.getSource() == btnVolver){

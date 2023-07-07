@@ -1,6 +1,5 @@
 package GUI;
 
-import Login.Login;
 import Usuarios.CrearUsuario;
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
@@ -68,13 +67,20 @@ public class CrearUsuarioGUI extends JFrame implements ActionListener , FocusLis
     }
 
     public boolean ValidarEntradas(){
-        if (!validador.ValidarRutChileno(rutTF.getText(), usuarios)){
+        if (rutTF.getText().isEmpty() || correoTF.getText().isEmpty() || telefonoTF.getText().isEmpty() || claveTF.getText().isEmpty() || nombreTF.getText().isEmpty() || apellidoTF.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(jFrame, "Por favor, complete todos los campos");
+            return false;
+        }
+        if (!validador.ValidarRut(rutTF.getText(), usuarios)){
+            JOptionPane.showMessageDialog(jFrame, "Rut ingresado malo");
             return false;
         }
         if (!validador.ValidarCorreoElectronico(correoTF.getText(), usuarios)){
+            JOptionPane.showMessageDialog(jFrame, "Correo ingresado malo");
             return false;
         }
         if (!validador.ValidarNumero(telefonoTF.getText())){
+            JOptionPane.showMessageDialog(jFrame, "Numero ingresado malo");
             return false;
         }
         return true;
@@ -82,20 +88,21 @@ public class CrearUsuarioGUI extends JFrame implements ActionListener , FocusLis
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == compradorBTN){
-            if (ValidarEntradas() == true){
-                String nombre = nombreTF.getText();
-                String apellido = apellidoTF.getText();
-                String correo = correoTF.getText();
-                String rut = rutTF.getText();
-                rut = rut.replace(".", "").replace("-", "");
-                int numero = Integer.parseInt(telefonoTF.getText());
-                String contraseña = String.valueOf(claveTF.getText());
+        String nombre = nombreTF.getText();
+        String apellido = apellidoTF.getText();
+        String correo = correoTF.getText();
+        String rut = rutTF.getText();
+        int numero = Integer.parseInt(telefonoTF.getText());
+        String contraseña = String.valueOf(claveTF.getText());
 
+        if(e.getSource() == compradorBTN){
+
+            if (ValidarEntradas() == true){
                 Usuario com = new Usuario(nombre, apellido, correo, rut, numero, contraseña);
 
                 CrearUsuario crearUsuario = new CrearUsuario(com, usuarios);
-                JOptionPane.showMessageDialog(jFrame, "Comoprador creado exitosamente");
+                crearUsuario.CrearComprador(com);
+                JOptionPane.showMessageDialog(jFrame, "Comprador creado exitosamente");
 
                 LoginGUI loginVentana = new LoginGUI();
                 loginVentana.Pantalla();
@@ -103,16 +110,11 @@ public class CrearUsuarioGUI extends JFrame implements ActionListener , FocusLis
             }
         } else if (e.getSource() == vendedorBTN) {
             if (ValidarEntradas() == true){
-                String nombre = nombreTF.getText();
-                String apellido = apellidoTF.getText();
-                String correo = correoTF.getText();
-                String rut = rutTF.getText();
-                int numero = Integer.parseInt(telefonoTF.getText());
-                String contraseña = String.valueOf(claveTF.getText());
 
                 Vendedor vendedor = new Vendedor(nombre, apellido, correo, rut, numero, contraseña);
 
                 CrearUsuario crearUsuario = new CrearUsuario(vendedor, usuarios);
+                crearUsuario.CrearVendedor(vendedor);
                 JOptionPane.showMessageDialog(jFrame, "Vendedor creado exitosamente");
 
                 LoginGUI loginVentana = new LoginGUI();
@@ -151,7 +153,7 @@ public class CrearUsuarioGUI extends JFrame implements ActionListener , FocusLis
             }
         }
         else if (e.getSource() == telefonoTF) {
-            if (telefonoTF.getText().equals("Ingrese Número telefónico")) {
+            if (telefonoTF.getText().equals("Ingrese Número telefónico sin +56 9")) {
                 telefonoTF.setText("");
             }
         }

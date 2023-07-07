@@ -2,19 +2,14 @@ package GUI;
 
 import GUI.CompradorVents.LogueadoCompradorVentana;
 import GUI.VendedorVents.LogueadoVendedorVentana;
-import Usuarios.Servicio;
-import Usuarios.Usuario;
-import Usuarios.Vendedor;
+import Usuarios.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import static Datos.GestorArchivosCompradores.AñadirCompradoresArchivo;
-import static Datos.GestorArchivosVendedores.AñadirVendedoresArchivo;
-
-public class crearPublicacionGUI extends JFrame implements ActionListener {
+public class CrearPublicacionGUI extends JFrame implements ActionListener {
     private JFrame jFrame = new JFrame();
     private ArrayList<ArrayList> usuarios;
     private Usuario comprador;
@@ -33,12 +28,12 @@ public class crearPublicacionGUI extends JFrame implements ActionListener {
     private JLabel descripcionLBL;
 
 
-    public crearPublicacionGUI(Usuario comprador, ArrayList<ArrayList> usuarios) {
+    public CrearPublicacionGUI(Usuario comprador, ArrayList<ArrayList> usuarios) {
         this.usuarios = usuarios;
         this.comprador = comprador;
         this.compradores = usuarios.get(0);
     }
-    public crearPublicacionGUI(ArrayList<ArrayList> usuarios, Vendedor vendedor) {
+    public CrearPublicacionGUI(ArrayList<ArrayList> usuarios, Vendedor vendedor) {
         this.usuarios = usuarios;
         this.vendedor = vendedor;
         this.vendedores = usuarios.get(1);
@@ -69,8 +64,9 @@ public class crearPublicacionGUI extends JFrame implements ActionListener {
             String descripcion = descripcionTF.getText();
             Servicio servicio = new Servicio(nombre, descripcion);
             if ( comprador != null){
-                comprador.CrearPublicacion(servicio);
-                AñadirCompradoresArchivo(compradores);
+                GestionServicios gestionServicios = new GestionServicios(usuarios);
+                gestionServicios.AgregarServicioComprador(servicio, comprador);
+
                 JOptionPane.showMessageDialog(jFrame, "publicación de  COMPRA creada exitosamente");
 
                 LogueadoCompradorVentana logueadoCompradorVentana = new LogueadoCompradorVentana(usuarios, comprador);
@@ -78,9 +74,9 @@ public class crearPublicacionGUI extends JFrame implements ActionListener {
                 setVisible(false);
 
             } else if (vendedor != null) {
-                vendedor.CrearPublicacion(servicio);
+                GestionServicios gestionServicios = new GestionServicios(usuarios);
+                gestionServicios.AgregarServicioVendedor(servicio, vendedor);
 
-                AñadirVendedoresArchivo(this.vendedores);
                 JOptionPane.showMessageDialog(jFrame, "publicacion VENTA creada exitosamente");
 
                 LogueadoVendedorVentana logueadoVendedorVentana = new LogueadoVendedorVentana(usuarios, vendedor);

@@ -1,5 +1,6 @@
 package GUI.VendedorVents;
 
+import Usuarios.GestionServicios;
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
 
@@ -10,13 +11,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static Datos.GestorArchivosCompradores.AñadirCompradoresArchivo;
+
 import static Usuarios.GestionServicios.*;
 
 public class MostrarServiciosDeCompradoresVentana extends JFrame implements ActionListener {
     private Vendedor vendedor;
     private ArrayList<ArrayList> usuarios;
     private ArrayList<Usuario> compradores;
+    private ArrayList<Usuario> compradoresConServicios;
     private JPanel ventana;
     private JComboBox cBoxFiltro;
     private JButton btnFiltrar;
@@ -31,9 +33,13 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
         this.compradores = usuarios.get(0);
         this.vendedor = vendedor;
     }
-
     public void AñadirLista(){
-        List<String> ListTexto = Arrays.asList(DevolverStrServiciosCompra(compradores).split(";"));
+        GestionServicios gestionServicios = new GestionServicios(usuarios);
+
+        this.compradoresConServicios = gestionServicios.DevolverCompradoresConPublicaciones(compradores);
+        List<String> ListTexto = Arrays.asList(gestionServicios.DevolverStrServiciosCompra(compradoresConServicios).split(";"));
+
+        SetComboCompradores(compradoresConServicios.size());
 
         compradoresList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         DefaultListModel modelo = new DefaultListModel();
@@ -44,8 +50,9 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
 
         compradoresList.setModel(modelo);
     }
-    private void SetComboCompradores(){
-        for (int i = 0; i < compradores.size(); i++) {
+    private void SetComboCompradores(int num){
+        cBoxComprador.removeAllItems();
+        for (int i = 0; i < num; i++) {
             cBoxComprador.addItem(i);
         }
     }
@@ -55,8 +62,13 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
         cBoxFiltro.addItem("electricista");
     }
     private void FiltrarLista(){
+        GestionServicios gestionServicios = new GestionServicios(usuarios);
+
         String eleccion =(String) cBoxFiltro.getSelectedItem();
-        List<String> ListTexto = Arrays.asList(DevolverStrEleccionCompra(eleccion, compradores).split(";"));
+
+        compradoresConServicios = gestionServicios.DevolverCompradoresFiltro(compradoresConServicios, eleccion);
+        List<String> ListTexto = Arrays.asList(gestionServicios.DevolverStrEleccionCompra(eleccion, compradoresConServicios).split(";"));
+        SetComboCompradores(compradoresConServicios.size());
 
         compradoresList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         DefaultListModel modelo = new DefaultListModel();
@@ -79,7 +91,7 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
 
         AñadirLista();
         SetComboFiltro();
-        SetComboCompradores();
+
         setContentPane(ventana);
 
         setVisible(true);
@@ -88,12 +100,11 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
         btnFiltrar.addActionListener(this);
         btnVolver.addActionListener(this);
     }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnPerfilComprador){
             int numero = (Integer) cBoxComprador.getSelectedItem();
-            Usuario comprador = compradores.get(numero);
+            Usuario comprador = compradoresConServicios.get(numero);
            MostrarPerfilCompradorVentana mostrarPerfilCompradorVentana = new MostrarPerfilCompradorVentana(usuarios, comprador, vendedor);
 
             mostrarPerfilCompradorVentana.Pantalla();
@@ -116,6 +127,5 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
             logueadoVendedorVentana.Pantalla();
             setVisible(false);
         }
-        AñadirCompradoresArchivo(compradores);
     }
 }
