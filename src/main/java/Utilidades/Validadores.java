@@ -5,7 +5,6 @@ import Datos.GestionArchivos;
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -14,7 +13,7 @@ public class Validadores {
     public Validadores() {
     }
     //Obtiene rut de la forma 12345678-9 o 1234567-8, no importa cuantos puntos o guiones se pongan, ya que tod0 eso será eliminado
-    public boolean ConfirmarUnicidadRut(String rut,ArrayList<ArrayList> usuarios){
+    private boolean ConfirmarUnicidadRut(String rut,ArrayList<ArrayList> usuarios){
         ArrayList<Usuario> compradores = usuarios.get(0);
         ArrayList<Vendedor> vendedores = usuarios.get(1);
 
@@ -30,27 +29,29 @@ public class Validadores {
         }
         return true;
     }
-    public boolean validarFormatoRut(String rut) {
+    private boolean validarFormatoRut(String rut) {
         // Validar el formato del RUT utilizando una expresión regular
         if (!rut.matches("\\d{7,8}[0-9Kk]")) {
             return false;
         }
-
         return true;
     }
     public boolean ValidarRut(String rut, ArrayList<ArrayList> usuarios) {
         // Eliminar puntos y guion del RUT
         rut = rut.replace(".", "").replace("-", "");
 
-        //Confirmar si es la primera vez que se ha utilizado el rut
-        if (ConfirmarUnicidadRut(rut, usuarios) == false){
+        if (!validarFormatoRut(rut) == false){
             return false;
         }
-        // Validar el formato del RUT utilizando una expresión regular
-        if (!rut.matches("\\d{7,8}[0-9Kk]")) {;
+        if (!ConfirmarUnicidadRut(rut, usuarios)){
             return false;
         }
-
+        if(!ValidarCodigoVerificador(rut) == false){
+            return false;
+        }
+        return true;
+    }
+    private boolean ValidarCodigoVerificador(String rut){
         // Obtener el dígito verificador y el número sin el dígito
         char dv = rut.charAt(rut.length() - 1);
         int num = Integer.parseInt(rut.substring(0, rut.length() - 1));
@@ -67,8 +68,7 @@ public class Validadores {
 
         // Comparar el dígito verificador calculado con el dígito verificador del RUT entregado
         boolean bool = dv == dvEsperado || (dv == 'k' || dv == 'K') && dvEsperado == 'K';
-        if (bool == false){
-        }
+
         return bool;
     }
 
@@ -101,8 +101,6 @@ public class Validadores {
 
         boolean bool =  Pattern.matches(patron, correo);
 
-        if ( bool == false){
-        }
         return bool;
     }
 
