@@ -8,29 +8,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class MostrarPerfilCompradorVentana extends JFrame implements ActionListener {
+public class MostrarPerfilCompradorGUI extends JFrame implements ActionListener {
 
     private Usuario comprador;
     private ArrayList<ArrayList> usuarios;
     private Vendedor vendedor;
+    private JPanel ventanaPNL;
+    private JButton volverBTN;
+    private JLabel iconLBL;
+    private JLabel nombreLBL;
+    private JLabel correoLBL;
+    private JLabel numeroLBL;
 
-    private JButton btnVolver;
-    private JLabel lblNombre;
-    private JLabel lblCorreo;
-    private JLabel lblNumero;
-    private JPanel ventana;
-
-    public MostrarPerfilCompradorVentana(ArrayList<ArrayList> usuarios, Usuario comprador, Vendedor vendedor) {
+    public MostrarPerfilCompradorGUI(ArrayList<ArrayList> usuarios, Usuario comprador, Vendedor vendedor) {
         this.comprador = comprador;
         this.usuarios = usuarios;
         this.vendedor = vendedor;
     }
     public void SetDatosBasicos(){
         String nombre = "Nombre: " + comprador.GetNombre() + " " + comprador.GetApellido();
-        lblNombre.setText(nombre);
+        nombreLBL.setText(nombre);
 
-        lblCorreo.setText("Correo: " + comprador.GetCorreo());
-        lblNumero.setText("Numero telefonico: +56 9 " + comprador.GetNumero());
+        correoLBL.setText("Correo: " + comprador.GetCorreo());
+        numeroLBL.setText("Numero telefonico: +56 9 " + comprador.GetNumero());
     }
 
     public void Pantalla(){
@@ -43,19 +43,24 @@ public class MostrarPerfilCompradorVentana extends JFrame implements ActionListe
 
         SetDatosBasicos();
 
-        setContentPane(ventana);
+        setContentPane(ventanaPNL);
+        ventanaPNL.setFocusable(true);
+        ventanaPNL.requestFocusInWindow();
+
 
         setVisible(true);
 
-        btnVolver.addActionListener(this);
+        volverBTN.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btnVolver){
+        if (e.getSource() == volverBTN){
             MostrarServiciosDeCompradoresVentana mostrarServiciosDeCompradoresVentana = new MostrarServiciosDeCompradoresVentana(usuarios, vendedor);
             mostrarServiciosDeCompradoresVentana.Pantalla();
             setVisible(false);
         }
     }
 }
+
+

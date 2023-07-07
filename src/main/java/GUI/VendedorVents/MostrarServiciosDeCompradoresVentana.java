@@ -105,7 +105,7 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
         if (e.getSource() == btnPerfilComprador){
             int numero = (Integer) cBoxComprador.getSelectedItem();
             Usuario comprador = compradoresConServicios.get(numero);
-           MostrarPerfilCompradorVentana mostrarPerfilCompradorVentana = new MostrarPerfilCompradorVentana(usuarios, comprador, vendedor);
+           MostrarPerfilCompradorGUI mostrarPerfilCompradorVentana = new MostrarPerfilCompradorGUI(usuarios, comprador, vendedor);
 
             mostrarPerfilCompradorVentana.Pantalla();
             setVisible(false);

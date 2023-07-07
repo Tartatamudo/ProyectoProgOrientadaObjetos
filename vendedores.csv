@@ -1,7 +1,7 @@
 nombre;apellido;correo;rut;numero;contrasena;estrellas;comentarios;confirmaciones;servicios;
-Juan;Gómez;juangomez@email.com;14581936;98765432;abc123;[4];[vendedormuyweno];[127069255, 21079526k, 212709891, 5060442k];[[electricista,          electricista]];
-María;López;mlopez@email.com;273868364;23456789;pass123;[];[];[127069255];[[cada,          cada]];
-Pedro;Rodríguez;prodriguez@email.com;877340465;34567890;securepass;[];[];[127069255];[[balo,          balo], [         sabo,          sabo], [         ahora,          ahora], [         a,          a]];
+Juan;Gómez;juangomez@email.com;14581936;98765432;abc123;[4];[vendedormuyweno];[127069255, 21079526k, 212709891, 5060442k];[[electricista,           electricista]];
+María;López;mlopez@email.com;273868364;23456789;pass123;[];[];[127069255];[[cada,           cada]];
+Pedro;Rodríguez;prodriguez@email.com;877340465;34567890;securepass;[];[];[127069255];[[balo,           balo], [          sabo,           sabo], [          ahora,           ahora], [          a,           a]];
 Laura;Martínez;lmartinez@email.com;525105059;45678901;pw123;[];[];[127069255];[];
 Carlos;González;cgonzalez@email.com;278082989;56789012;password;[];[];[127069255];[];
 Ana;Hernández;ahernandez@email.com;925020281;67890123;abc1234;[];[];[127069255];[];
@@ -15,9 +15,10 @@ nombre;apellido;correo;rut;numero;contrasena;estrellas;comentarios;confirmacione
 Daniel;Hernández;dhernandez@email.com;663215671;45678901;pass123456;[];[];[];[];
 Andrea;Torres;atorres@email.com;91769978K;56789012;password1234;[];[];[];[];
 Juan;Gómez;juangomez2@email.com;632205309;67890123;securepass12345;[];[];[];[];
-Laura;Pérez;lperez2@email.com;575474713;78901234;123456789;[];[];[5060442k, 127069255];[[electricista,          electricista]];
-Gabriel;Vargas;gvargas@email.com;332840509;89012345;pass1234567;[];[];[127069255];[[electricista,          electricista]];
-Ana;Martínez;amartinez@email.com;979384742;90123456;securepass123456;[4, 5, 1];[3,             comen2,             comen3];[5060442k, 127069255, 612428905];[[gasfiter,          gasfiter]];
-Ricardo;González;rgonzalez@email.com;21079526k;12345678;password123456;[5, 4, 3, 5, 4, 0, 4, 0, 5];[holaquehace,             primercomentariooooooooooooooooooooooooo,             segundoComentario!!!!!,             cuarto...,             wasaaaaaaaaa,             0estrellasjiji,             casdcasvs,             000000000000000000ajtjfgnabndf,      penca];[212709891true, 5060442ktrue, 5060442k, 127069255, 612428905];[[gasfiter,          gasfiter], [         gqergqevbr,          gqergqevbr], [         wasaaaaaaaaaaaaaaaa,          wasaaaaaaaaaaaaaaaa], [         gagaggagagyagya,          gagaggagagyagya], [         12345678,          12345678], [         erghwehbherth,          erghwehbherth], [         bfbwbfbf,          bfbwbfbf], [         fdbabd,          fdbabd], [         c,          c], [         d,          d], [         bfbfdb,          bfbfdb]];
-a;b;a.b@ab.com;123456785;12345678;ab;[5];[como ta LOCO];[127069255];[[holaquehace,          hagocosas], [        bsdfs bd dfb,         fbdfbfb krgbikf fbsdf], [        ebfdvedfi dfvbjdf,         dfbdfbsjd ddfklbdf]];
+Laura;Pérez;lperez2@email.com;575474713;78901234;123456789;[];[];[5060442k, 127069255];[[electricista,           electricista]];
+Gabriel;Vargas;gvargas@email.com;332840509;89012345;pass1234567;[];[];[127069255];[[electricista,           electricista]];
+Ana;Martínez;amartinez@email.com;979384742;90123456;securepass123456;[4, 5, 1];[3,              comen2,              comen3];[5060442k, 127069255, 612428905, 21221772-32];[[gasfiter,           gasfiter]];
+Ricardo;González;rgonzalez@email.com;21079526k;12345678;password123456;[5, 4, 3, 5, 4, 0, 4, 0, 5];[holaquehace,              primercomentariooooooooooooooooooooooooo,              segundoComentario!!!!!,              cuarto...,              wasaaaaaaaaa,              0estrellasjiji,              casdcasvs,              000000000000000000ajtjfgnabndf,       penca];[212709891true, 5060442ktrue, 5060442k, 127069255, 612428905];[[gasfiter,           gasfiter], [          gqergqevbr,           gqergqevbr], [          wasaaaaaaaaaaaaaaaa,           wasaaaaaaaaaaaaaaaa], [          gagaggagagyagya,           gagaggagagyagya], [          12345678,           12345678], [          erghwehbherth,           erghwehbherth], [          bfbwbfbf,           bfbwbfbf], [          fdbabd,           fdbabd], [          c,           c], [          d,           d], [          bfbfdb,           bfbfdb]];
+a;b;a.b@ab.com;123456785;12345678;ab;[5];[como ta LOCO];[127069255];[[holaquehace,           hagocosas], [         bsdfs bd dfb,          fbdfbfb krgbikf fbsdf], [         ebfdvedfi dfvbjdf,          dfbdfbsjd ddfklbdf]];
 gash;mor;g.mor@lch.cl;212709891;12345678;gmor;[];[];[];[];
+felipe;monsalves;felipexd@email.com;2122177276;21312414;abc123;[];[];[];[];
