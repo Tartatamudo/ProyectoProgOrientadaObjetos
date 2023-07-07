@@ -78,7 +78,10 @@ public class LoginGUI extends JFrame implements ActionListener, FocusListener {
 
             Vendedor vendedor = login.LoginVendedor();
             Usuario comprador = login.LoginUsuario();
-
+            if (correo.isEmpty() || contraseña.isEmpty()) {
+                JOptionPane.showMessageDialog(jFrame, "Por favor, complete todos los campos");
+                return;
+            }
             if(comprador != null){
                 JOptionPane.showMessageDialog(jFrame, "Entro como comprador");
                 LogueadoCompradorVentana logueadoCompradorVentana = new LogueadoCompradorVentana(usuarios, comprador);

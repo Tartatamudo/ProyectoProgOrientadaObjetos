@@ -10,7 +10,7 @@ public class MenuLogueado {
 
     }
 
-    public String EvaluarVendedor(ArrayList<Vendedor> vendedoresConf, Usuario comprador) {
+    public String DevolverStrEvaluarVendedor(ArrayList<Vendedor> vendedoresConf, Usuario comprador) {
         String texto = "";
 
         if (vendedoresConf.size() != 0) {
