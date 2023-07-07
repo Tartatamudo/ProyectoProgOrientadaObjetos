@@ -12,13 +12,8 @@ public class Login {
     private ArrayList<Vendedor> vendedores;
 
     private ArrayList<ArrayList> usuarios;
-    private String correo;
-    private String contraseña;
 
-    public Login(String correo, String contraseña, ArrayList<ArrayList> usuarios) {
-        this.correo = correo;
-        this.contraseña = contraseña;
-
+    public Login(ArrayList<ArrayList> usuarios) {
         this.usuarios = usuarios;
 
         this.compradores = usuarios.get(0);
@@ -27,18 +22,18 @@ public class Login {
     }
 
 
-    public Vendedor LoginVendedor(){
+    public Vendedor LoginVendedor(String correo, String contraseña){
         for (Vendedor vendedor : this.vendedores){
-            if (vendedor.GetCorreo().equals(this.correo) && vendedor.GetContraseña().equals(this.contraseña)){
+            if (vendedor.GetCorreo().equals(correo) && vendedor.GetContraseña().equals(contraseña)){
                 return vendedor;
             }
         }
         return null;
     }
 
-    public Usuario LoginUsuario(){
+    public Usuario LoginComprador(String correo, String contraseña){
         for (Usuario comprador : this.compradores){
-            if (comprador.GetCorreo().equals(this.correo) && comprador.GetContraseña().equals(this.contraseña)){
+            if (comprador.GetCorreo().equals(correo) && comprador.GetContraseña().equals(contraseña)){
                 return comprador;
             }
         }

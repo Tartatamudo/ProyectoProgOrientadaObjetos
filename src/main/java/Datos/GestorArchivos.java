@@ -3,6 +3,7 @@ package Datos;
 import Usuarios.Servicio;
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
+import Utilidades.Validadores;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,8 +13,19 @@ public class GestorArchivos {
     private GestionArchivos gestionArchivos = new GestionArchivos();
     public GestorArchivos(){
     }
+    public void VerificarArchivos(){
+        Validadores validadores = new Validadores();
+
+        if(!validadores.ValidarArchivos("compradores.csv")){
+            this.gestionArchivos.CrearArchivo("Compradores.csv", "nombre;apellido;correo;rut;numero;contrasena;confirmaciones;servicios;");
+        }
+        if(!validadores.ValidarArchivos(("vendedores.csv"))){
+            this.gestionArchivos.CrearArchivo("vendedores.csv", "nombre;apellido;correo;rut;numero;contrasena;estrellas;comentarios;confirmaciones;servicios;");
+        }
+    }
     //------------------Archivo compradores------------------------------------------------------------
     public void AñadirCompradoresArchivo(ArrayList<Usuario> compradores){
+        //Reinicia archivo y mete todoo lo que tiene el programa
         this.gestionArchivos.CrearArchivo("Compradores.csv", "nombre;apellido;correo;rut;numero;contrasena;confirmaciones;servicios;");
         for (int i = 0; i < compradores.size(); i++) {
             Usuario comprador = compradores.get(i);
@@ -88,7 +100,7 @@ public class GestorArchivos {
         if (strObjetos != "") {
             for (int j = 0; j < listObjetos.size() ; j+= 2) {
                 String nombre = listObjetos.get(j);
-                String descripcion = listObjetos.get(j);
+                String descripcion = listObjetos.get(j+1);
 
                 Servicio servicio = new Servicio(nombre, descripcion);
 
@@ -99,19 +111,12 @@ public class GestorArchivos {
     }
     private ArrayList<String> CrearArrayIdoneoCompradores(String strCompradores){
         List<String> compradoresList = Arrays.asList(strCompradores.split(";"));
-        ArrayList<String> compraDefList = new ArrayList<String>();
-
-        for (int i = 0; i < compradoresList.size(); i++) {
-            compraDefList.add(compradoresList.get(i));
-        }
-
-        for (int i = 0; i < 8; i++) {
-            compraDefList.remove(0);
-        }
+        ArrayList<String> compraDefList = new ArrayList<>(compradoresList.subList(8, compradoresList.size()));
         return compraDefList;
     }
     //------------------Archivo vendedores------------------------------------------------------------
     public void AñadirVendedoresArchivo(ArrayList<Vendedor> vendedores) {
+        //Reinicia archivo y mete todoo lo que tiene el programa
         this.gestionArchivos.CrearArchivo("vendedores.csv", "nombre;apellido;correo;rut;numero;contrasena;estrellas;comentarios;confirmaciones;servicios;");
         for (int i = 0; i < vendedores.size(); i++) {
             Vendedor vendedor = vendedores.get(i);
@@ -220,10 +225,7 @@ public class GestorArchivos {
     }
     private ArrayList<String> CrearArrayIdoneoVendedores(String strVendedores) {
         List<String> vendedoresList = Arrays.asList(strVendedores.split(";"));
-        ArrayList<String> vendeDefList = new ArrayList<>(vendedoresList);
-        for (int i = 0; i < 10; i++) {
-            vendeDefList.remove(0);
-        }
+        ArrayList<String> vendeDefList = new ArrayList<>(vendedoresList.subList(10, vendedoresList.size()));
         return vendeDefList;
     }
 }

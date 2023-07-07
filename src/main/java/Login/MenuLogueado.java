@@ -26,16 +26,16 @@ public class MenuLogueado {
         return texto;
     }
 
-    public ArrayList<Vendedor> VendedoresConfirm(ArrayList<Vendedor> usuarios, Usuario comprador) {
+    public ArrayList<Vendedor> VendedoresConfirm(ArrayList<Vendedor> vendedores, Usuario comprador) {
 
         ArrayList<String> vendedoresStr = comprador.GetConfirmaciones();
 
         ArrayList<Vendedor> vendedoresConf = new ArrayList<>();
         for (int i = 0; i < vendedoresStr.size(); i++) {
-            for (int j = 0; j < usuarios.size(); j++) {
-                if (vendedoresStr.get(i).equals(usuarios.get(j).GetRut())) {
-                    vendedoresConf.add(usuarios.get(j));
-                    usuarios.get(j).GetNombre();
+            for (int j = 0; j < vendedores.size(); j++) {
+                if (vendedoresStr.get(i).equals(vendedores.get(j).GetRut())) {
+                    vendedoresConf.add(vendedores.get(j));
+                    vendedores.get(j).GetNombre();
                 }
             }
         }
@@ -43,7 +43,7 @@ public class MenuLogueado {
     }
 
 
-    public ArrayList<Usuario> ConfirmarContacto(Vendedor vendedor, ArrayList<Usuario> compradores) {
+    public ArrayList<Usuario> DevolverListaRutAConfirmar(Vendedor vendedor, ArrayList<Usuario> compradores) {
         ArrayList<String> confirmaciones = vendedor.GetConfirmaciones();
 
         //Aqui se añaden al ArrayList compradoresConf solo los compradores que tienen su rut en el aparto confirmaciones del vendedor, pero solo su rut
@@ -58,7 +58,7 @@ public class MenuLogueado {
         return compradoresConf;
     }
 
-    public String StrConfirmarContacto(ArrayList<Usuario> compradoresConf) {
+    public String DevolverStrCompradoresConfirmados(ArrayList<Usuario> compradoresConf) {
         String texto = "";
         //Aqui se muestran los compradores que tienen su rut y solo su rut en el apartado confirmaciones del vendedor
         //Si no hay compradores a los que confirmarles el contacto se le indica que no tiene

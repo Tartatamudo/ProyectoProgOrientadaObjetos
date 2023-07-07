@@ -5,6 +5,7 @@ import Datos.GestionArchivos;
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -40,13 +41,13 @@ public class Validadores {
         // Eliminar puntos y guion del RUT
         rut = rut.replace(".", "").replace("-", "");
 
-        if (!validarFormatoRut(rut) == false){
+        if (!validarFormatoRut(rut)){
             return false;
         }
         if (!ConfirmarUnicidadRut(rut, usuarios)){
             return false;
         }
-        if(!ValidarCodigoVerificador(rut) == false){
+        if(!ValidarCodigoVerificador(rut)){
             return false;
         }
         return true;
@@ -116,13 +117,11 @@ public class Validadores {
     }
 
     //Ve si estan los archivos, si no esta, lo crea
-    public void ValidarArchivos(){
-        GestionArchivos gestionArchivos = new GestionArchivos();
-        if(gestionArchivos.LeerArchivo("vendedores.csv").equals("")){
-            gestionArchivos.CrearArchivo("vendedores.csv","nombre;apellido;correo;rut;numero;contrasena;servicios;");
+    public boolean ValidarArchivos(String ruta){
+        File archivo = new File(ruta);
+        if (archivo.exists()){
+            return true;
         }
-        if(gestionArchivos.LeerArchivo("compradores.csv").equals("")){
-            gestionArchivos.CrearArchivo("compradores.csv","nombre;apellido;correo;rut;numero;contrasena;servicios;");
-        }
+        return false;
     }
 }

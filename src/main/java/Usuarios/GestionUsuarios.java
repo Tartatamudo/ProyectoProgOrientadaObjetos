@@ -11,10 +11,10 @@ public class GestionUsuarios {
         this.usuarios = usuarios;
     }
 
-    public void ConfirmarEncuentro(Vendedor vendedor, int numComprador, ArrayList<Usuario> compradoresConf){
-        String rut = compradoresConf.get(numComprador).GetRut();
+    public void ConfirmarEncuentro(Vendedor vendedor, Usuario comprador){
+        String rut = comprador.GetRut();
         vendedor.CambiarConfirmacion(rut);
-        compradoresConf.get(numComprador).AgregarConfirmacion(vendedor.GetRut());
+        comprador.AgregarConfirmacion(vendedor.GetRut());
 
         GestorArchivos gestorArchivos = new GestorArchivos();
 
