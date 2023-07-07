@@ -11,24 +11,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+public class MostrarServicioCompradoresGUI extends JFrame implements ActionListener {
 
-import static Usuarios.GestionServicios.*;
-
-public class MostrarServiciosDeCompradoresVentana extends JFrame implements ActionListener {
     private Vendedor vendedor;
     private ArrayList<ArrayList> usuarios;
     private ArrayList<Usuario> compradores;
     private ArrayList<Usuario> compradoresConServicios;
-    private JPanel ventana;
-    private JComboBox cBoxFiltro;
-    private JButton btnFiltrar;
-    private JComboBox cBoxComprador;
-    private JButton btnPerfilComprador;
-    private JButton btnVolver;
-    private JList compradoresList;
-    private JScrollPane scrollCompradores;
+    private JPanel superiorPNL;
+    private JScrollPane compradoresSCROLL;
+    private JList compradoresLIST;
+    private JLabel iconLBL;
+    private JComboBox filtroCBOX;
+    private JButton filtroBTN;
+    private JPanel inferiorPNL;
+    private JComboBox compradorCBOX;
+    private JButton buscarCompradorBTN;
+    private JButton volverBTN;
+    private JLabel compradorLBL;
+    private JPanel ventanaPNL;
 
-    public MostrarServiciosDeCompradoresVentana(ArrayList<ArrayList> usuarios, Vendedor vendedor) {
+    public MostrarServicioCompradoresGUI(ArrayList<ArrayList> usuarios, Vendedor vendedor) {
         this.usuarios = usuarios;
         this.compradores = usuarios.get(0);
         this.vendedor = vendedor;
@@ -41,36 +43,36 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
 
         SetComboCompradores(compradoresConServicios.size());
 
-        compradoresList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
+        compradoresLIST.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         DefaultListModel modelo = new DefaultListModel();
 
         for (int i = 0; i < ListTexto.size(); i++) {
             modelo.addElement(ListTexto.get(i));
         }
 
-        compradoresList.setModel(modelo);
+        compradoresLIST.setModel(modelo);
     }
     private void SetComboCompradores(int num){
-        cBoxComprador.removeAllItems();
+        compradorCBOX.removeAllItems();
         for (int i = 0; i < num; i++) {
-            cBoxComprador.addItem(i);
+            compradorCBOX.addItem(i);
         }
     }
     private void SetComboFiltro(){
-        cBoxFiltro.addItem("No filtro");
-        cBoxFiltro.addItem("gasfiter");
-        cBoxFiltro.addItem("electricista");
+        filtroCBOX.addItem("No filtro");
+        filtroCBOX.addItem("gasfiter");
+        filtroCBOX.addItem("electricista");
     }
     private void FiltrarLista(){
         GestionServicios gestionServicios = new GestionServicios(usuarios);
 
-        String eleccion =(String) cBoxFiltro.getSelectedItem();
+        String eleccion =(String) filtroCBOX.getSelectedItem();
 
         compradoresConServicios = gestionServicios.DevolverCompradoresFiltro(compradoresConServicios, eleccion);
         List<String> ListTexto = Arrays.asList(gestionServicios.DevolverStrEleccionCompra(eleccion, compradoresConServicios).split(";"));
         SetComboCompradores(compradoresConServicios.size());
 
-        compradoresList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
+        compradoresLIST.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         DefaultListModel modelo = new DefaultListModel();
 
         for (int i = 0; i < ListTexto.size(); i++) {
@@ -78,7 +80,7 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
 
         }
 
-        compradoresList.setModel(modelo);
+        compradoresLIST.setModel(modelo);
     }
     public void Pantalla(){
         // Configuramos la ventana
@@ -87,45 +89,49 @@ public class MostrarServiciosDeCompradoresVentana extends JFrame implements Acti
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
-        scrollCompradores.setViewportView(compradoresList);
+        compradoresSCROLL.setViewportView(compradoresLIST);
 
         AñadirLista();
         SetComboFiltro();
 
-        setContentPane(ventana);
+        setContentPane(ventanaPNL);
+        ventanaPNL.setFocusable(true);
+        ventanaPNL.requestFocusInWindow();
+
 
         setVisible(true);
 
-        btnPerfilComprador.addActionListener(this);
-        btnFiltrar.addActionListener(this);
-        btnVolver.addActionListener(this);
+        buscarCompradorBTN.addActionListener(this);
+        filtroBTN.addActionListener(this);
+        volverBTN.addActionListener(this);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == btnPerfilComprador){
-            int numero = (Integer) cBoxComprador.getSelectedItem();
+        if (e.getSource() == buscarCompradorBTN){
+            int numero = (Integer) compradorCBOX.getSelectedItem();
             Usuario comprador = compradoresConServicios.get(numero);
-           MostrarPerfilCompradorGUI mostrarPerfilCompradorVentana = new MostrarPerfilCompradorGUI(usuarios, comprador, vendedor);
+            MostrarPerfilCompradorGUI mostrarPerfilCompradorVentana = new MostrarPerfilCompradorGUI(usuarios, comprador, vendedor);
 
             mostrarPerfilCompradorVentana.Pantalla();
             setVisible(false);
-        }else if (e.getSource() == btnFiltrar){
-            compradoresList.removeAll();
+        }else if (e.getSource() == filtroBTN){
+            compradoresLIST.removeAll();
 
-            String cboxEleccion = (String) cBoxFiltro.getSelectedItem();
+            String cboxEleccion = (String) filtroCBOX.getSelectedItem();
 
             if(cboxEleccion.equals("No filtro")){
                 AñadirLista();
             }else {
                 FiltrarLista();
             }
-            scrollCompradores.revalidate();
-            scrollCompradores.repaint();
+            compradoresSCROLL.revalidate();
+            compradoresSCROLL.repaint();
 
-        } else if (e.getSource() == btnVolver){
+        } else if (e.getSource() == volverBTN){
             LogueadoVendedorVentana logueadoVendedorVentana = new LogueadoVendedorVentana(usuarios, vendedor);
             logueadoVendedorVentana.Pantalla();
             setVisible(false);
         }
     }
+
 }
