@@ -91,7 +91,7 @@
               <background color="-264257"/>
               <font name="Consolas" size="22" style="0"/>
               <foreground color="-16777216"/>
-              <text value="Ingrese Número telefónico"/>
+              <text value="Ingrese Número telefónico sin +56 9"/>
             </properties>
           </component>
           <component id="1e7c6" class="javax.swing.JButton" binding="vendedorBTN">
