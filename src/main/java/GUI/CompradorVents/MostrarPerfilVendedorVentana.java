@@ -85,7 +85,7 @@ public class MostrarPerfilVendedorVentana extends JFrame implements ActionListen
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnVolver){
-            MostrarServiciosDeVendedoresVentana mostrarServiciosDeVendedoresVentana = new MostrarServiciosDeVendedoresVentana(usuarios, comprador);
+            MostrarServiciosVendedoresGUI mostrarServiciosDeVendedoresVentana = new MostrarServiciosVendedoresGUI(usuarios, comprador);
             mostrarServiciosDeVendedoresVentana.Pantalla();
             setVisible(false);
         }

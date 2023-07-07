@@ -54,7 +54,7 @@ public class LogueadoCompradorVentana extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == mostrarServicioDeVendedoresButton) {
-            MostrarServiciosDeVendedoresVentana mostrarServiciosDeVendedoresVentana = new MostrarServiciosDeVendedoresVentana(usuarios, comprador);
+            MostrarServiciosVendedoresGUI mostrarServiciosDeVendedoresVentana = new MostrarServiciosVendedoresGUI(usuarios, comprador);
             mostrarServiciosDeVendedoresVentana.Pantalla();
             setVisible(false);
 
