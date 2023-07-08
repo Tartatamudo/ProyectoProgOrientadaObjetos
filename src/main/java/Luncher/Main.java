@@ -1,4 +1,4 @@
-package Corre;
+package Luncher;
 
 import GUI.LoginGUI;
 

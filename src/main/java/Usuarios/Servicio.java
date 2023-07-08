@@ -9,7 +9,7 @@ public class Servicio {
 
 
     public Servicio(String nombre, String descripcion){
-        this.nombre = nombre.toLowerCase(Locale.ROOT);
+        this.nombre = nombre;
         this.descripcion = descripcion;
     }
 

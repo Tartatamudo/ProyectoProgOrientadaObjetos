@@ -39,19 +39,6 @@
               <text value=""/>
             </properties>
           </component>
-          <component id="fb56b" class="javax.swing.JList" binding="publicacionesLIST">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="50"/>
-              </grid>
-            </constraints>
-            <properties>
-              <background color="-264257"/>
-              <font name="Consolas" size="22" style="0"/>
-              <foreground color="-16316665"/>
-              <model/>
-            </properties>
-          </component>
           <scrollpane id="3d972" binding="publicacionesSCROLL">
             <constraints>
               <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -64,7 +51,17 @@
               <verticalScrollBarPolicy value="20"/>
             </properties>
             <border type="none"/>
-            <children/>
+            <children>
+              <component id="fb56b" class="javax.swing.JList" binding="publicacionesLIST">
+                <constraints/>
+                <properties>
+                  <background color="-264257"/>
+                  <font name="Consolas" size="22" style="0"/>
+                  <foreground color="-16316665"/>
+                  <model/>
+                </properties>
+              </component>
+            </children>
           </scrollpane>
           <hspacer id="f5dbf">
             <constraints>

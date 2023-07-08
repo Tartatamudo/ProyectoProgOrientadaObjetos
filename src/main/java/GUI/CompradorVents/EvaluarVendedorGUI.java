@@ -122,12 +122,12 @@ public class EvaluarVendedorGUI extends  JFrame implements ActionListener {
             gestionUsuarios.ActualizarVendedores();
             gestionUsuarios.ActualizarCompradores();
 
-            MenuCompradorGUI logueadoCompradorVentana = new MenuCompradorGUI(usuarios, comprador);
-            logueadoCompradorVentana.Pantalla();
+            MenuCompradorGUI menuCompradorGUI = new MenuCompradorGUI(usuarios, comprador);
+            menuCompradorGUI.Pantalla();
             setVisible(false);
         }else if ( e.getSource() == volverBTN){
-            MenuCompradorGUI logueadoCompradorVentana = new MenuCompradorGUI(usuarios, comprador);
-            logueadoCompradorVentana.Pantalla();
+            MenuCompradorGUI menuCompradorGUI = new MenuCompradorGUI(usuarios, comprador);
+            menuCompradorGUI.Pantalla();
             setVisible(false);
         }
     }

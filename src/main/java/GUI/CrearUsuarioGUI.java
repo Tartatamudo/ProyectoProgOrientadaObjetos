@@ -103,7 +103,7 @@ public class CrearUsuarioGUI extends JFrame implements ActionListener , FocusLis
             if (ValidarEntradas() == true){
                 Usuario com = new Usuario(nombre, apellido, correo, rut, numero, contraseña);
 
-                CrearUsuario crearUsuario = new CrearUsuario(com, usuarios);
+                CrearUsuario crearUsuario = new CrearUsuario(usuarios);
                 crearUsuario.CrearComprador(com);
                 JOptionPane.showMessageDialog(jFrame, "Comprador creado exitosamente");
 
@@ -126,7 +126,7 @@ public class CrearUsuarioGUI extends JFrame implements ActionListener , FocusLis
 
                 Vendedor vendedor = new Vendedor(nombre, apellido, correo, rut, numero, contraseña);
 
-                CrearUsuario crearUsuario = new CrearUsuario(vendedor, usuarios);
+                CrearUsuario crearUsuario = new CrearUsuario(usuarios);
                 crearUsuario.CrearVendedor(vendedor);
                 JOptionPane.showMessageDialog(jFrame, "Vendedor creado exitosamente");
 

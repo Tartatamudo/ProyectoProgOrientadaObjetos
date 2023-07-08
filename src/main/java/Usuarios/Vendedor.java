@@ -26,8 +26,12 @@ public class Vendedor extends Usuario{
         for (int i = 0; i < estrellas.size(); i++) {
             acum = acum + estrellas.get(i);
         }
-        acum = acum/estrellas.size();
-        promEstrellas = acum;
+        if (estrellas.isEmpty()){
+            promEstrellas = 0;
+        }else{
+            acum = acum/estrellas.size();
+            promEstrellas = acum;
+        }
     }
     public String DevolverStrEstrellas(){
         String texto = "";
