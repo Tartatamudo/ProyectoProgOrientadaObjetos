@@ -10,7 +10,6 @@ public class Usuario {
     private String rut;
     protected int numero;
     private String contraseña;
-
     protected ArrayList<String> confirmaciones = new ArrayList<>();
 
     private ArrayList<Servicio> servicios = new ArrayList<Servicio>();
@@ -23,7 +22,6 @@ public class Usuario {
         this.contraseña = contraseña;
         this.numero = numero;
     }
-
     public String GetNombre() {
         return this.nombre;
     }
@@ -48,30 +46,25 @@ public class Usuario {
         return this.numero;
     }
 
-
     public void CrearPublicacion(Servicio servicio) {
         this.servicios.add(servicio);
     }
-
 
     public ArrayList<Servicio> GetServicios(){
         return this.servicios;
     }
 
-
     public String DevolverStrServicos(){
         String texto = "";
         for (Servicio servicio: servicios) {
-            texto = texto + servicio.GetNombre()+ ": " + servicio.GetDescripcion();
+            texto = texto + servicio.GetNombre()+ ": " + servicio.GetDescripcion() + ",";
         }
         return texto;
     }
 
-
     public int GetLargoServicios(){
         return this.servicios.size();
     }
-
 
     public ArrayList<ArrayList> GetListaDeListaServicios() {
         ArrayList<ArrayList> lista = new ArrayList<>();
@@ -86,13 +79,12 @@ public class Usuario {
             this.servicios.add(serv.get(i));
         }
     }
-
-
     public void AgregarConfirmacion(String rut){
         if (ConfirmarUnicidadConfirmacion(rut) == false) {
             this.confirmaciones.add(rut);
         }
     }
+
     public boolean ConfirmarUnicidadConfirmacion(String rut){
         this.confirmaciones.remove("");
         for (int i = 0; i < this.confirmaciones.size(); i++) {
@@ -106,7 +98,6 @@ public class Usuario {
     public void RemoverConfirmacion(String rutConf){
         this.confirmaciones.remove(rutConf);
     }
-
 
     public ArrayList<String> GetConfirmaciones(){
         return this.confirmaciones;

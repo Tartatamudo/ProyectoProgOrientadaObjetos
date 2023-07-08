@@ -15,7 +15,6 @@ public class GestorArchivos {
     }
     public void VerificarArchivos(){
         Validadores validadores = new Validadores();
-
         if(!validadores.ValidarArchivos("compradores.csv")){
             this.gestionArchivos.CrearArchivo("Compradores.csv", "nombre;apellido;correo;rut;numero;contrasena;confirmaciones;servicios;");
         }

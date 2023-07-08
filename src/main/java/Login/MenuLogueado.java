@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class MenuLogueado {
     public MenuLogueado(){
-
     }
 
     public String DevolverStrEvaluarVendedor(ArrayList<Vendedor> vendedoresConf, Usuario comprador) {

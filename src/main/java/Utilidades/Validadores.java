@@ -1,7 +1,5 @@
 package Utilidades;
 
-import Datos.GestionArchivos;
-
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
 
@@ -77,7 +75,6 @@ public class Validadores {
     }
 
     //Obtiene correo de la forma ejemplo@gmail.com hasta que el usuario lo entregue de esa manera
-
     public boolean ConfirmarUnicidadCorreo(String correo,ArrayList<ArrayList> usuarios){
         ArrayList<Usuario> compradores = usuarios.get(0);
         ArrayList<Vendedor> vendedores = usuarios.get(1);

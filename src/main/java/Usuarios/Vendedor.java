@@ -47,6 +47,8 @@ public class Vendedor extends Usuario{
     public ArrayList<Integer> GetEstrellas(){
         return this.estrellas;
     }
+
+    //Gestion de las confirmaciones
     public boolean ValidarConfirmacion(String rutConf){
         for (int i = 0; i < this.confirmaciones.size(); i++) {
             if(this.confirmaciones.get(i).equals(rutConf)){
@@ -63,6 +65,8 @@ public class Vendedor extends Usuario{
             }
         }
     }
+
+    //Metodos para cargar los datos al archivo
     public void AgregarEstExt(List<Integer> estrellasList){
         for (int i = 0; i < estrellasList.size(); i++) {
             this.estrellas.add(estrellasList.get(i));

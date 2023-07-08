@@ -16,9 +16,11 @@ public class Servicio {
     public String GetNombre(){
         return this.nombre;
     }
+
     public String GetDescripcion(){
         return  this.descripcion;
     }
+
     public ArrayList<String> GetLista(){
         ArrayList<String> lista = new ArrayList<>();
         lista.add(this.nombre);

@@ -30,6 +30,7 @@ public class GestionServicios {
         }
         return texto;
     }
+
     public String DevolverStrEleccionVenta(String strEleccion, ArrayList<Vendedor> vendedores) {
         strEleccion = strEleccion.toLowerCase(Locale.ROOT);
         String texto = "";
@@ -49,7 +50,6 @@ public class GestionServicios {
         }
         return texto;
     }
-
 
     public String DevolverStrEleccionCompra(String strEleccion, ArrayList<Usuario> compradores) {
         strEleccion = strEleccion.toLowerCase(Locale.ROOT);
@@ -92,6 +92,7 @@ public class GestionServicios {
             }
         }return vendedoresConf;
     }
+
     public ArrayList<Usuario> DevolverCompradoresConPublicaciones(ArrayList<Usuario> compradores){
         ArrayList<Usuario> compradoresConf = new ArrayList<>();
         for (Usuario comprador: compradores) {
