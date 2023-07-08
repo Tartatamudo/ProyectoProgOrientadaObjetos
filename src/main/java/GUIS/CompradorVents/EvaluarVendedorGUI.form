@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="GUIS.CompradorVents.EvaluarVendedorGUI">
+  <grid id="27dc6" binding="ventanaPNL" layout-manager="GridLayoutManager" row-count="10" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="1000" height="700"/>
+    </constraints>
+    <properties>
+      <background color="-16757134"/>
+      <minimumSize width="1000" height="700"/>
+      <preferredSize width="1000" height="700"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <scrollpane id="3f19" binding="vendedorSCROLL">
+        <constraints>
+          <grid row="1" column="0" row-span="8" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="73edf" class="javax.swing.JList" binding="vendedorLIST">
+            <constraints/>
+            <properties>
+              <background color="-264257"/>
+              <font name="Consolas" size="20" style="0"/>
+              <foreground color="-16316665"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <hspacer id="c8f79">
+        <constraints>
+          <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <component id="e9fd7" class="javax.swing.JComboBox" binding="vendedorCBOX">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-264257"/>
+          <font name="Consolas" size="20" style="0"/>
+          <foreground color="-16316665"/>
+        </properties>
+      </component>
+      <component id="7a433" class="javax.swing.JLabel" binding="comentarioLBL">
+        <constraints>
+          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Consolas" size="22" style="0"/>
+          <foreground color="-16316665"/>
+          <text value="Agregue un comentario:"/>
+        </properties>
+      </component>
+      <component id="b0912" class="javax.swing.JTextField" binding="comentarioTF">
+        <constraints>
+          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-264257"/>
+          <font name="Consolas" size="20" style="0"/>
+          <foreground color="-16316665"/>
+        </properties>
+      </component>
+      <component id="c267f" class="javax.swing.JButton" binding="volverBTN">
+        <constraints>
+          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-173216"/>
+          <font name="Consolas" size="20" style="0"/>
+          <foreground color="-16316665"/>
+          <text value="Volver"/>
+        </properties>
+      </component>
+      <component id="eaa25" class="javax.swing.JButton" binding="calificarBTN">
+        <constraints>
+          <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-173216"/>
+          <font name="Consolas" size="20" style="0"/>
+          <foreground color="-16316665"/>
+          <text value="Enviar Calificación"/>
+        </properties>
+      </component>
+      <component id="780a3" class="javax.swing.JLabel" binding="iconLBL">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <icon value="icon-calificarServicio.jpg"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="9d6bd" class="javax.swing.JLabel" binding="vendedorLBL">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Consolas" size="22" style="0"/>
+          <foreground color="-16316665"/>
+          <text value="Seleccione Vendedor:"/>
+        </properties>
+      </component>
+      <component id="d80d1" class="javax.swing.JLabel" binding="estrellasLBL">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Consolas" size="22" style="0"/>
+          <foreground color="-16316665"/>
+          <text value="Seleccione N° de estrellas"/>
+        </properties>
+      </component>
+      <component id="1d31a" class="javax.swing.JComboBox" binding="estrellasCBOX">
+        <constraints>
+          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-264257"/>
+          <font name="Consolas" size="20" style="0"/>
+          <foreground color="-16316665"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

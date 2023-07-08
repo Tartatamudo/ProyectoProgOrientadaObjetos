@@ -1,6 +1,6 @@
 package Luncher;
 
-import GUI.LoginGUI;
+import GUIS.LoginGUI;
 
 public class Main {
     public static void main(String[] args) {

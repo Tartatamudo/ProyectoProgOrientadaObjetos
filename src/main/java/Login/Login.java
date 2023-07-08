@@ -1,5 +1,6 @@
 package Login;
 
+import Datos.GestorArchivos;
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
 
@@ -7,11 +8,11 @@ import java.util.ArrayList;
 
 
 public class Login {
-    private ArrayList<Usuario> compradores;
+    private ArrayList<Usuario> compradores = new ArrayList<>();
 
-    private ArrayList<Vendedor> vendedores;
+    private ArrayList<Vendedor> vendedores = new ArrayList<>();
 
-    private ArrayList<ArrayList> usuarios;
+    private ArrayList<ArrayList> usuarios = new ArrayList<>();
 
     public Login(ArrayList<ArrayList> usuarios) {
         this.usuarios = usuarios;
@@ -20,7 +21,19 @@ public class Login {
         this.vendedores = usuarios.get(1);
 
     }
+    public Login() {
+        GestorArchivos gestorArchivos = new GestorArchivos();
+        gestorArchivos.VerificarArchivos();
+        gestorArchivos.CargarCompradoresAPrograma(this.compradores);
+        gestorArchivos.CargarVendedoresAPrograma(vendedores);
 
+        usuarios.add(compradores);
+        usuarios.add(vendedores);
+    }
+
+    public ArrayList<ArrayList> DevolverUsuarios(){
+        return this.usuarios;
+    }
 
     public Vendedor LoginVendedor(String correo, String contraseña){
         for (Vendedor vendedor : this.vendedores){

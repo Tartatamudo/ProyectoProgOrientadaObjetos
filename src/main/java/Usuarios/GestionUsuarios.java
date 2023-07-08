@@ -21,10 +21,12 @@ public class GestionUsuarios {
         gestorArchivos.AñadirCompradoresArchivo(usuarios.get(0));
         gestorArchivos.AñadirVendedoresArchivo(usuarios.get(1));
     }
+
     public void ActualizarVendedores(){
         GestorArchivos gestorArchivos = new GestorArchivos();
         gestorArchivos.AñadirVendedoresArchivo(usuarios.get(1));
     }
+
     public void ActualizarCompradores(){
         GestorArchivos gestorArchivos = new GestorArchivos();
         gestorArchivos.AñadirCompradoresArchivo(usuarios.get(0));

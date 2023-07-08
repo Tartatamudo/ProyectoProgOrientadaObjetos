@@ -1,7 +1,5 @@
 package Utilidades;
 
-import Datos.GestionArchivos;
-
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
 
@@ -42,12 +40,15 @@ public class Validadores {
         rut = rut.replace(".", "").replace("-", "");
 
         if (!validarFormatoRut(rut)){
+            System.out.println("formato");
             return false;
         }
         if (!ConfirmarUnicidadRut(rut, usuarios)){
+            System.out.println("unicidad");
             return false;
         }
         if(!ValidarCodigoVerificador(rut)){
+            System.out.println("codigo");
             return false;
         }
         return true;
@@ -74,7 +75,6 @@ public class Validadores {
     }
 
     //Obtiene correo de la forma ejemplo@gmail.com hasta que el usuario lo entregue de esa manera
-
     public boolean ConfirmarUnicidadCorreo(String correo,ArrayList<ArrayList> usuarios){
         ArrayList<Usuario> compradores = usuarios.get(0);
         ArrayList<Vendedor> vendedores = usuarios.get(1);
