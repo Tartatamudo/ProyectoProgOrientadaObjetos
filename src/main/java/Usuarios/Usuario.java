@@ -62,7 +62,7 @@ public class Usuario {
     public String DevolverStrServicos(){
         String texto = "";
         for (Servicio servicio: servicios) {
-            texto = texto + servicio.GetNombre()+ ": " + servicio.GetDescripcion() + ", ";
+            texto = texto + servicio.GetNombre()+ ": " + servicio.GetDescripcion();
         }
         return texto;
     }

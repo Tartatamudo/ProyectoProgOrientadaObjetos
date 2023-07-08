@@ -7,7 +7,6 @@ import Login.Login;
 
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
-import Utilidades.Validadores;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -33,11 +32,8 @@ public class LoginGUI extends JFrame implements ActionListener, FocusListener {
 
 
     public LoginGUI() {
-
-        Validadores validadores = new Validadores();
-        validadores.ValidarArchivos();
-
         GestorArchivos gestorArchivos = new GestorArchivos();
+        gestorArchivos.VerificarArchivos();
         gestorArchivos.CargarCompradoresAPrograma(compradores);
         gestorArchivos.CargarVendedoresAPrograma(vendedores);
 
@@ -74,18 +70,18 @@ public class LoginGUI extends JFrame implements ActionListener, FocusListener {
             String correo = correoTF.getText();
             String contraseña = String.valueOf(clavePF.getPassword());
 
-            Login login = new Login(correo, contraseña, usuarios);
+            Login login = new Login(usuarios);
 
-            Vendedor vendedor = login.LoginVendedor();
-            Usuario comprador = login.LoginUsuario();
+            Vendedor vendedor = login.LoginVendedor(correo, contraseña);
+            Usuario comprador = login.LoginComprador(correo, contraseña);
             if (correo.isEmpty() || contraseña.isEmpty()) {
                 JOptionPane.showMessageDialog(jFrame, "Por favor, complete todos los campos");
                 return;
             }
             if(comprador != null){
                 JOptionPane.showMessageDialog(jFrame, "Entro como comprador");
-                MenuCompradorGUI logueadoCompradorVentana = new MenuCompradorGUI(usuarios, comprador);
-                logueadoCompradorVentana.Pantalla();
+                MenuCompradorGUI menuCompradorGUI = new MenuCompradorGUI(usuarios, comprador);
+                menuCompradorGUI.Pantalla();
                 setVisible(false);
             } else if (vendedor != null) {
                 JOptionPane.showMessageDialog(jFrame, "Entro como vendedor");

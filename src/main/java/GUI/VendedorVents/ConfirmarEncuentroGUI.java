@@ -13,21 +13,23 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ConfirmarEncuentroGUI extends JFrame implements ActionListener {
+
     private JFrame jFrame = new JFrame();
     private Vendedor vendedor;
+
     private ArrayList<ArrayList> usuarios;
     private ArrayList<Vendedor> vendedores;
     private ArrayList<Usuario> compradores;
 
+    private JLabel icon;
+    private JLabel tituloLBL;
     private ArrayList<Usuario> compradoresConf;
+    private JList compradoresLIST;
     private JPanel ventanaPNL;
+    private JScrollPane compradoresSCROLL;
     private JComboBox compradorCBOX;
     private JButton confirmarBTN;
     private JButton volverBTN;
-    private JList compradoresLIST;
-    private JLabel icon;
-    private JLabel tituloLBL;
-    private JScrollPane compradoresSCROLL;
 
     public ConfirmarEncuentroGUI(Vendedor vendedor, ArrayList<ArrayList> usuarios) {
         this.vendedor = vendedor;
@@ -40,9 +42,9 @@ public class ConfirmarEncuentroGUI extends JFrame implements ActionListener {
     public void SetListaCompradores(){
         MenuLogueado menuLogueado = new MenuLogueado();
 
-        this.compradoresConf = menuLogueado.ConfirmarContacto(vendedor, compradores);
+        this.compradoresConf = menuLogueado.DevolverListaRutAConfirmar(vendedor, compradores);
 
-        List<String> ListTexto = Arrays.asList(menuLogueado.StrConfirmarContacto(compradoresConf).split(";"));
+        List<String> ListTexto = Arrays.asList(menuLogueado.DevolverStrCompradoresConfirmados(compradoresConf).split(";"));
         SetComboBoxCompradores(ListTexto.size());
 
         compradoresLIST.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
@@ -55,8 +57,8 @@ public class ConfirmarEncuentroGUI extends JFrame implements ActionListener {
         }else {
             //Si no hay nadie ni siquiera dar opcion a elegir, sacar la ventana y volver atras
             JOptionPane.showMessageDialog(jFrame, "No tiene a nadie para evaluar");
-            MenuVendedorGUI logueadoVendedorVentana = new MenuVendedorGUI(usuarios, vendedor);
-            logueadoVendedorVentana.Pantalla();
+            MenuVendedorGUI menuVendedorGUI= new MenuVendedorGUI(usuarios, vendedor);
+            menuVendedorGUI.Pantalla();
             setVisible(false);
         }
     }
@@ -74,9 +76,6 @@ public class ConfirmarEncuentroGUI extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setResizable(false);
         setContentPane(ventanaPNL);
-        ventanaPNL.setFocusable(true);
-        ventanaPNL.requestFocusInWindow();
-
 
 
         compradoresSCROLL.setViewportView(compradoresLIST);
@@ -92,9 +91,9 @@ public class ConfirmarEncuentroGUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if ( e.getSource() == confirmarBTN){
             int numComprador = (Integer)compradorCBOX.getSelectedItem();
-
+            Usuario comprador = compradoresConf.get(numComprador);
             GestionUsuarios gestionUsuarios = new GestionUsuarios(usuarios);
-            gestionUsuarios.ConfirmarEncuentro(vendedor, numComprador, compradoresConf);
+            gestionUsuarios.ConfirmarEncuentro(vendedor, comprador);
 
             compradoresConf.remove(numComprador);
             SetListaCompradores();
@@ -103,11 +102,9 @@ public class ConfirmarEncuentroGUI extends JFrame implements ActionListener {
             compradoresSCROLL.repaint();
 
         }else if (e.getSource() == volverBTN){
-            MenuVendedorGUI logueadoVendedorVentana = new MenuVendedorGUI(usuarios, vendedor);
-            logueadoVendedorVentana.Pantalla();
+            MenuVendedorGUI menuVendedorGUI = new MenuVendedorGUI(usuarios, vendedor);
+            menuVendedorGUI.Pantalla();
             setVisible(false);
         }
     }
 }
-
-

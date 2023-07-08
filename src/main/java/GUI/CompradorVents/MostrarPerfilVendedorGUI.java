@@ -53,15 +53,19 @@ public class MostrarPerfilVendedorGUI extends JFrame implements ActionListener {
         comentariosLIST.setModel(modelo);
     }
     public void SetEstrrellas(){
-        List<String> ListTexto = Arrays.asList(vendedor.DevolverStrEstrellas().split(";"));
-
-        estrellasLIST.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
         DefaultListModel modelo = new DefaultListModel();
+        if (vendedor.GetEstrellas().isEmpty()){
+            modelo.addElement("No hay calificaciones");
+        }else{
+            List<String> ListTexto = Arrays.asList(vendedor.DevolverStrEstrellas().split(";"));
 
-        for (int i = 0; i < ListTexto.size(); i++) {
-            modelo.addElement(ListTexto.get(i));
+            estrellasLIST.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
+
+            for (int i = 0; i < ListTexto.size(); i++) {
+                modelo.addElement(ListTexto.get(i));
+            }
+            estrellasLIST.setModel(modelo);
         }
-        estrellasLIST.setModel(modelo);
     }
     public void Pantalla(){
 

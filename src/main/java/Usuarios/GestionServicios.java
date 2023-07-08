@@ -14,7 +14,7 @@ public class GestionServicios {
         String texto = "";
         for (int i = 0; i <compradores.size() ; i++) {
             if(compradores.get(i).GetLargoServicios() != 0){
-                texto = texto+ "Comprador " + String.valueOf(i) + ". "+ compradores.get(i).DevolverStrServicos() +";";
+                texto = texto + "Comprador " + String.valueOf(i) + ". "+ compradores.get(i).DevolverStrServicos() +";";
 
             }
         }
@@ -31,6 +31,7 @@ public class GestionServicios {
         return texto;
     }
     public String DevolverStrEleccionVenta(String strEleccion, ArrayList<Vendedor> vendedores) {
+        strEleccion = strEleccion.toLowerCase(Locale.ROOT);
         String texto = "";
         ArrayList<Servicio> servicios;
 
@@ -51,6 +52,7 @@ public class GestionServicios {
 
 
     public String DevolverStrEleccionCompra(String strEleccion, ArrayList<Usuario> compradores) {
+        strEleccion = strEleccion.toLowerCase(Locale.ROOT);
         String texto = "";
         ArrayList<Servicio> servicios;
 
