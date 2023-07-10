@@ -16,10 +16,6 @@ public class GestionUsuarios {
         vendedor.CambiarConfirmacion(rut);
         comprador.AgregarConfirmacion(vendedor.GetRut());
 
-        GestorArchivos gestorArchivos = new GestorArchivos();
-
-        gestorArchivos.AñadirCompradoresArchivo(usuarios.get(0));
-        gestorArchivos.AñadirVendedoresArchivo(usuarios.get(1));
     }
 
     public void ActualizarVendedores(){

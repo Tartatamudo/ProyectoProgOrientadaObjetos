@@ -25,7 +25,7 @@ public class Login {
         GestorArchivos gestorArchivos = new GestorArchivos();
         gestorArchivos.VerificarArchivos();
         gestorArchivos.CargarCompradoresAPrograma(this.compradores);
-        gestorArchivos.CargarVendedoresAPrograma(vendedores);
+        gestorArchivos.CargarVendedoresAPrograma(this.vendedores);
 
         usuarios.add(compradores);
         usuarios.add(vendedores);

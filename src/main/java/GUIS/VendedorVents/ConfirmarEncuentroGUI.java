@@ -94,7 +94,7 @@ public class ConfirmarEncuentroGUI extends JFrame implements ActionListener {
             Usuario comprador = compradoresConf.get(numComprador);
             GestionUsuarios gestionUsuarios = new GestionUsuarios(usuarios);
             gestionUsuarios.ConfirmarEncuentro(vendedor, comprador);
-
+            gestionUsuarios.ActualizarVendedores();
             compradoresConf.remove(numComprador);
             SetListaCompradores();
 

@@ -34,8 +34,8 @@ public class GestionServiciosTest {
 
         String resultado = gestionServicios.DevolverStrServiciosCompra(compradores);
 
-        String expected = "Comprador 0. Servicio 1: Descripcion 1;"
-                + "Comprador 1. Servicio 2: Descripcion 2;";
+        String expected = "Comprador 0. Servicio 1: Descripcion 1,;"
+                + "Comprador 1. Servicio 2: Descripcion 2,;";
         assertEquals(expected, resultado);
     }
 
@@ -50,8 +50,8 @@ public class GestionServiciosTest {
 
         String resultado = gestionServicios.DevolverStrServiciosVenta(vendedores);
 
-        String expected = "Vendedor 0. Servicio 1: Descripción 1;"
-                + "Vendedor 1. Servicio 2: Descripción 2;";
+        String expected = "Vendedor 0. Servicio 1: Descripción 1,;"
+                + "Vendedor 1. Servicio 2: Descripción 2,;";
         assertEquals(expected, resultado);
     }
 
