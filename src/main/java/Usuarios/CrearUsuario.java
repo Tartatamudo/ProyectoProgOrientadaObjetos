@@ -17,15 +17,9 @@ public class CrearUsuario {
     }
     public void CrearComprador(Usuario comprador) {
         this.compradores.add(comprador);
-
-        GestorArchivos gestorArchivos = new GestorArchivos();
-        gestorArchivos.AñadirCompradorArchivo(comprador);
     }
     public void CrearVendedor(Vendedor vendedor) {
         this.vendedores.add(vendedor);
-
-        GestorArchivos gestorArchivos = new GestorArchivos();
-        gestorArchivos.AñadirVendedorArchivo(vendedor);
     }
 
 }

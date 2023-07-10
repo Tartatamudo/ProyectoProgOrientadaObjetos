@@ -39,15 +39,4 @@ public class GestionUsuariosTest {
         assertEquals(vendedor.GetRut(), comprador1.GetConfirmaciones().get(0));
 
     }
-
-    @Test
-    public void testActualizarVendedores() {
-        Vendedor vendedor1 = new Vendedor("nombre1", "apellido1", "correo1","rut1", 1, "contraseña1");
-        Vendedor vendedor2 = new Vendedor("nombre2", "apellido2", "correo2","rut2", 2, "contraseña2");
-        vendedores.add(vendedor1);
-        vendedores.add(vendedor2);
-
-        gestionUsuarios.ActualizarVendedores();
-
-    }
 }

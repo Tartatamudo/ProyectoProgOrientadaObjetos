@@ -67,6 +67,8 @@ public class CrearPublicacionGUI extends JFrame implements ActionListener {
                 GestionServicios gestionServicios = new GestionServicios(usuarios);
                 gestionServicios.AgregarServicioComprador(servicio, comprador);
 
+                GestionUsuarios gestionUsuarios = new GestionUsuarios(usuarios);
+                gestionUsuarios.ActualizarCompradores();
                 JOptionPane.showMessageDialog(jFrame, "publicación COMPRA creada exitosamente");
 
                 MenuCompradorGUI logueadoCompradorVentana = new MenuCompradorGUI(usuarios, comprador);
@@ -77,6 +79,8 @@ public class CrearPublicacionGUI extends JFrame implements ActionListener {
                 GestionServicios gestionServicios = new GestionServicios(usuarios);
                 gestionServicios.AgregarServicioVendedor(servicio, vendedor);
 
+                GestionUsuarios gestionUsuarios = new GestionUsuarios(usuarios);
+                gestionUsuarios.ActualizarVendedores();
                 JOptionPane.showMessageDialog(jFrame, "publicacion VENTA creada exitosamente");
 
                 MenuVendedorGUI logueadoVendedorVentana = new MenuVendedorGUI(usuarios, vendedor);

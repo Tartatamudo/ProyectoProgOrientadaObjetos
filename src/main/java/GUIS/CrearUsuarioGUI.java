@@ -1,6 +1,7 @@
 package GUIS;
 
 import Usuarios.CrearUsuario;
+import Usuarios.GestionUsuarios;
 import Usuarios.Usuario;
 import Usuarios.Vendedor;
 import Utilidades.Validadores;
@@ -105,6 +106,10 @@ public class CrearUsuarioGUI extends JFrame implements ActionListener , FocusLis
 
                 CrearUsuario crearUsuario = new CrearUsuario(usuarios);
                 crearUsuario.CrearComprador(com);
+
+                GestionUsuarios gestionUsuarios = new GestionUsuarios(usuarios);
+                gestionUsuarios.ActualizarCompradores();
+
                 JOptionPane.showMessageDialog(jFrame, "Comprador creado exitosamente");
 
                 LoginGUI loginVentana = new LoginGUI();
@@ -128,6 +133,9 @@ public class CrearUsuarioGUI extends JFrame implements ActionListener , FocusLis
 
                 CrearUsuario crearUsuario = new CrearUsuario(usuarios);
                 crearUsuario.CrearVendedor(vendedor);
+
+                GestionUsuarios gestionUsuarios = new GestionUsuarios(usuarios);
+                gestionUsuarios.ActualizarVendedores();
                 JOptionPane.showMessageDialog(jFrame, "Vendedor creado exitosamente");
 
                 LoginGUI loginVentana = new LoginGUI();

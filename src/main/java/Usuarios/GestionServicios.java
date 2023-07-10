@@ -74,15 +74,10 @@ public class GestionServicios {
     public void AgregarServicioComprador(Servicio servicio, Usuario comprador){
         comprador.CrearPublicacion(servicio);
 
-        GestionUsuarios gestionUsuarios = new GestionUsuarios(usuarios);
-        gestionUsuarios.ActualizarCompradores();
     }
 
     public void AgregarServicioVendedor(Servicio servicio, Vendedor vendedor){
         vendedor.CrearPublicacion(servicio);
-
-        GestionUsuarios gestionUsuarios = new GestionUsuarios(usuarios);
-        gestionUsuarios.ActualizarVendedores();
     }
     public ArrayList<Vendedor> DevolverVendedoresConPublicaciones(ArrayList<Vendedor> vendedores){
         ArrayList<Vendedor> vendedoresConf = new ArrayList<>();

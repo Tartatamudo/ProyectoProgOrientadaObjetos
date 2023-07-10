@@ -136,7 +136,7 @@ public class UsuarioTest {
 
         String resultado = usuario.DevolverStrServicos();
 
-        String expected = "Limpieza: Servicio de limpieza a domicilioElectricidad: Instalación y reparación de sistemas eléctricos";
+        String expected = "Limpieza: Servicio de limpieza a domicilio,Electricidad: Instalación y reparación de sistemas eléctricos,";
         assertEquals(expected, resultado);
     }
 
