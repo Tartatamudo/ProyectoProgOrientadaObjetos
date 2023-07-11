@@ -20,7 +20,7 @@ public class GestionServiciosTest {
         usuarios = new ArrayList<>();
         usuarios.add(compradores);
         usuarios.add(vendedores);
-        gestionServicios = new GestionServicios(usuarios);
+        gestionServicios = new GestionServicios();
     }
 
     @Test

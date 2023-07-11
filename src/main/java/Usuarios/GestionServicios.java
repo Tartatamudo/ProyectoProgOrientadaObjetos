@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class GestionServicios {
-    private ArrayList<ArrayList> usuarios;
+    public  GestionServicios(){
 
-    public  GestionServicios(ArrayList<ArrayList> usuarios){
-        this.usuarios = usuarios;
     }
 
     public String DevolverStrServiciosCompra(ArrayList<Usuario> compradores){

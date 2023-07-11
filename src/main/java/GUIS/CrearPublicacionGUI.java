@@ -64,7 +64,7 @@ public class CrearPublicacionGUI extends JFrame implements ActionListener {
             String descripcion = descripcionTF.getText();
             Servicio servicio = new Servicio(nombre, descripcion);
             if ( comprador != null){
-                GestionServicios gestionServicios = new GestionServicios(usuarios);
+                GestionServicios gestionServicios = new GestionServicios();
                 gestionServicios.AgregarServicioComprador(servicio, comprador);
 
                 GestionUsuarios gestionUsuarios = new GestionUsuarios(usuarios);
@@ -76,7 +76,7 @@ public class CrearPublicacionGUI extends JFrame implements ActionListener {
                 setVisible(false);
 
             } else if (vendedor != null) {
-                GestionServicios gestionServicios = new GestionServicios(usuarios);
+                GestionServicios gestionServicios = new GestionServicios();
                 gestionServicios.AgregarServicioVendedor(servicio, vendedor);
 
                 GestionUsuarios gestionUsuarios = new GestionUsuarios(usuarios);

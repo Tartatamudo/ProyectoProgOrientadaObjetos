@@ -36,7 +36,7 @@ public class MostrarServiciosVendedoresGUI extends JFrame implements ActionListe
         this.comprador = comprador;
     }
     public void AñadirLista(){
-        GestionServicios gestionServicios = new GestionServicios(usuarios);
+        GestionServicios gestionServicios = new GestionServicios();
         this.vendedoresConServicios = gestionServicios.DevolverVendedoresConPublicaciones(vendedores);
 
         List<String> ListTexto = Arrays.asList(gestionServicios.DevolverStrServiciosVenta(vendedoresConServicios).split(";"));
@@ -63,7 +63,7 @@ public class MostrarServiciosVendedoresGUI extends JFrame implements ActionListe
     }
     private void FiltrarLista(){
         vendedoresConServicios = vendedores;
-        GestionServicios gestionServicios = new GestionServicios(usuarios);
+        GestionServicios gestionServicios = new GestionServicios();
 
         String eleccion =(String) filtroCBOX.getSelectedItem();
 
