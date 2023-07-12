@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class GestionServicios {
-    public  GestionServicios(){
 
+    public  GestionServicios(){
     }
 
     public String DevolverStrServiciosCompra(ArrayList<Usuario> compradores){
